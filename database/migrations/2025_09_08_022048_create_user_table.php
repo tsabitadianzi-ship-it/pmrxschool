@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('kelas',10);
             $table->enum('jenis_kelamin', ['Laki-laki', 'Perempuan']);
             $table->text('alasan');
+            $table->string('username')->unique(); 
+            $table->string('password'); 
             $table->timestamps();
         });
     }

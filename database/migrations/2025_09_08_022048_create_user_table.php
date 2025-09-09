@@ -23,6 +23,7 @@ return new class extends Migration
             $table->text('alasan');
             $table->string('username')->unique(); 
             $table->string('password'); 
+            $table->enum('role', ['siswa', 'pembina', 'sekertaris', 'bendahara'])->default('siswa');
             $table->timestamps();
         });
     }

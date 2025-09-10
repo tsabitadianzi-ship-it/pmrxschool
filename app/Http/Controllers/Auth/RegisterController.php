@@ -48,10 +48,17 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+         
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'nama_lengkap' => ['required', 'string', 'max:32'],
+            'nis_k' => ['required', 'string', 'max:18', 'unique:users'],
+            'tanggal_lahir' => ['required', 'date'],
+            'alamat' => ['required', 'string'],
+            'no_telp' => ['required', 'string', 'max:18'],
+            'kelas' => ['required', 'string', 'max:10'],
+            'jenis_kelamin' => ['required', 'in:Laki-laki,Perempuan'],
+            'alasan' => ['required', 'string'],
+        
         ]);
     }
 
@@ -63,10 +70,24 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        // Buat username otomatis dari nama_lengkap
+    $username = strtolower(str_replace(' ', '', $data['nama_lengkap']));
+
+    // Buat password otomatis dari nis_k
+    $password = Hash::make($data['nis_k']);
+
+    
         return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+            'nama_lengkap' => $data['nama_lengkap'],
+            'nis_k' => $data['nis_k'],
+            'tanggal_lahir' => $data['tanggal_lahir'],
+            'alamat' => $data['alamat'],
+            'no_telp' => $data['no_telp'],
+            'kelas' => $data['kelas'],
+            'jenis_kelamin' => $data['jenis_kelamin'],
+            'alasan' => $data['alasan'],
+            'username' => $username,
+            'password' => $password,
         ]);
     }
 }

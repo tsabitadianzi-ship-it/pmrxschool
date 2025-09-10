@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
+use Illuminate\Http\Request;
 class LoginController extends Controller
 {
     /*
@@ -36,5 +36,31 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
         $this->middleware('auth')->only('logout');
+    }
+
+     public function username()
+    {
+        return 'username';
+    }
+
+     protected function credentials(Request $request)
+    {
+        return [
+            'username' => $request->get('username'),
+            'password' => $request->get('password'),
+            'status'   => 'active',
+        ];
+    }
+
+    protected function authenticated(Request $request, $user)
+    {
+        return match ($user->role) {
+            'pembina'    => redirect()->route('pembina.dashboard'),
+            'sekertaris' => redirect()->route('sekertaris.dashboard'),
+            'bendahara'  => redirect()->route('bendahara.dashboard'),
+            default      => redirect()->route('siswa.dashboard'),
+    
+    };
+
     }
 }

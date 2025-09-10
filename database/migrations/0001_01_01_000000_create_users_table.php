@@ -13,11 +13,18 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            $table->string('nama_lengkap',32);
+            $table->string('nis_k',18);
+            $table->date('tanggal_lahir',32);
+            $table->text('alamat');
+            $table->string('no_telp',18);
+            $table->string('kelas',10);
+            $table->enum('jenis_kelamin', ['Laki-laki', 'Perempuan']);
+            $table->text('alasan');
+            $table->string('username')->unique(); 
+            $table->string('password'); 
+            $table->enum('role', ['siswa', 'pembina', 'sekertaris', 'bendahara'])->default('siswa');
+            $table->enum('status', ['pending', 'active', 'rejected'])->default('pending');
             $table->timestamps();
         });
 

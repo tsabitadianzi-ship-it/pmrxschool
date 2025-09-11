@@ -48,19 +48,25 @@ class LoginController extends Controller
         return [
             'username' => $request->get('username'),
             'password' => $request->get('password'),
-            'status'   => 'active',
+           
         ];
     }
-
+    
     protected function authenticated(Request $request, $user)
     {
+        if ($user->status !== 'active') {
+            auth()->logout();
+
+            return redirect()->route('login')
+                ->with('error', 'Akun Anda masih menunggu konfirmasi pembina.');
+        }
+
         return match ($user->role) {
             'pembina'    => redirect()->route('pages.pembina.dashboard'),
             'sekertaris' => redirect()->route('pages.sekertaris.dashboard'),
             'bendahara'  => redirect()->route('pages.bendahara.dashboard'),
             default      => redirect()->route('pages.siswa.dashboard'),
-    
-    };
-
+        };
     }
+
 }

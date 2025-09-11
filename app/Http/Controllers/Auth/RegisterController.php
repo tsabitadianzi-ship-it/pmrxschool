@@ -1,6 +1,11 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
+// INI UNTUK SUPAYA PAS ABIS REGISTER LANGSUNGLOG OUT 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Http\Request;
+
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
@@ -28,8 +33,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
-
+    protected $redirectTo = '/register/success'; // ✅ default redirect ke halaman success
     /**
      * Create a new controller instance.
      *
@@ -90,4 +94,17 @@ class RegisterController extends Controller
             'password' => $password,
         ]);
     }
+
+    public function register(Request $request)
+{
+    $this->validator($request->all())->validate();
+
+    event(new Registered($user = $this->create($request->all())));
+
+    // ✅ langsung logout biar user tidak auto login
+    Auth::logout();
+
+    return redirect('/register/success');
+}
+
 }

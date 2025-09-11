@@ -36,7 +36,7 @@ class UserSeeder extends Seeder
             'kelas'          => 'XI RPL 3',
             'jenis_kelamin'  => 'Laki-laki',
             'alasan'         => 'Ikut kegiatan PMR',
-            'username'       => 'siswa',
+            'username'       => 'nelisah',
             'password'       => bcrypt('123456'),
             'role'           => 'siswa',
             'status'         => 'active',

@@ -3,15 +3,21 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\PembinaController;
 use App\Http\Controllers\SekertarisController;
 use App\Http\Controllers\BendaharaController;
 use App\Http\Controllers\SiswaController;
 
 Route::get('/', [App\Http\Controllers\GuestController::class, 'index'])->name('pages.guest.guest');
+Route::get('/register', [RegisterController::class, 'create'])->name('register.create');
+Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
+Route::get('/register/success', function () {
+    return view('pages.guest.register_success');
+})->name('register.success');
+
 
 Auth::routes([
-    'register' => false,
     'reset' => false,
     'verify' => false,
     'confirm'=> false

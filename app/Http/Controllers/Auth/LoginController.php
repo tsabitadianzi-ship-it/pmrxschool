@@ -55,10 +55,10 @@ class LoginController extends Controller
     protected function authenticated(Request $request, $user)
     {
         return match ($user->role) {
-            'pembina'    => redirect()->route('pembina.dashboard'),
-            'sekertaris' => redirect()->route('sekertaris.dashboard'),
-            'bendahara'  => redirect()->route('bendahara.dashboard'),
-            default      => redirect()->route('siswa.dashboard'),
+            'pembina'    => redirect()->route('pages.pembina.dashboard'),
+            'sekertaris' => redirect()->route('pages.sekertaris.dashboard'),
+            'bendahara'  => redirect()->route('pages.bendahara.dashboard'),
+            default      => redirect()->route('pages.siswa.dashboard'),
     
     };
 

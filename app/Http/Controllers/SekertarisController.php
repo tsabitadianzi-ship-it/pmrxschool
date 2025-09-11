@@ -8,6 +8,6 @@ class SekertarisController extends Controller
 {
     public function index()
     {
-        return view('sekertaris.dashboard');
+        return view('pages.sekertaris.dashboard');
     }
 }

@@ -8,6 +8,6 @@ class BendaharaController extends Controller
 {
     public function index()
     {
-        return view('bendahara.dashboard');
+        return view('pages.bendahara.dashboard');
     }
 }

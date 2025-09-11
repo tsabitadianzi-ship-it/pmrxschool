@@ -15,6 +15,6 @@ class PembinaController extends Controller
     // Halaman dashboard pembina
     public function index()
     {
-        return view('pembina.dashboard'); 
+        return view('pages.pembina.dashboard'); 
     }
 }

@@ -36,40 +36,137 @@
           <div class="menu-inner-shadow"></div>
 
           <ul class="menu-inner py-1">
-            {{-- Dassboard --}}
+
+            {{-- Menu khusus Pembina --}}
+            @if(Auth::user()->role == 'pembina')
             <li class="menu-item">
-                <a href="" class="menu-link">
+                <a href="{{ route('pembina.dashboard') }}" class="menu-link">
                     <i class="menu-icon tf-icons ti ti-home"></i>
                     Dashboard
                 </a>
             </li>
             {{-- Materi --}}
             <li class="menu-item">
-                <a href="" class="menu-link">
-                    <i class="menu-icon tf-icons ti ti-users-group"></i>
+                <a href="{{ route('pembina.materi') }}" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-notebook"></i>
                     Materi
                 </a>
             </li>
             {{--Jurnal --}}
             <li class="menu-item">
-                <a href="" class="menu-link">
-                    <i class="menu-icon tf-icons ti ti-apps-off"></i>
+                <a href="{{ route('pembina.jurnal') }}" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-book"></i>
                     Jurnal
                 </a>
             </li>
             {{-- Keuangan --}}
             <li class="menu-item">
-                <a href="" class="menu-link">
-                    <i class="menu-icon tf-icons ti ti-users"></i>
-                    Admin
+                <a href="{{ route('pembina.keuangan') }}" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-wallet"></i>
+                    Keuangan
                 </a>
             </li>
             {{-- Anggota --}}
             <li class="menu-item">
-                <a href="" class="menu-link">
+                <a href="{{ route('pembina.anggota') }}" class="menu-link">
                     <i class="menu-icon tf-icons ti ti-users"></i>
                     Anggota
                 </a>
             </li>
+            @endif
+
+             {{-- Menu khusus Siswa --}}
+            @if(Auth::user()->role == 'siswa')
+            <li class="menu-item">
+                <a href="{{ route('siswa.dashboard') }}" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-home"></i>
+                    Dashboard
+                </a>
+            </li>
+            {{-- Materi --}}
+            <li class="menu-item">
+                <a href="{{ route('siswa.materi') }}" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-notebook"></i>
+                    Materi
+                </a>
+            </li>
+            {{--Jurnal --}}
+            <li class="menu-item">
+                <a href="{{ route('siswa.jurnal') }}" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-book"></i>
+                    Jurnal
+                </a>
+            </li>
+            {{-- Keuangan --}}
+            <li class="menu-item">
+                <a href="{{ route('siswa.keuangan') }}" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-wallet"></i>
+                    Keuangan
+                </a>
+            </li>
+            @endif
+
+            {{-- Menu khusus Bendahara --}}
+            @if(Auth::user()->role == 'bendahara')
+            <li class="menu-item">
+                <a href="{{ route('bendahara.dashboard') }}" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-home"></i>
+                    Dashboard
+                </a>
+            </li>
+            {{-- Materi --}}
+            <li class="menu-item">
+                <a href="{{ route('bendahara.materi') }}" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-notebook"></i>
+                    Materi
+                </a>
+            </li>
+            {{--Jurnal --}}
+            <li class="menu-item">
+                <a href="{{ route('bendahara.jurnal') }}" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti ti-book"></i>
+                    Jurnal
+                </a>
+            </li>
+            {{-- Keuangan --}}
+            <li class="menu-item">
+                <a href="{{ route('bendahara.keuangan') }}" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-wallet"></i>
+                    Keuangan
+                </a>
+            </li>
+            @endif
+
+            {{-- Menu khusus Sekertaris --}}
+            @if(Auth::user()->role == 'sekertaris')
+            <li class="menu-item">
+                <a href="{{ route('sekertaris.dashboard') }}" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-home"></i>
+                    Dashboard
+                </a>
+            </li>
+            {{-- Materi --}}
+            <li class="menu-item">
+                <a href="{{ route('sekertaris.materi') }}" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-notebook"></i>
+                    Materi
+                </a>
+            </li>
+            {{--Jurnal --}}
+            <li class="menu-item">
+                <a href="{{ route('sekertaris.jurnal') }}" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti ti-book"></i>
+                    Jurnal
+                </a>
+            </li>
+            {{-- Keuangan --}}
+            <li class="menu-item">
+                <a href="{{ route('sekertaris.keuangan') }}" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-wallet"></i>
+                    Keuangan
+                </a>
+            </li>
+            @endif
+
           </ul>
         </aside>

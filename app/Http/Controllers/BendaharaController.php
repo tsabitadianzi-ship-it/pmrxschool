@@ -10,4 +10,16 @@ class BendaharaController extends Controller
     {
         return view('pages.bendahara.dashboard');
     }
+    public function materi() {
+        return view('pages.bendahara.materi');
+    }
+
+    public function jurnal() {
+        return view('pages.bendahara.jurnal');
+    }
+
+    public function keuangan() {
+        return view('pages.bendahara.keuangan');
+    }
+
 }

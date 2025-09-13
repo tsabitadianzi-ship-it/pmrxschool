@@ -2,26 +2,71 @@
 @section('title', 'Dashboard Pembina')
 @section('content')
 
-<div class="container mx-auto p-4">
-    <h1 class="text-xl font-bold mb-4 text-gray-700">Dashboard Pembina PMR</h1>
+<div class="container mx-auto p-6">
+    <h1 class="text-2xl font-semibold mb-6 text-gray-800">Dashboard Pembina PMR</h1>
 
-    <!-- Info Ekskul & Pembina -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
-        <div class="bg-purple-50 text-purple-800 rounded-xl p-4 shadow-sm hover:shadow-md transition">
-            <h3 class="font-semibold mb-1">Hari Ekskul</h3>
-            <p class="text-sm">Senin & Rabu</p>
-            <p class="text-sm">15:30 - 17:00</p>
-        </div>
-        <div class="bg-green-50 text-green-800 rounded-xl p-4 shadow-sm hover:shadow-md transition">
-            <h3 class="font-semibold mb-1">Pembimbing</h3>
-            <p class="text-sm">Pak Budi Santoso</p>
-            <p class="text-xs text-gray-600">budi.santoso@example.com</p>
-        </div>
-        <div class="bg-blue-50 text-blue-800 rounded-xl p-4 shadow-sm hover:shadow-md transition">
-            <h3 class="font-semibold mb-1">Jumlah Siswa</h3>
-            <p class="text-sm">42 Siswa Terdaftar</p>
-        </div>
+    <!-- Informasi Ekskul -->
+    <div class="bg-white rounded-xl shadow-md p-5 mb-6">
+        <h2 class="text-lg font-bold text-gray-700 mb-4">Informasi Ekskul</h2>
+        <table class="table table-striped w-full">
+            <tbody>
+                <tr>
+                    <th width="25%">Hari</th>
+                    <th width="10px">:</th>
+                    <td>Senin</td>
+                </tr>
+                <tr>
+                    <th width="25%">Jam</th>
+                    <th width="10px">:</th>
+                    <td>15:45</td>
+                </tr>
+                <tr>
+                    <th width="25%">Pembimbing</th>
+                    <th width="10px">:</th>
+                    <td>Pak Budi Santoso</td>
+                </tr>
+                <tr>
+                    <th width="25%">Kontak</th>
+                    <th width="10px">:</th>
+                    <td>0876-7876-7877</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 
+    <!-- Statistik Anggota -->
+    <div class="bg-white rounded-xl shadow-md p-5 mb-6">
+        <h2 class="text-lg font-bold text-gray-700 mb-4">Statistik Anggota</h2>
+        <table class="table table-striped w-full">
+            <tbody>
+                <tr>
+                    <th width="25%">Jumlah Anggota</th>
+                    <th width="10px">:</th>
+                    <td>42</td>
+                </tr>
+                <tr>
+                    <th width="25%">Aktif</th>
+                    <th width="10px">:</th>
+                    <td>38</td>
+                </tr>
+                <tr>
+                    <th width="25%">Pending</th>
+                    <th width="10px">:</th>
+                    <td>4</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Kegiatan -->
+    <div class="bg-white rounded-xl shadow-md p-5">
+        <h2 class="text-lg font-bold text-gray-700 mb-4">Kegiatan Terdekat</h2>
+        <ul class="list-disc list-inside text-gray-600">
+            <li>Donor Darah - 20 September 2025</li>
+            <li>Latihan Pertolongan Pertama - 25 September 2025</li>
+            <li>Simulasi Bencana - 5 Oktober 2025</li>
+        </ul>
+    </div>
+</div>
 
 @endsection

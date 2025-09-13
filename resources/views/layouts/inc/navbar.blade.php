@@ -26,12 +26,15 @@
                 </div>
                   </a>
                   <ul class="dropdown-menu dropdown-menu-end">
-                   
-                    <li>
-                      <a class="dropdown-item" href="">
-                        <i class="ti ti-users me-3 ti-md"></i><span class="align-middle">Ubah Profil</span>
-                      </a>
-                    </li>
+                    {{-- Tampilkan ubah profil hanya untuk sekretaris, pembina, bendahara --}}
+                    @if(in_array(Auth::user()->role, ['sekertaris', 'pembina', 'bendahara']))
+                        <li>
+                          <a class="dropdown-item" href="{{route('edit_profil')}}">
+                            <i class="ti ti-users me-3 ti-md"></i>
+                            <span class="align-middle">Ubah Password</span>
+                          </a>
+                        </li>
+                    @endif
                     <li>
                       <div class="d-grid px-2 pt-2 pb-1">
                         <a class="btn btn-sm btn-danger d-flex" onclick="$('#logout-form').submit()" 

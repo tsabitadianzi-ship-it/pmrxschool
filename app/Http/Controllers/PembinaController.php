@@ -32,7 +32,7 @@ class PembinaController extends Controller
     public function anggota()
 {
     // hanya siswa yang statusnya aktif
-    $anggotaAktif = User::where('role', 'siswa')
+    $anggotaAktif = User::whereIn('role', ['siswa', 'sekertaris', 'bendahara'])
                         ->where('status', 'active')
                         ->get();
 
@@ -73,6 +73,28 @@ public function destroy($id)
     $user->delete(); // hapus user
     return redirect()->route('pembina.anggota')->with('success', 'Anggota berhasil dihapus!');
 }
+
+// Form edit jabatan anggota
+public function editAnggota($id)
+{
+    $anggota = User::findOrFail($id);
+return view('pages.pembina.anggota_edit', compact('anggota'));
+}
+
+// Proses update jabatan anggota
+public function updateAnggota(Request $request, $id)
+{
+    $request->validate([
+        'role' => 'required|string'
+    ]);
+
+    $anggota = User::findOrFail($id);
+    $anggota->role = $request->role; // update jabatan/role
+    $anggota->save();
+
+    return redirect()->route('pembina.anggota')->with('success', 'Jabatan anggota berhasil diperbarui!');
+}
+
 
 
 

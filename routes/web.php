@@ -8,6 +8,9 @@ use App\Http\Controllers\PembinaController;
 use App\Http\Controllers\SekertarisController;
 use App\Http\Controllers\BendaharaController;
 use App\Http\Controllers\SiswaController;
+use App\Http\Controllers\ProfilController;
+
+
 
 Route::get('/', [GuestController::class, 'index'])->name('pages.guest.guest');
 Route::get('/register', [RegisterController::class, 'create'])->name('register.create');
@@ -39,7 +42,11 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/anggota/{id}/terima', [PembinaController::class, 'terimaAnggota'])->name('anggota.terima');
         Route::post('/anggota/{id}/tolak', [PembinaController::class, 'tolakAnggota'])->name('anggota.tolak');
         Route::delete('/anggota/{id}', [PembinaController::class, 'destroy'])->name('anggota.destroy');
+        // Halaman edit jabatan anggota
+        Route::get('/anggota/{id}/edit', [PembinaController::class, 'editAnggota'])->name('anggota_edit');
 
+        // Proses update jabatan anggota
+        Route::put('/anggota/{id}/update', [PembinaController::class, 'updateAnggota'])->name('anggota_update');
 
     });
 
@@ -64,7 +71,11 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/dashboard', [SiswaController::class, 'index'])->name('dashboard');
         Route::get('/jurnal', [SiswaController::class, 'jurnal'])->name('jurnal');
         Route::get('/materi', [SiswaController::class, 'materi'])->name('materi');
-        Route::get('/keuangan', [SiswaController::class, 'keuangan'])->name('p.keuangan');
+        Route::get('/keuangan', [SiswaController::class, 'keuangan'])->name('keuangan');
     });
 
+    Route::middleware(['auth'])->group(function () {
+        Route::get('/edit-profil', [ProfilController::class, 'edit'])->name('edit_profil');
+        Route::post('/edit-profil', [ProfilController::class, 'update'])->name('update_profil');
+    });
 });

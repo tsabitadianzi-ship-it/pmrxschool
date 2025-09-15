@@ -147,7 +147,7 @@
             </li>
             {{-- Materi --}}
             <li class="menu-item">
-                <a href="{{ route('sekertaris.materi') }}" class="menu-link">
+                <a href="{{ route('sekertaris.materi.index') }}" class="menu-link">
                     <i class="menu-icon tf-icons ti ti-notebook"></i>
                     Materi
                 </a>

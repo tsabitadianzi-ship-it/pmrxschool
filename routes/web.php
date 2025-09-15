@@ -9,6 +9,7 @@ use App\Http\Controllers\SekertarisController;
 use App\Http\Controllers\BendaharaController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\ProfilController;
+use App\Http\Controllers\MateriController;
 
 
 
@@ -53,7 +54,9 @@ Route::group(['middleware' => ['auth']], function () {
     // === ROUTE UNTUK SEKRETARIS ===
     Route::prefix('sekertaris')->name('sekertaris.')->group(function() {
         Route::get('/dashboard', [SekertarisController::class, 'index'])->name('dashboard');
-        Route::get('/materi', [SekertarisController::class, 'materi'])->name('materi');
+
+        Route::resource('materi', MateriController::class);
+    
         Route::get('/jurnal', [SekertarisController::class, 'jurnal'])->name('jurnal');
         Route::get('/keuangan', [SekertarisController::class, 'keuangan'])->name('keuangan');
     });

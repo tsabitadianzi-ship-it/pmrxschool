@@ -9,39 +9,39 @@
                 <div class="card-body">
                 <form action="{{ route('sekertaris.materi.store') }}" method="POST" enctype="multipart/form-data">
                      @csrf
-                      <div class="form-group">
+                      <div class="form-group mb-3">
                         <label for="tanggal">Tanggal</label>
                         <input type="date" class="form-control" id="tanggal" name="tanggal" required>
                         @error('tanggal')
-                            <div class="alert alert-danger">{{ $message }}</div>
+                            <div class="alert alert-danger mt-1">{{ $message }}</div>
                         @enderror
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group mb-3">
                         <label for="judul">Judul</label>
                         <input type="text" class="form-control" id="judul" name="judul" required>
                         @error('judul')
-                            <div class="alert alert-danger">{{ $message }}</div>
+                            <div class="alert alert-danger mt-1">{{ $message }}</div>
                         @enderror
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group mb-3">
                         <label for="isi">Isi</label>
-                        <input type="text" class="form-control" id="isi" name="isi" required>
+                        <textarea class="form-control" id="isi" name="isi" rows="4" required></textarea>
                         @error('isi')
-                            <div class="alert alert-danger">{{ $message }}</div>
+                            <div class="alert alert-danger mt-1">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    
+                   <div class="form-group mb-3">
+                        <label for="file">File</label>
+                        <input type="file" class="form-control" id="file" name="file">
+                        @error('file')
+                            <div class="alert alert-danger mt-1">{{ $message }}</div>
                         @enderror
                     </div>
 
-                   <div class="form-group">
-                    <label for="file">File</label>
-                    <input type="file" class="form-control" id="file" name="file">
-                    @error('file')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
-                   </div>
-
-                   <div class="form-group">
+                   <div class="form-group mb-3">
                     <button type="submit" class="btn btn-primary">Tambah</button>
                      <a href="{{ route('sekertaris.materi.index') }}" class="btn btn-secondary">
                                 Batal

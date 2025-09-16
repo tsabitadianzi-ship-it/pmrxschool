@@ -10,6 +10,7 @@ use App\Http\Controllers\BendaharaController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\MateriController;
+use App\Http\Controllers\KeuanganController;
 
 
 
@@ -70,8 +71,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/dashboard', [BendaharaController::class, 'index'])->name('dashboard');
         Route::get('/materi', [BendaharaController::class, 'materi'])->name('materi');
         Route::get('/jurnal', [BendaharaController::class, 'jurnal'])->name('jurnal');
-        Route::get('/keuangan', [BendaharaController::class, 'keuangan'])->name('keuangan');
-
+        Route::resource('keuangan', KeuanganController::class);
         // Materi (khusus bendahara, hanya view)
         Route::get('/materi', [BendaharaController::class, 'materi'])->name('materi');
         Route::get('/materi/{id}', [BendaharaController::class, 'materiShow'])->name('materi.show');

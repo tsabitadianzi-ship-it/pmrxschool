@@ -79,4 +79,15 @@
         });
     }
     </script>
+@if (Session::has('success'))
+    <script type="text/javascript">
+    Swal.fire({
+        icon: 'success',
+        title: 'Berhasil',
+        text: '{{ Session::get('success') }}',
+        showConfirmButten: false,
+        timer: 3000
+    });
+    </script>
+@endif
 @endpush

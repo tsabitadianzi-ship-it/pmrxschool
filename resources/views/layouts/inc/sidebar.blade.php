@@ -130,7 +130,7 @@
             </li>
             {{-- Keuangan --}}
             <li class="menu-item">
-                <a href="{{ route('bendahara.keuangan') }}" class="menu-link">
+                <a href="{{ route('bendahara.keuangan.index') }}" class="menu-link">
                     <i class="menu-icon tf-icons ti ti-wallet"></i>
                     Keuangan
                 </a>

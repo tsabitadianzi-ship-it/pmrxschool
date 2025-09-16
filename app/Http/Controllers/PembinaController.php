@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Keuangan;
+use App\Models\Materi;
 use App\Models\User;
 use Illuminate\Http\Request;
-use App\Models\Materi;
 
 class PembinaController extends Controller
 {
@@ -16,96 +18,101 @@ class PembinaController extends Controller
     // Halaman dashboard pembina
     public function index()
     {
-        return view('pages.pembina.dashboard'); 
+        return view('pages.pembina.dashboard');
     }
-    public function materi() {
+
+    public function materi()
+    {
         $materi = Materi::orderBy('tanggal', 'desc')->get();
-    return view('pages.pembina.materi', compact('materi'));
+
+        return view('pages.pembina.materi', compact('materi'));
     }
 
     public function materiShow($id)
     {
         $materi = Materi::findOrFail($id);
+
         return view('pages.pembina.materi.show', compact('materi'));
     }
 
-
-    public function jurnal() {
+    public function jurnal()
+    {
         return view('pages.pembina.jurnal');
     }
 
-    public function keuangan() {
-        return view('pages.pembina.keuangan');
+    public function keuangan()
+    {
+        $keuangan = Keuangan::orderBy('tanggal', 'desc')->get();
+
+        return view('pages.pembina.keuangan', compact('keuangan'));
     }
-    
+
     public function anggota()
-{
-    // hanya siswa yang statusnya aktif
-    $anggotaAktif = User::whereIn('role', ['siswa', 'sekertaris', 'bendahara'])
-                        ->where('status', 'active')
-                        ->get();
+    {
+        // hanya siswa yang statusnya aktif
+        $anggotaAktif = User::whereIn('role', ['siswa', 'sekertaris', 'bendahara'])
+            ->where('status', 'active')
+            ->get();
 
-    // hanya siswa yang statusnya pending
-    $anggotaKonfirmasi = User::where('role', 'siswa')
-                             ->where('status', 'pending')
-                             ->get();
+        // hanya siswa yang statusnya pending
+        $anggotaKonfirmasi = User::where('role', 'siswa')
+            ->where('status', 'pending')
+            ->get();
 
-    return view('pages.pembina.anggota', compact('anggotaAktif', 'anggotaKonfirmasi'));
-}
+        return view('pages.pembina.anggota', compact('anggotaAktif', 'anggotaKonfirmasi'));
+    }
 
-public function show($id)
-{
-    $anggota = User::findOrFail($id);
-    return view('pages.pembina.anggota_detail', compact('anggota'));
-}
+    public function show($id)
+    {
+        $anggota = User::findOrFail($id);
 
+        return view('pages.pembina.anggota_detail', compact('anggota'));
+    }
 
-public function terimaAnggota($id)
-{
-    $user = User::findOrFail($id);
-    $user->status = 'active';
-    $user->save();
+    public function terimaAnggota($id)
+    {
+        $user = User::findOrFail($id);
+        $user->status = 'active';
+        $user->save();
 
-    return redirect()->route('pembina.anggota')->with('success', 'Anggota berhasil diterima!');
-}
+        return redirect()->route('pembina.anggota')->with('success', 'Anggota berhasil diterima!');
+    }
 
-public function tolakAnggota($id)
-{
-    $user = User::findOrFail($id);
-    $user->delete(); // hapus langsung dari database
+    public function tolakAnggota($id)
+    {
+        $user = User::findOrFail($id);
+        $user->delete(); // hapus langsung dari database
 
-    return redirect()->route('pembina.anggota')->with('success', 'Anggota berhasil ditolak dan dihapus!');
-}
-public function destroy($id)
-{
-    $user = User::findOrFail($id);
-    $user->delete(); // hapus user
-    return redirect()->route('pembina.anggota')->with('success', 'Anggota berhasil dihapus!');
-}
+        return redirect()->route('pembina.anggota')->with('success', 'Anggota berhasil ditolak dan dihapus!');
+    }
 
-// Form edit jabatan anggota
-public function editAnggota($id)
-{
-    $anggota = User::findOrFail($id);
-return view('pages.pembina.anggota_edit', compact('anggota'));
-}
+    public function destroy($id)
+    {
+        $user = User::findOrFail($id);
+        $user->delete(); // hapus user
 
-// Proses update jabatan anggota
-public function updateAnggota(Request $request, $id)
-{
-    $request->validate([
-        'role' => 'required|string'
-    ]);
+        return redirect()->route('pembina.anggota')->with('success', 'Anggota berhasil dihapus!');
+    }
 
-    $anggota = User::findOrFail($id);
-    $anggota->role = $request->role; // update jabatan/role
-    $anggota->save();
+    // Form edit jabatan anggota
+    public function editAnggota($id)
+    {
+        $anggota = User::findOrFail($id);
 
-    return redirect()->route('pembina.anggota')->with('success', 'Jabatan anggota berhasil diperbarui!');
-}
+        return view('pages.pembina.anggota_edit', compact('anggota'));
+    }
 
+    // Proses update jabatan anggota
+    public function updateAnggota(Request $request, $id)
+    {
+        $request->validate([
+            'role' => 'required|string',
+        ]);
 
+        $anggota = User::findOrFail($id);
+        $anggota->role = $request->role; // update jabatan/role
+        $anggota->save();
 
-
-    
+        return redirect()->route('pembina.anggota')->with('success', 'Jabatan anggota berhasil diperbarui!');
+    }
 }

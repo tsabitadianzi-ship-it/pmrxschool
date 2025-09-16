@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\Materi;
 
 class PembinaController extends Controller
 {
@@ -18,8 +19,16 @@ class PembinaController extends Controller
         return view('pages.pembina.dashboard'); 
     }
     public function materi() {
-        return view('pages.pembina.materi');
+        $materi = Materi::orderBy('tanggal', 'desc')->get();
+    return view('pages.pembina.materi', compact('materi'));
     }
+
+    public function materiShow($id)
+    {
+        $materi = Materi::findOrFail($id);
+        return view('pages.pembina.materi.show', compact('materi'));
+    }
+
 
     public function jurnal() {
         return view('pages.pembina.jurnal');

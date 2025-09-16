@@ -35,7 +35,7 @@
 
                    <div class="form-group">
                     <label for="file">File</label>
-                    <input type="file" class="form-control" id="file" name="file" required>
+                    <input type="file" class="form-control" id="file" name="file">
                     @error('file')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror

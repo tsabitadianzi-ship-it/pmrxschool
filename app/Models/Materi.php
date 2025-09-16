@@ -16,5 +16,6 @@ class Materi extends Model
         'tanggal',
         'judul',
         'isi',
+        'file',
     ];
 }

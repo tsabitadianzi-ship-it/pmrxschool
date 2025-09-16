@@ -1,106 +1,125 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
-
 class MateriController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $materi = DB::table('materi')->orderBy('tanggal', 'desc')->get();
-
         return view('pages.sekertaris.materi', compact('materi'));
-    }   
+    }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('pages.sekertaris.materi.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
-{
-    // Validasi input
-    $validated = $request->validate([
-        'tanggal' => 'required|date',
-        'judul'   => 'required|string|max:255',
-        'isi'     => 'required|string',
-        'file' => 'required|file|mimes:pdf,doc,docx,ppt,pptx,xls,xlsx,jpg,png|max:5120',
+    {
+        // Validasi input (file nullable)
+        $validated = $request->validate([
+            'tanggal' => 'required|date',
+            'judul'   => 'required|string|max:255',
+            'isi'     => 'required|string',
+            'file'    => 'nullable|file|mimes:pdf,doc,docx,ppt,pptx,xls,xlsx,jpg,png|max:5120',
+        ]);
 
-    ]);
+        // default null supaya tidak Undefined variable
+        $fileName = null;
 
-    if ($request->hasFile('file')) {
-        // bikin nama file aman
-        $fileName = time().'_'.preg_replace('/\s+/', '_', $request->file('file')->getClientOriginalName());
-        $request->file('file')->move(public_path('uploads/materi'), $fileName);
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $fileName = time() . '_' . preg_replace('/\s+/', '_', $file->getClientOriginalName());
+            $file->move(public_path('uploads/materi'), $fileName);
+        }
+
+        DB::table('materi')->insert([
+            'tanggal'    => $validated['tanggal'],
+            'judul'      => $validated['judul'],
+            'isi'        => $validated['isi'],
+            'file'       => $fileName,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        return redirect()->route('sekertaris.materi.index')
+                         ->with('success', 'Materi berhasil ditambahkan!');
     }
 
-    // Simpan ke database
-    \DB::table('materi')->insert([
-        'tanggal' => $validated['tanggal'],
-        'judul'   => $validated['judul'],
-        'isi'     => $validated['isi'],
-        'file'    => $fileName,
-        'created_at' => now(),
-        'updated_at' => now(),
-    ]);
-
-    // Redirect kembali dengan pesan sukses
-    return redirect()->route('sekertaris.materi.index')
-                     ->with('success', 'Materi berhasil ditambahkan!');
-}
-
-
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
-        //
+        $materi = DB::table('materi')->where('id', $id)->first();
+
+    if (! $materi) {
+        return redirect()->route('sekertaris.materi.index')
+                         ->with('error', 'Data tidak ditemukan.');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    return view('pages.sekertaris.materi.show', compact('materi'));
+    }
+
     public function edit(string $id)
     {
-         $materi = DB::table('materi')->orderBy('tanggal', 'desc')->get();
-
-        return view('pages.sekertaris.materi', compact('materi'));
+        $materi = DB::table('materi')->where('id', $id)->first();
+        return view('pages.sekertaris.materi.edit', compact('materi'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
         $validated = $request->validate([
-        'tanggal' => 'required|date',
-        'judul'   => 'required|string|max:255',
-        'isi'     => 'required|string',
-        'file' => 'required|file|mimes:pdf,doc,docx,ppt,pptx,xls,xlsx,jpg,png|max:5120',
+            'tanggal' => 'required|date',
+            'judul'   => 'required|string|max:255',
+            'isi'     => 'required|string',
+            'file'    => 'nullable|file|mimes:pdf,doc,docx,ppt,pptx,xls,xlsx,jpg,png|max:5120',
+        ]);
 
-    ]);
-         return redirect()->route('sekertaris.materi.index')
-                     ->with('success', 'Materi berhasil ditambahkan!');
+        $materi = DB::table('materi')->where('id', $id)->first();
+        if (! $materi) {
+            return redirect()->route('sekertaris.materi.index')->with('error', 'Data tidak ditemukan.');
+        }
 
+        // keep old filename by default
+        $fileName = $materi->file;
+
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $newName = time() . '_' . preg_replace('/\s+/', '_', $file->getClientOriginalName());
+            $file->move(public_path('uploads/materi'), $newName);
+
+            // hapus file lama jika ada
+            if ($materi->file && file_exists(public_path('uploads/materi/' . $materi->file))) {
+                @unlink(public_path('uploads/materi/' . $materi->file));
+            }
+
+            $fileName = $newName;
+        }
+
+        DB::table('materi')->where('id', $id)->update([
+            'tanggal'    => $validated['tanggal'],
+            'judul'      => $validated['judul'],
+            'isi'        => $validated['isi'],
+            'file'       => $fileName,
+            'updated_at' => now(),
+        ]);
+
+        return redirect()->route('sekertaris.materi.index')
+                         ->with('success', 'Materi berhasil diperbarui!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
-        //
+        $materi = DB::table('materi')->where('id', $id)->first();
+        if ($materi) {
+            if ($materi->file && file_exists(public_path('uploads/materi/' . $materi->file))) {
+                @unlink(public_path('uploads/materi/' . $materi->file));
+            }
+            DB::table('materi')->where('id', $id)->delete();
+        }
+
+        return redirect()->route('sekertaris.materi.index')->with('success', 'Materi berhasil dihapus!');
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Materi;
 
 class SiswaController extends Controller
 {
@@ -10,9 +11,15 @@ class SiswaController extends Controller
     {
         return view('pages.siswa.dashboard');
     }
-    public function materi()
+    public function materi() {
+        $materi = Materi::orderBy('tanggal', 'desc')->get();
+    return view('pages.siswa.materi', compact('materi'));
+    }
+
+    public function materiShow($id)
     {
-        return view('pages.siswa.materi');
+        $materi = Materi::findOrFail($id);
+        return view('pages.siswa.materi.show', compact('materi'));
     }
     public function jurnal()
     {

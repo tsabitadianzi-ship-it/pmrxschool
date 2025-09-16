@@ -39,6 +39,10 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/keuangan', [PembinaController::class, 'keuangan'])->name('keuangan');
         Route::get('/anggota', [PembinaController::class, 'anggota'])->name('anggota');
 
+        // Materi (khusus pembina, hanya view)
+        Route::get('/materi', [PembinaController::class, 'materi'])->name('materi');
+        Route::get('/materi/{id}', [PembinaController::class, 'materiShow'])->name('materi.show');
+
         Route::get('/anggota/{id}/detail', [PembinaController::class, 'show'])->name('anggota_detail');
         Route::post('/anggota/{id}/terima', [PembinaController::class, 'terimaAnggota'])->name('anggota.terima');
         Route::post('/anggota/{id}/tolak', [PembinaController::class, 'tolakAnggota'])->name('anggota.tolak');
@@ -67,6 +71,10 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/materi', [BendaharaController::class, 'materi'])->name('materi');
         Route::get('/jurnal', [BendaharaController::class, 'jurnal'])->name('jurnal');
         Route::get('/keuangan', [BendaharaController::class, 'keuangan'])->name('keuangan');
+
+        // Materi (khusus bendahara, hanya view)
+        Route::get('/materi', [BendaharaController::class, 'materi'])->name('materi');
+        Route::get('/materi/{id}', [BendaharaController::class, 'materiShow'])->name('materi.show');
     });
 
     // === ROUTE UNTUK SISWA ===
@@ -75,6 +83,10 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/jurnal', [SiswaController::class, 'jurnal'])->name('jurnal');
         Route::get('/materi', [SiswaController::class, 'materi'])->name('materi');
         Route::get('/keuangan', [SiswaController::class, 'keuangan'])->name('keuangan');
+
+        // Materi (khusus siswa, hanya view)
+        Route::get('/materi', [SiswaController::class, 'materi'])->name('materi');
+        Route::get('/materi/{id}', [SiswaController::class, 'materiShow'])->name('materi.show');
     });
 
     Route::middleware(['auth'])->group(function () {

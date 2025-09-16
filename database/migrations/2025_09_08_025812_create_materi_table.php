@@ -16,7 +16,7 @@ return new class extends Migration
             $table->date('tanggal');
             $table->string('judul',20);
             $table->text('isi');
-            $table->text('file');
+            $table->text('file')->nullable();
             $table->timestamps();
         });
     }

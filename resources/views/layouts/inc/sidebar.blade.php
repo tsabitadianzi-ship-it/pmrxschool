@@ -154,7 +154,7 @@
             </li>
             {{--Jurnal --}}
             <li class="menu-item">
-                <a href="{{ route('sekertaris.jurnal') }}" class="menu-link">
+                <a href="{{ route('sekertaris.jurnal.index') }}" class="menu-link">
                     <i class="menu-icon tf-icons ti ti ti-book"></i>
                     Jurnal
                 </a>

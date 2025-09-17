@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->date('tanggal');
             $table->string('kegiatan');
+            $table->time('waktu_mulai');
+            $table->time('waktu_selesai');
             $table->timestamps();
         });
     }

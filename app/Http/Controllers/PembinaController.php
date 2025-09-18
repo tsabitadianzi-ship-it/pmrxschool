@@ -19,7 +19,20 @@ class PembinaController extends Controller
     // Halaman dashboard pembina
     public function index()
     {
-        return view('pages.pembina.dashboard');
+        // ambil data pembina
+        $pembina = User::where('role', 'pembina')->get();
+
+        // statistik anggota
+        $jumlahAnggota = User::whereIn('role', ['siswa', 'sekertaris', 'bendahara'])->count();
+        $anggotaAktif = User::whereIn('role', ['siswa', 'sekertaris', 'bendahara'])->where('status', 'active')->count();
+        $anggotaPending = User::where('role', 'siswa')->where('status', 'pending')->count();
+
+        return view('pages.pembina.dashboard', compact(
+            'pembina',
+            'jumlahAnggota',
+            'anggotaAktif',
+            'anggotaPending'
+        ));
     }
 
     public function materi()
@@ -174,42 +187,5 @@ class PembinaController extends Controller
 
         return redirect()->route('pembina.anggota')
             ->with('success', 'Pembina berhasil dihapus!');
-    }
-
-    // Form edit pembina
-    public function editPembina($id)
-    {
-        $pembina = User::where('role', 'pembina')->findOrFail($id);
-
-        return view('pages.pembina.pembina_edit', compact('pembina'));
-    }
-
-    // Proses update pembina
-    public function updatePembina(Request $request, $id)
-    {
-        $request->validate([
-            'nama_lengkap' => 'required|string|max:255',
-            'nis_k' => 'required|string|max:50|unique:users,nis_k,'.$id,
-            'tanggal_lahir' => 'required|date',
-            'alamat' => 'required|string',
-            'no_telp' => 'required|string|max:20',
-            'jenis_kelamin' => 'required|string',
-        ]);
-
-        $pembina = User::where('role', 'pembina')->findOrFail($id);
-        $pembina->nama_lengkap = $request->nama_lengkap;
-        $pembina->nis_k = $request->nis_k;
-        $pembina->tanggal_lahir = $request->tanggal_lahir;
-        $pembina->alamat = $request->alamat;
-        $pembina->no_telp = $request->no_telp;
-        $pembina->jenis_kelamin = $request->jenis_kelamin;
-
-        // kalau mau update username juga:
-        $pembina->username = str_replace(' ', '_', strtolower($request->nama_lengkap));
-
-        $pembina->save();
-
-        return redirect()->route('pembina.anggota')
-            ->with('success', 'Data pembina berhasil diperbarui!');
     }
 }

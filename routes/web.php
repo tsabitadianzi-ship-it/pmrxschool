@@ -40,9 +40,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/anggota', [PembinaController::class, 'anggota'])->name('anggota');
         Route::get('/tambah-pembina', [PembinaController::class, 'createPembina'])->name('pembina_tambah');
         Route::post('/tambah-pembina', [PembinaController::class, 'storePembina'])->name('pembina_store');
-        Route::get('/pembina/edit-pembina/{id}', [PembinaController::class, 'editPembina'])->name('pembina_edit');
-        Route::put('/update-pembina/{id}', [PembinaController::class, 'updatePembina'])->name('pembina_update');
-
+        Route::get('/edit-pembina', [PembinaController::class, 'editPembina'])->name('pembina_edit');
         Route::delete('/pembina/{id}', [PembinaController::class, 'destroyPembina'])->name('pembina_destroy');
 
         // Materi (khusus pembina, hanya view)

@@ -13,6 +13,16 @@
         </a>
     </div>
 
+    <!-- Kegiatan -->
+    <div class="bg-white rounded-xl shadow-md p-5 mb-6">
+        <h2 class="text-lg font-bold text-gray-700 mb-4">Kegiatan Terdekat</h2>
+        <ul class="list-disc list-inside text-gray-600">
+            <li>Donor Darah - 20 September 2025</li>
+            <li>Latihan Pertolongan Pertama - 25 September 2025</li>
+            <li>Simulasi Bencana - 5 Oktober 2025</li>
+        </ul>
+    </div>
+
     <!-- Informasi Ekskul -->
     <div class="bg-white rounded-xl shadow-md p-5 mb-6">
         <h2 class="text-lg font-bold text-gray-700 mb-4">Informasi Ekskul</h2>
@@ -28,16 +38,29 @@
                     <th width="10px">:</th>
                     <td>15:45</td>
                 </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Daftar Pembina -->
+    <div class="bg-white rounded-xl shadow-md p-5 mb-6">
+        <h2 class="text-lg font-bold text-gray-700 mb-4">Daftar Pembina</h2>
+        <table class="table table-striped w-full">
+            <thead>
                 <tr>
-                    <th width="25%">Pembimbing</th>
-                    <th width="10px">:</th>
-                    <td>Pak Budi Santoso</td>
+                    <th>No</th>
+                    <th>Nama Lengkap</th>
+                    <th>Kontak</th>
                 </tr>
-                <tr>
-                    <th width="25%">Kontak</th>
-                    <th width="10px">:</th>
-                    <td>0876-7876-7877</td>
-                </tr>
+            </thead>
+            <tbody>
+                @foreach($pembina as $i => $p)
+                    <tr>
+                        <td>{{ $i+1 }}</td>
+                        <td>{{ $p->nama_lengkap }}</td>
+                        <td>{{ $p->no_telp ?? '-' }}</td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
@@ -50,31 +73,22 @@
                 <tr>
                     <th width="25%">Jumlah Anggota</th>
                     <th width="10px">:</th>
-                    <td>42</td>
+                    <td>{{ $jumlahAnggota }}</td>
                 </tr>
                 <tr>
                     <th width="25%">Aktif</th>
                     <th width="10px">:</th>
-                    <td>38</td>
+                    <td>{{ $anggotaAktif }}</td>
                 </tr>
                 <tr>
                     <th width="25%">Pending</th>
                     <th width="10px">:</th>
-                    <td>4</td>
+                    <td>{{ $anggotaPending }}</td>
                 </tr>
             </tbody>
         </table>
     </div>
 
-    <!-- Kegiatan -->
-    <div class="bg-white rounded-xl shadow-md p-5">
-        <h2 class="text-lg font-bold text-gray-700 mb-4">Kegiatan Terdekat</h2>
-        <ul class="list-disc list-inside text-gray-600">
-            <li>Donor Darah - 20 September 2025</li>
-            <li>Latihan Pertolongan Pertama - 25 September 2025</li>
-            <li>Simulasi Bencana - 5 Oktober 2025</li>
-        </ul>
-    </div>
 </div>
 
 @endsection

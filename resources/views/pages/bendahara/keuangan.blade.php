@@ -6,12 +6,11 @@
 <div class="row">
     <div class="col-md-12">
 
-        <h3> Data Keuangan </h3>
+        <h2> Data Keuangan </h2>
         <a href="{{ route('bendahara.keuangan.create') }}" class="btn btn-primary mb-3">
             <span class="ti ti-plus me-1"></span>
             Tambah 
         </a>
-
         <div class="card card-body">
             <table class="table table-striped dataTable">
                 <thead>
@@ -52,7 +51,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="7" class="text-center text-muted p-3">Belum ada data keuangan</td>
+                            <td colspan="7">Belum ada data keuangan</td>
                         </tr>
                     @endforelse
                 </tbody>

@@ -1,16 +1,14 @@
 @extends('layouts.app')
-
 @section('title', 'Manajemen Anggota')
-
 @section('content')
+
 <div class="row">
     <div class="col-md-12">
-
         <!-- Konfirmasi Anggota -->
-        <h3 class="page-title mb-3">Konfirmasi Anggota</h3>
-        <div class="card card-body p-0 mb-4">
-            <table class="table table-striped mb-0">
-                <thead class="table-light">
+        <h2>Konfirmasi Anggota</h2>
+        <div class="card card-body">
+            <table class="table table-striped dataTable">
+                <thead>
                     <tr>
                         <th width="5%">No</th>
                         <th>Nama</th>
@@ -40,10 +38,10 @@
         </div>
 
         <!-- Anggota Aktif -->
-        <h3 class="page-title mb-3">Anggota Aktif</h3>
-        <div class="card card-body p-0">
-            <table class="table table-striped mb-0">
-                <thead class="table-light">
+        <h2>Anggota Aktif</h2>
+        <div class="card card-body">
+            <table class="table table-striped dataTable">
+                <thead>
                     <tr>
                         <th width="5%">No</th>
                         <th>Nama</th>
@@ -54,23 +52,21 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($anggotaAktif as $i => $anggota)
+                    @foreach($anggotaAktif as $i => $item)
                     <tr>
                         <td class="text-center">{{ $i+1 }}</td>
-                        <td>{{ $anggota->nama_lengkap }}</td>
-                        <td>{{ $anggota->nis_k }}</td>
-                        <td>{{ $anggota->kelas }}</td>
-                        <td>{{ $anggota->role }}</td>
+                        <td>{{ $item->nama_lengkap }}</td>
+                        <td>{{ $item->nis_k }}</td>
+                        <td>{{ $item->kelas }}</td>
+                        <td>{{ $item->role }}</td>
                         <td>
-                            <a href="{{ route('pembina.anggota_edit', $anggota->id) }}" class="btn btn-sm btn-warning">
-                                <span class="ti ti-pencil me-1"></span> Edit
+                            <a href="{{ route('pembina.anggota_edit', $item->id) }}" class="btn btn-sm btn-warning">
+                                <span class="ti ti-pencil me-1"></span> 
                             </a>
-                            <form action="{{ route('pembina.anggota.destroy', $anggota->id) }}" method="POST" class="d-inline">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus?')">
-                                    <span class="ti ti-trash me-1"></span> Hapus
-                                </button>
+                            <button type="button" class="btn btn-sm btn-danger"
+                              onclick="actionDelete('{{ route('pembina.anggota.destroy', $item->id) }}')">
+                                <span class="ti ti-trash"></span> 
+                            </button>
                             </form>
                         </td>
                     </tr>
@@ -78,7 +74,54 @@
                 </tbody>
             </table>
         </div>
-
     </div>
 </div>
+<form id="form-delete" action="" method="POST" class="d-none">
+    @csrf
+    @method('DELETE')
+</form>
 @endsection
+
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/vendor/libs/sweetalert2/sweetalert2.css') }}" />
+
+@endpush
+
+@push('scripts')
+    <script src="{{ asset('/vendor/libs/datatables-bs5/datatables-bootstrap5.js') }}"></script>
+    <script src="{{ asset('/vendor/libs/sweetalert2/sweetalert2.js') }}"></script>
+    <script>
+    $(function () {
+        $('.dataTable').DataTable();
+    });
+
+    function actionDelete(url){
+        Swal.fire({
+            title: "Apakah kamu yakin?",
+            text: "Data yang dihapus tidak bisa dikembalikan!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Ya, hapus!",
+            cancelButtonText: "Batal"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $('#form-delete').attr('action', url);
+                $('#form-delete').submit();
+            }
+        });
+    }
+    </script>
+    @if (Session::has('success'))
+        <script type="text/javascript">
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil',
+            text: '{{ Session::get('success') }}',
+            showConfirmButten: false,
+            timer: 3000
+        });
+        </script>
+    @endif
+@endpush

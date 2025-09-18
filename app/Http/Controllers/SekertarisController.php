@@ -25,6 +25,6 @@ class SekertarisController extends Controller
     {
         $keuangan = Keuangan::orderBy('tanggal', 'desc')->get();
 
-        return view('pages.pembina.keuangan', compact('keuangan'));
+        return view('pages.sekertaris.keuangan', compact('keuangan'));
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Jurnal;
 use App\Models\Keuangan;
 use App\Models\Materi;
 use App\Models\User;
@@ -37,7 +38,9 @@ class PembinaController extends Controller
 
     public function jurnal()
     {
-        return view('pages.pembina.jurnal');
+        $jurnal = Jurnal::orderBy('created_at', 'desc')->get();
+
+        return view('pages.pembina.jurnal', compact('jurnal'));
     }
 
     public function keuangan()

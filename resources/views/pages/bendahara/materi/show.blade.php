@@ -4,12 +4,12 @@
 
 @section('content')
 <div class="p-4">
-    <h2 class="text-xl font-bold mb-4">📖 Detail Materi</h2>
+    <h2>Detail Materi</h2>
 
     <div class="border rounded-lg shadow p-6 bg-white">
         <!-- Tanggal -->
         <p class="text-sm text-gray-500 mb-2">
-            📅 {{ \Carbon\Carbon::parse($materi->tanggal)->translatedFormat('l, d F Y') }}
+            {{ \Carbon\Carbon::parse($materi->tanggal)->translatedFormat('l, d F Y') }}
         </p>
 
         <!-- Judul -->
@@ -25,18 +25,19 @@
             <div class="mt-4">
                 <a href="{{ asset('uploads/materi/' . $materi->file) }}" 
                    target="_blank">
-                    📂 Download File
+                    <span class="ti ti-download"></span> Download File
                 </a>
             </div>
         @else
-            <p class="mt-4 text-danger text-500">⚠ Tidak ada file terlampir</p>
+            <p class="mt-4 text-danger text-500">
+                <span class="ti ti-alert-circle"></span> Tidak ada file terlampir</p>
         @endif
 
         <!-- Tombol kembali -->
     <div class="mt-6">
         <a href="{{ route('bendahara.materi') }}" 
-           class="btn btn-danger">
-           ⬅ Kembali
+           class="btn btn-sm btn-secondary">
+           <span class="ti ti-arrow-left"></span> Kembali
         </a>
     </div>
 

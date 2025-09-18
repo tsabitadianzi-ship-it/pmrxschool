@@ -1,15 +1,14 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-// INI UNTUK SUPAYA PAS ABIS REGISTER LANGSUNGLOG OUT 
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Http\Request;
 
-
+// INI UNTUK SUPAYA PAS ABIS REGISTER LANGSUNGLOG OUT
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -34,6 +33,7 @@ class RegisterController extends Controller
      * @var string
      */
     protected $redirectTo = '/register/success'; // ✅ default redirect ke halaman success
+
     /**
      * Create a new controller instance.
      *
@@ -47,12 +47,11 @@ class RegisterController extends Controller
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
     {
-         
+
         return Validator::make($data, [
             'nama_lengkap' => ['required', 'string', 'max:32'],
             'nis_k' => ['required', 'string', 'max:18', 'unique:users'],
@@ -62,25 +61,23 @@ class RegisterController extends Controller
             'kelas' => ['required', 'string', 'max:10'],
             'jenis_kelamin' => ['required', 'in:Laki-laki,Perempuan'],
             'alasan' => ['required', 'string'],
-        
+
         ]);
     }
 
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
      * @return \App\Models\User
      */
     protected function create(array $data)
     {
         // Buat username otomatis dari nama_lengkap
-    $username = strtolower(str_replace(' ', '', $data['nama_lengkap']));
+        $username = $data['nama_lengkap'];
 
-    // Buat password otomatis dari nis_k
-    $password = Hash::make($data['nis_k']);
+        // Buat password otomatis dari nis_k
+        $password = Hash::make($data['nis_k']);
 
-    
         return User::create([
             'nama_lengkap' => $data['nama_lengkap'],
             'nis_k' => $data['nis_k'],
@@ -96,15 +93,14 @@ class RegisterController extends Controller
     }
 
     public function register(Request $request)
-{
-    $this->validator($request->all())->validate();
+    {
+        $this->validator($request->all())->validate();
 
-    event(new Registered($user = $this->create($request->all())));
+        event(new Registered($user = $this->create($request->all())));
 
-    // ✅ langsung logout biar user tidak auto login
-    Auth::logout();
+        // ✅ langsung logout biar user tidak auto login
+        Auth::logout();
 
-    return redirect('/register/success');
-}
-
+        return redirect('/register/success');
+    }
 }

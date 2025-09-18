@@ -1,8 +1,7 @@
 @extends('layouts.app')
-
 @section('title', 'Detail Anggota')
-
 @section('content')
+
 <div class="container">
     <h3 class="mb-3">Detail Anggota</h3>
     <div class="card card-body p-0">

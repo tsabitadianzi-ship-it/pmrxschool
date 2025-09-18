@@ -1,10 +1,12 @@
 @extends('layouts.app')
 @section('title', 'Jurnal Sekertaris')
 @section('content')
+
 <div class="row">
-    <h2> Jurnal Sekertaris</h2>
+    <h2> Data Jurnal</h2>
     <div class="mb-4">
-        <a href="{{ route('sekertaris.jurnal.create') }}" class="btn btn-primary">Tambah</a>
+        <a href="{{ route('sekertaris.jurnal.create') }}" class="btn btn-primary">
+            <span class="ti ti-plus me-1"></span> Tambah</a>
     </div>
     <div class="col-md-12">
         <div class="card card-body">
@@ -30,11 +32,11 @@
                         <td>{{ $item->waktu_selesai }}</td>
                         <td>
                          <a href="{{ route('sekertaris.jurnal.edit', $item->id) }}" class="btn btn-sm btn-primary">
-                             <span class="ti ti-pencil"></span> Edit
+                             <span class="ti ti-pencil me-1"></span>
                         </a>
                          <button type="button" class="btn btn-sm btn-danger"
                               onclick="actionDelete('{{ route('sekertaris.jurnal.destroy', $item->id) }}')">
-                             <span class="ti ti-trash"></span> Hapus
+                             <span class="ti ti-trash"></span>
                          </button>
                          </td>
                     </tr>

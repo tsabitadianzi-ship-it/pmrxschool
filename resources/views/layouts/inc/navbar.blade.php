@@ -30,7 +30,7 @@
                     @if(in_array(Auth::user()->role, ['sekertaris', 'pembina', 'bendahara']))
                         <li>
                           <a class="dropdown-item" href="{{route('edit_profil')}}">
-                            <i class="ti ti-users me-3 ti-md"></i>
+                            <i class="ti ti-user me-3 ti-md"></i>
                             <span class="align-middle">Ubah Password</span>
                           </a>
                         </li>

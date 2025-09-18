@@ -62,7 +62,10 @@ class PembinaController extends Controller
             ->where('status', 'pending')
             ->get();
 
-        return view('pages.pembina.anggota', compact('anggotaAktif', 'anggotaKonfirmasi'));
+        // ambil semua pembina
+        $pembina = User::where('role', 'pembina')->get();
+
+        return view('pages.pembina.anggota', compact('anggotaAktif', 'anggotaKonfirmasi', 'pembina'));
     }
 
     public function show($id)
@@ -117,5 +120,96 @@ class PembinaController extends Controller
         $anggota->save();
 
         return redirect()->route('pembina.anggota')->with('success', 'Jabatan anggota berhasil diperbarui!');
+    }
+
+    // Form tambah pembina
+    public function createPembina()
+    {
+        return view('pages.pembina.pembina_tambah');
+    }
+
+    // Proses simpan pembina baru
+    public function storePembina(Request $request)
+    {
+        $request->validate([
+            'nama_lengkap' => 'required|string|max:255',
+            'nis_k' => 'required|string|max:50|unique:users,nis_k',
+            'tanggal_lahir' => 'required|date',
+            'alamat' => 'required|string',
+            'no_telp' => 'required|string|max:20',
+            'jenis_kelamin' => 'required|string',
+        ]);
+
+        $pembina = new User;
+        $pembina->nama_lengkap = $request->nama_lengkap;
+        $pembina->nis_k = $request->nis_k;
+        $pembina->tanggal_lahir = $request->tanggal_lahir;
+        $pembina->alamat = $request->alamat;
+        $pembina->no_telp = $request->no_telp;
+        $pembina->jenis_kelamin = $request->jenis_kelamin;
+        $pembina->role = 'pembina';
+        $pembina->status = 'active';
+        $pembina->alasan = '-';
+
+        // Username = nama_lengkap (spasi diubah jadi underscore biar aman)
+        $pembina->username = str_replace(' ', '_', strtolower($request->nama_lengkap));
+
+        // Password = nis_k (hash pakai bcrypt)
+        $pembina->password = bcrypt($request->nis_k);
+
+        // Pembina tidak punya kelas
+        $pembina->kelas = '-';
+
+        $pembina->save();
+
+        return redirect()->route('pembina.anggota')
+            ->with('success', 'Pembina baru berhasil ditambahkan!');
+    }
+
+    public function destroyPembina($id)
+    {
+        $pembina = User::where('role', 'pembina')->findOrFail($id);
+
+        $pembina->delete();
+
+        return redirect()->route('pembina.anggota')
+            ->with('success', 'Pembina berhasil dihapus!');
+    }
+
+    // Form edit pembina
+    public function editPembina($id)
+    {
+        $pembina = User::where('role', 'pembina')->findOrFail($id);
+
+        return view('pages.pembina.pembina_edit', compact('pembina'));
+    }
+
+    // Proses update pembina
+    public function updatePembina(Request $request, $id)
+    {
+        $request->validate([
+            'nama_lengkap' => 'required|string|max:255',
+            'nis_k' => 'required|string|max:50|unique:users,nis_k,'.$id,
+            'tanggal_lahir' => 'required|date',
+            'alamat' => 'required|string',
+            'no_telp' => 'required|string|max:20',
+            'jenis_kelamin' => 'required|string',
+        ]);
+
+        $pembina = User::where('role', 'pembina')->findOrFail($id);
+        $pembina->nama_lengkap = $request->nama_lengkap;
+        $pembina->nis_k = $request->nis_k;
+        $pembina->tanggal_lahir = $request->tanggal_lahir;
+        $pembina->alamat = $request->alamat;
+        $pembina->no_telp = $request->no_telp;
+        $pembina->jenis_kelamin = $request->jenis_kelamin;
+
+        // kalau mau update username juga:
+        $pembina->username = str_replace(' ', '_', strtolower($request->nama_lengkap));
+
+        $pembina->save();
+
+        return redirect()->route('pembina.anggota')
+            ->with('success', 'Data pembina berhasil diperbarui!');
     }
 }

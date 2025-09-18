@@ -3,7 +3,15 @@
 @section('content')
 
 <div class="container mx-auto p-6">
-    <h1 class="text-2xl font-semibold mb-6 text-gray-800">Dashboard Pembina PMR</h1>
+    <div class="flex items-center justify-between mb-6">
+        <h1 class="text-2xl font-semibold text-gray-800">Dashboard Pembina PMR</h1>
+        
+        <!-- Tombol Tambah Pembina -->
+        <a href="{{ route('pembina.pembina_tambah') }}" 
+           class="btn btn-primary">
+            <span class="ti ti-plus me-1"></span> Tambah Pembina
+        </a>
+    </div>
 
     <!-- Informasi Ekskul -->
     <div class="bg-white rounded-xl shadow-md p-5 mb-6">

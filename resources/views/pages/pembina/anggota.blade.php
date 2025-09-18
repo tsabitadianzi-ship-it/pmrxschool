@@ -4,6 +4,7 @@
 
 <div class="row">
     <div class="col-md-12">
+        
         <!-- Konfirmasi Anggota -->
         <h2>Konfirmasi Anggota</h2>
         <div class="card card-body">
@@ -15,7 +16,7 @@
                         <th>NIS</th>
                         <th>Kelas</th>
                         <th>Status</th>
-                        <th width="20%">Aksi</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -28,7 +29,7 @@
                         <td>{{ $anggota->status }}</td>
                         <td>
                             <a href="{{ route('pembina.anggota_detail', $anggota->id) }}" class="btn btn-sm btn-primary">
-                                <span class="ti ti-eye me-1"></span> Detail
+                                <span class="ti ti-eye me-1"></span>
                             </a>
                         </td>
                     </tr>
@@ -48,7 +49,7 @@
                         <th>NIS</th>
                         <th>Kelas</th>
                         <th>Jabatan</th>
-                        <th width="25%">Aksi</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -74,6 +75,38 @@
                 </tbody>
             </table>
         </div>
+
+        <!-- Pembina -->
+        <h2 class="mt-4">Pembina</h2>
+        <div class="row">
+            @foreach($pembina as $i => $item)
+            <div class="col-md-4 mb-3">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body text-center">
+                        <div class="mb-3">
+                            <img src="https://ui-avatars.com/api/?name={{ urlencode($item->nama_lengkap) }}&background=0D8ABC&color=fff&size=100"
+                                alt="{{ $item->nama_lengkap }}" 
+                                class="rounded-circle shadow">
+                        </div>
+                        <h5>{{ $item->nama_lengkap }}</h5>
+                        <p class="small">NIP: {{ $item->nis_k }}</p>
+                        <p><span class="ti ti-phone"></span> {{ $item->no_telp }}</p>
+                        <p><span class="ti ti-user"></span> {{ $item->jenis_kelamin }}</p>
+                        <div class="d-flex justify-content-center gap-2">
+                            <a href="{{ route('pembina.pembina_edit', $item->id) }}" class="btn btn-sm btn-warning">
+                                <span class="ti ti-pencil"></span> Edit
+                            </a>
+                            <button type="button" class="btn btn-sm btn-danger"
+                                onclick="actionDelete('{{ route('pembina.pembina_destroy', $item->id) }}')">
+                                <span class="ti ti-trash"></span> Hapus
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+
     </div>
 </div>
 <form id="form-delete" action="" method="POST" class="d-none">

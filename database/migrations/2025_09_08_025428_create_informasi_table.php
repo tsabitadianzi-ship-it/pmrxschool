@@ -13,9 +13,8 @@ return new class extends Migration
     {
         Schema::create('informasi', function (Blueprint $table) {
             $table->id();
+            $table->string('kegiatan');
             $table->date('tanggal');
-            $table->string('judul',20);
-            $table->text('isi');
             $table->timestamps();
         });
     }

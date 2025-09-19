@@ -47,6 +47,17 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/materi', [PembinaController::class, 'materi'])->name('materi');
         Route::get('/materi/{id}', [PembinaController::class, 'materiShow'])->name('materi.show');
 
+        // Tambah Informasi
+        Route::get('/tambah-informasi', [PembinaController::class, 'createInformasi'])->name('informasi_tambah');
+        Route::post('/tambah-informasi', [PembinaController::class, 'storeInformasi'])->name('informasi_store');
+
+        // Edit & Update Informasi
+        Route::get('/edit-informasi/{id}', [PembinaController::class, 'editInformasi'])->name('informasi_edit');
+        Route::put('/edit-informasi/{id}', [PembinaController::class, 'updateInformasi'])->name('informasi_update');
+
+        // Hapus Informasi
+        Route::delete('/informasi/{id}', [PembinaController::class, 'informasiDestroy'])->name('informasi_destroy');
+
         Route::get('/anggota/{id}/detail', [PembinaController::class, 'show'])->name('anggota_detail');
         Route::post('/anggota/{id}/terima', [PembinaController::class, 'terimaAnggota'])->name('anggota.terima');
         Route::post('/anggota/{id}/tolak', [PembinaController::class, 'tolakAnggota'])->name('anggota.tolak');

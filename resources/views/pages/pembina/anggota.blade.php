@@ -68,7 +68,6 @@
                               onclick="actionDelete('{{ route('pembina.anggota.destroy', $item->id) }}')">
                                 <span class="ti ti-trash"></span> 
                             </button>
-                            </form>
                         </td>
                     </tr>
                     @endforeach

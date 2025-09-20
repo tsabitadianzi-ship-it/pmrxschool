@@ -4,7 +4,7 @@
 
 <div class="container mx-auto p-6">
     <div class="flex items-center justify-between mb-6">
-        <h1 class="text-2xl font-semibold text-gray-800">Dashboard Pembina PMR</h1>
+        <h1 class="text-2xl font-semibold text-gray-800">Dashboard</h1>
         
         <!-- Tombol Tambah Pembina -->
         <a href="{{ route('pembina.pembina_tambah') }}" 
@@ -17,14 +17,13 @@
         </a>
     </div>
 
-    <!-- Kegiatan Terdekat (pakai tabel) -->
     <div class="bg-white rounded-xl shadow-md p-5 mb-6">
-        <h2 class="text-lg font-bold text-gray-700 mb-4">Kegiatan Terdekat</h2>
-        <table class="table table-striped w-full">
+        <h2 class="text-lg font-bold text-gray-700 mb-4">Informasi</h2>
+        <table class="table table-striped dataTable">
             <thead>
                 <tr>
                     <th>No</th>
-                    <th>Nama Kegiatan</th>
+                    <th>Informasi</th>
                     <th>Tanggal</th>
                     <th>Aksi</th>
                 </tr>
@@ -36,13 +35,15 @@
                         <td>{{ $info->kegiatan }}</td>
                         <td>{{ \Carbon\Carbon::parse($info->tanggal)->translatedFormat('d F Y') }}</td>
                         <td>
-                            <a href="{{ route('pembina.informasi_edit', $info->id) }}" class="btn btn-sm btn-warning"> 
-                                <span class="ti ti-pencil me-1"></span>
-                            </a>
-                            <button type="button" class="btn btn-sm btn-danger"
-                                onclick="actionDelete('{{ route('pembina.informasi_destroy', $info->id) }}')">
-                                <span class="ti ti-trash"></span>
-                            </button>
+                            <div class="d-flex gap-2">
+                                <a href="{{ route('pembina.informasi_edit', $info->id) }}" class="btn btn-sm btn-warning">
+                                    <span class="ti ti-pencil me-1"></span>
+                                </a>
+                                <button type="button" class="btn btn-sm btn-danger"
+                                    onclick="actionDelete('{{ route('pembina.informasi_destroy', $info->id) }}')">
+                                    <span class="ti ti-trash"></span>
+                                </button>
+                            </div>
                         </td>
                     </tr>
                 @empty
@@ -51,24 +52,20 @@
                     </tr>
                 @endforelse
             </tbody>
-
         </table>
     </div>
 
-
-    <!-- Informasi Ekskul-->
     <div class="bg-white rounded-xl shadow-md p-5 mb-6">
-        <h2 class="text-lg font-bold mb-4">Informasi Ekskul</h2>
+        <h2 class="text-lg font-bold mb-4">Pelaksanaan Ekskul</h2>
         <div class="space-y-2 text-gray-600">
             <h5><span class="ti ti-calendar"></span> Hari : Senin</h5>
             <h5><span class="ti ti-clock"></span> Jam : 15:45</h5>
         </div>
     </div>
     
-    <!-- Daftar Pembina -->
     <div class="bg-white rounded-xl shadow-md p-5 mb-6">
         <h2 class="text-lg font-bold text-gray-700 mb-4">Daftar Pembina</h2>
-        <table class="table table-striped w-full">
+        <table class="table table-striped dataTable">
             <thead>
                 <tr>
                     <th>No</th>
@@ -88,7 +85,6 @@
         </table>
     </div>
 
-    <!-- Statistik Anggota -->
     <div class="bg-white rounded-xl shadow-md p-5 mb-6">
         <h2 class="text-lg font-bold text-gray-700 mb-4">Statistik Anggota</h2>
         <table class="table table-striped w-full">

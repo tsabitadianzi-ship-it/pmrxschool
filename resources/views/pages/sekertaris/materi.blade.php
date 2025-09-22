@@ -34,7 +34,7 @@
                 <a href="{{ route('sekertaris.materi.show', $m->id) }}" class="btn btn-sm btn-info">
                     <span class="ti ti-eye"></span> 
                 </a>
-                <a href="{{ route('sekertaris.materi.edit', $m->id) }}" class="btn btn-sm btn-primary">
+                <a href="{{ route('sekertaris.materi.edit', $m->id) }}" class="btn btn-sm btn-warning">
                     <span class="ti ti-pencil"></span> 
                 </a>
                 <button type="button" class="btn btn-sm btn-danger"

@@ -40,13 +40,17 @@
                             <td class="text-end">Rp {{ number_format($item->jumlah, 0, ',', '.') }}</td>
                             <td class="text-end">Rp {{ number_format($item->total, 0, ',', '.') }}</td>
                             <td>
-                                <a href="{{ route('bendahara.keuangan.edit', $item->id) }}" class="btn btn-sm btn-primary">
-                                    <span class="ti ti-pencil"></span>
-                                </a>
-                                <a href="javascript:;" class="btn btn-sm btn-danger"
-                                   onclick="actionDelete('{{ route('bendahara.keuangan.destroy', $item->id) }}')">
-                                    <span class="ti ti-trash"></span>
-                                </a>
+                                <div class="d-flex gap-1">
+                                    <a href="{{ route('bendahara.keuangan.edit', $item->id) }}" 
+                                    class="btn btn-sm btn-warning">
+                                        <span class="ti ti-pencil"></span>
+                                    </a>
+                                    <a href="javascript:;" 
+                                    class="btn btn-sm btn-danger"
+                                    onclick="actionDelete('{{ route('bendahara.keuangan.destroy', $item->id) }}')">
+                                        <span class="ti ti-trash"></span>
+                                    </a>
+                                </div>
                             </td>
                         </tr>
                     @endforeach

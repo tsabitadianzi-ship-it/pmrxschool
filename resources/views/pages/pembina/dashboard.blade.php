@@ -12,7 +12,7 @@
             <span class="ti ti-plus me-1"></span> Tambah Pembina
         </a>
         <a href="{{ route('pembina.informasi_tambah') }}" 
-           class="btn btn-warning">
+           class="btn btn-success">
             <span class="ti ti-plus me-1"></span> Tambah Informasi
         </a>
     </div>

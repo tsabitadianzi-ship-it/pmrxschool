@@ -31,13 +31,14 @@
                         <td>{{ $item->waktu_mulai }}</td>
                         <td>{{ $item->waktu_selesai }}</td>
                         <td>
-                         <a href="{{ route('sekertaris.jurnal.edit', $item->id) }}" class="btn btn-sm btn-primary">
+                         <a href="{{ route('sekertaris.jurnal.edit', $item->id) }}" class="btn btn-sm btn-warning">
                              <span class="ti ti-pencil me-1"></span>
                         </a>
-                         <button type="button" class="btn btn-sm btn-danger"
-                              onclick="actionDelete('{{ route('sekertaris.jurnal.destroy', $item->id) }}')">
-                             <span class="ti ti-trash"></span>
-                         </button>
+                         <a href="javascript:;" 
+                            class="btn btn-sm btn-danger"
+                            onclick="actionDelete('{{ route('sekertaris.jurnal.destroy', $item->id) }}')">
+                                <span class="ti ti-trash"></span>
+                        </a>
                          </td>
                     </tr>
                     @endforeach

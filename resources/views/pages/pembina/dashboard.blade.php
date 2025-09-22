@@ -2,9 +2,9 @@
 @section('title', 'Dashboard Pembina')
 @section('content')
 
-<div class="container mx-auto p-6">
-    <div class="flex items-center justify-between mb-6">
-        <h1 class="text-2xl font-semibold text-gray-800">Dashboard</h1>
+<div class="container">
+    <div class="mb-4">
+        <h2>Dashboard</h2>
         
         <!-- Tombol Tambah Pembina -->
         <a href="{{ route('pembina.pembina_tambah') }}" 
@@ -17,9 +17,9 @@
         </a>
     </div>
 
-    <div class="bg-white rounded-xl shadow-md p-5 mb-6">
-        <h2 class="text-lg font-bold text-gray-700 mb-4">Informasi</h2>
-        <table class="table table-striped dataTable">
+    <div class="card card-body mb-6">
+        <h3>Informasi</h3>
+        <table class="table table-striped">
             <thead>
                 <tr>
                     <th>No</th>
@@ -48,24 +48,24 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="3" class="text-center text-gray-500">Belum ada kegiatan terdekat</td>
+                        <td colspan="3">Belum ada kegiatan terdekat</td>
                     </tr>
                 @endforelse
             </tbody>
         </table>
     </div>
 
-    <div class="bg-white rounded-xl shadow-md p-5 mb-6">
-        <h2 class="text-lg font-bold mb-4">Pelaksanaan Ekskul</h2>
-        <div class="space-y-2 text-gray-600">
+    <div class="card card-body mb-6">
+        <h3>Pelaksanaan Ekskul</h3>
+        <div>
             <h5><span class="ti ti-calendar"></span> Hari : Senin</h5>
             <h5><span class="ti ti-clock"></span> Jam : 15:45</h5>
         </div>
     </div>
     
-    <div class="bg-white rounded-xl shadow-md p-5 mb-6">
-        <h2 class="text-lg font-bold text-gray-700 mb-4">Daftar Pembina</h2>
-        <table class="table table-striped dataTable">
+    <div class="card card-body mb-6">
+        <h3>Daftar Pembina</h3>
+        <table class="table table-striped">
             <thead>
                 <tr>
                     <th>No</th>
@@ -85,9 +85,9 @@
         </table>
     </div>
 
-    <div class="bg-white rounded-xl shadow-md p-5 mb-6">
-        <h2 class="text-lg font-bold text-gray-700 mb-4">Statistik Anggota</h2>
-        <table class="table table-striped w-full">
+    <div class="card card-body mb-6">
+        <h3>Statistik Anggota</h3>
+        <table class="table table-striped">
             <tbody>
                 <tr>
                     <th width="25%">Jumlah Anggota</th>
@@ -113,20 +113,10 @@
     @method('DELETE')
 </form>
 @endsection
-@push('styles')
-    <link rel="stylesheet" href="{{ asset('/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}" />
-    <link rel="stylesheet" href="{{ asset('/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}" />
-    <link rel="stylesheet" href="{{ asset('/vendor/libs/sweetalert2/sweetalert2.css') }}" />
-
-@endpush
 
 @push('scripts')
-    <script src="{{ asset('/vendor/libs/datatables-bs5/datatables-bootstrap5.js') }}"></script>
-    <script src="{{ asset('/vendor/libs/sweetalert2/sweetalert2.js') }}"></script>
     <script>
-    $(function () {
-        $('.dataTable').DataTable();
-    });
+    
 
     function actionDelete(url){
         Swal.fire({

@@ -74,9 +74,8 @@
             <div class="card-body">
               <!-- Logo -->
               <div class="app-brand justify-content-center mb-6">
-                <a href="index.html" class="app-brand-link">
-                  <span class="app-brand-logo demo">
-                    
+                    <a href="{{ url('/') }}" class="d-flex align-items-center text-decoration-none">
+                      <img src="{{ asset('/img/avatars/logo.png') }}" alt="Logo" width="32" height="32" class="me-2" />
                   </span>
                   <span class="app-brand-text demo text-heading fw-bold">PMR X-SCHOOL</span>
                 </a>

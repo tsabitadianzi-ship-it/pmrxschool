@@ -19,7 +19,7 @@
     <meta name="description" content="" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="{{ asset('/img/favicon/favicon.ico') }}" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('/img/avatars/logo.png') }}" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -69,9 +69,13 @@
     <div class="container-xxl">
       <div class="row justify-content-center py-5">
         <div class="col-md-7">
-            <div class="card card-body">
+            <div class="card card-body ">
+                <img src="{{ asset('/img/avatars/logo.png') }}" 
+                    alt="Logo" 
+                    width="50" 
+                    class="mx-auto d-block mb-3" />
                 <h5 class="mb-0 fw-bold text-center">
-                    HALAMAN FORM REGISTER
+                    HALAMAN FORM PENDAFTARAN
                 </h5>
                 <H6 class="mb-0 fw-bold text-center"> 
                     PMR X-SCHOOL </H6>

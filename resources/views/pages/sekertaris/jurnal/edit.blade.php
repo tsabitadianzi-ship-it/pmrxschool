@@ -8,38 +8,42 @@
             <div class="card card-body">
             <form action="{{ route('sekertaris.jurnal.update', $jurnal->id) }}" method="POST" enctype="multipart/form-data">
                  @csrf
-                    @method('PUT')    
-                <div class="form-group mb-3">
-                    <label for="tanggal">Tanggal</label>
-                    <input type="date" class="form-control" id="tanggal" name="tanggal" 
-                           value="{{ old('tanggal', $jurnal->tanggal) }}" required>
-                    @error('tanggal')
-                        <div class="alert alert-danger mt-1">{{ $message }}</div>
-                    @enderror
+                    @method('PUT') 
+                <div class="row">
+                    <div class="col mb-6">
+                        <label for="waktu_mulai">Waktu Mulai : </label>
+                        <input type="time" class="form-control" id="waktu_mulai" name="waktu_mulai" 
+                            value="{{ old('waktu_mulai', $jurnal->waktu_mulai) }}" required>
+                        @error('waktu_mulai')
+                            <div class="alert alert-danger mt-1">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="col mbb-6">
+                        <label for="waktu_selesai">Waktu Selesai :</label>
+                        <input type="time" class="form-control" id="waktu_selesai" name="waktu_selesai" 
+                            value="{{ old('waktu_selesai', $jurnal->waktu_selesai) }}" required>
+                        @error('waktu_selesai')
+                            <div class="alert alert-danger mt-1">{{ $message }}</div>
+                        @enderror
+                    </div> 
                 </div>
-                <div class="form-group mb-3">
-                    <label for="kegiatan">Kegiatan</label>
-                    <input type="text" class="form-control" id="kegiatan" name="kegiatan" 
-                           value="{{ old('kegiatan', $jurnal->kegiatan) }}" required>
-                    @error('kegiatan')
-                        <div class="alert alert-danger mt-1">{{ $message }}</div>
-                    @enderror
-                </div>
-                <div class="form-group mb-3">
-                    <label for="waktu_mulai">Waktu Mulai</label>
-                    <input type="time" class="form-control" id="waktu_mulai" name="waktu_mulai" 
-                           value="{{ old('waktu_mulai', $jurnal->waktu_mulai) }}" required>
-                    @error('waktu_mulai')
-                        <div class="alert alert-danger mt-1">{{ $message }}</div>
-                    @enderror
-                </div>
-                <div class="form-group mb-3">
-                    <label for="waktu_selesai">Waktu Selesai</label>
-                    <input type="time" class="form-control" id="waktu_selesai" name="waktu_selesai" 
-                           value="{{ old('waktu_selesai', $jurnal->waktu_selesai) }}" required>
-                    @error('waktu_selesai')
-                        <div class="alert alert-danger mt-1">{{ $message }}</div>
-                    @enderror
+                <div class="row">  
+                    <div class="col mb-6">
+                        <label for="tanggal">Tanggal :</label>
+                        <input type="date" class="form-control" id="tanggal" name="tanggal" 
+                            value="{{ old('tanggal', $jurnal->tanggal) }}" required>
+                        @error('tanggal')
+                            <div class="alert alert-danger mt-1">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="col mb-6">
+                        <label for="kegiatan">Kegiatan :</label>
+                        <textarea class="form-control" id="kegiatan" name="kegiatan" required>{{ old('kegiatan', $jurnal->kegiatan) }}</textarea>
+
+                        @error('kegiatan')
+                            <div class="alert alert-danger mt-1">{{ $message }}</div>
+                        @enderror
+                    </div>
                 </div>
                <div class="form-group mb-3">
                 <button type="submit" class="btn btn-sm btn-success">

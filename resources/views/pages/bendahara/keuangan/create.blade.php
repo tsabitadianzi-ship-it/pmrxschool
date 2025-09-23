@@ -9,37 +9,43 @@
                 <div class="card card-body">
                     <form action="{{ route('bendahara.keuangan.store') }}" method="POST">
                         @csrf
-                    <div class="form-group">
-                        <label for="tanggal">Tanggal</label>
-                        <input type="date" class="form-control" id="tanggal" name="tanggal" required>
-                        @error('tanggal')
+                    <div class="row">
+                        <div class="col mb-6">
+                            <label for="tanggal">Tanggal :</label>
+                            <input type="date" class="form-control" id="tanggal" name="tanggal" required>
+                            @error('tanggal')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="col mb-6">
+                            <label for="tipe">Tipe :</label>
+                            <select class="form-control" id="tipe" name="tipe" required>
+                            <option value="Pemasukan">Pemasukan</option>
+                            <option value="Pengeluaran">Pengeluaran</option>
+                            </select>
+                        @error('tipe')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="tipe">Tipe</label>
-                        <select class="form-control" id="tipe" name="tipe" required>
-                        <option value="Pemasukan">Pemasukan</option>
-                        <option value="Pengeluaran">Pengeluaran</option>
-                        </select>
-                    @error('tipe')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
+                    
+                    <div class="row">
+                        <div class="col mb-6">
+                            <label for="jumlah">Jumlah (Rp) :</label>
+                            <input type="number" class="form-control" id="jumlah" name="jumlah" required>
+                            @error('jumlah')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="col mb-6">
+                            <label for="keterangan">Keterangan :</label>
+                            <input type="text" class="form-control" id="keterangan" name="keterangan" maxlength="20" required>
+                            @error('keterangan')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="keterangan">Keterangan</label>
-                        <input type="text" class="form-control" id="keterangan" name="keterangan" maxlength="20" required>
-                        @error('keterangan')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
-                    </div>
-                    <div class="form-group">
-                        <label for="jumlah">Jumlah (Rp)</label>
-                        <input type="number" class="form-control" id="jumlah" name="jumlah" required>
-                        @error('jumlah')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
-                    </div>
+                    
                     <div class="form-group mt-3">
                             <button type="submit" class="btn btn-sm btn-success">
                                 <span class="ti ti-check me-1"></span> Tambah</button>

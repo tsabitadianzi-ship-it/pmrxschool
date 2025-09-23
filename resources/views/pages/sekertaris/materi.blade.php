@@ -54,14 +54,17 @@
 </form>
 @endsection
 
-@push('scripts')
-    <!-- Tambahkan SweetAlert2 -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}" />
 
-    <script type="text/javascript">
-    $(function () {
-        $('.dataTable').DataTable();
-    });
+@endpush
+
+@push('scripts')
+    <script src="{{ asset('/vendor/libs/datatables-bs5/datatables-bootstrap5.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>    >
+
+    <script>
 
     function actionDelete(url){
         console.log("Delete URL:", url); // Debug

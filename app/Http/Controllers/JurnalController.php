@@ -70,8 +70,8 @@ class JurnalController extends Controller
         $validated = $request->validate([
             'tanggal' => 'required|date',
             'kegiatan' => 'required|string|max:255',
-            'waktu_mulai' => 'required|date_format:H:i:s',
-            'waktu_selesai' => 'required|date_format:H:i:s',
+            'waktu_mulai' => 'required|date_format:H:i',
+            'waktu_selesai' => 'required|date_format:H:i',
         ]);
 
         $jurnal = Jurnal::find($id);

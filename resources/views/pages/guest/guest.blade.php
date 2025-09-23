@@ -19,7 +19,7 @@
     <meta name="description" content="" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="{{ asset('/img/favicon/favicon.ico ') }}" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('img/avatars/logo.png') }}" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -55,33 +55,31 @@
   <div class="d-flex align-items-center">
     <!-- Logo -->
     <a href="{{ url('/') }}" class="d-flex align-items-center text-decoration-none">
-      <img src="{{ asset('/img/logo.png') }}" alt="Logo" width="32" height="32" class="me-2" />
+      <img src="{{ asset('/img/avatars/logo.png') }}" alt="Logo" width="32" height="32" class="me-2" />
       <span class="fw-bold fs-5">PMR X-School</span>
     </a>
   </div>
 
-  <div class="ms-auto d-flex align-items-center gap-2">
+  <div class="ms-auto d-flex gap-2 ">
     <a href="{{ route('register') }}" class="btn btn-primary btn-sm">Daftar</a>
     <a href="{{ route('login') }}" class="btn btn-primary btn-sm">Login</a>
   </div>
 </nav>
-    <body class="bg-gradient-to-r from-purple-100 via-pink-100 to-yellow-100 min-h-screen flex flex-col">
+    <body>
 
-  <!-- Navbar sudah ada sebelumnya -->
-
-  <div class="container mx-auto mt-8 px-4">
-    <h1 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-6">Selamat Datang di PMR X-School</h1>
-    <p class="text-center text-gray-600 mb-8">
+  <div class="container mt-12">
+    <h1 class="font-bold text-center mb-1">Selamat Datang di PMR X-School</h1>
+    <p class="text-center text-gray-600 mb-7">
       Belum memiliki akun? Daftar sekarang untuk menikmati semua fitur kami!
     </p>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div class="card card-body">
       
       <!-- Card 1 -->
-      <div class="bg-white rounded-2xl shadow-lg p-5 hover:shadow-xl transition duration-300">
-        <div class="text-gray-600 font-bold text-md mb-2">Tentang PMR</div>
-        <h5 class="text-gray-800 text-md mb-2">Pelayanan Kesehatan Sekolah</h5>
-        <p class="text-gray-600 mb-3">
+      <div>
+        <div class="font-bold text-md mb-3">Tentang PMR</div>
+        <h5 class="text-md mb-1 ">Pelayanan Kesehatan Sekolah</h5>
+        <p class="mt-2">
           PMR X-School adalah unit kegiatan yang fokus pada pelayanan kesehatan di lingkungan sekolah. 
           Kami menyediakan pertolongan pertama, edukasi kesehatan, dan kegiatan sosial untuk meningkatkan 
           kesadaran siswa tentang kesehatan dan keselamatan. Anggota PMR juga dilatih untuk tanggap dalam 

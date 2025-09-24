@@ -93,7 +93,7 @@ class PembinaController extends Controller
         return view('pages.pembina.anggota', compact('anggotaAktif', 'anggotaKonfirmasi', 'pembina'));
     }
 
-    public function show($id)
+    public function showAnggota($id)
     {
         $anggota = User::findOrFail($id);
 

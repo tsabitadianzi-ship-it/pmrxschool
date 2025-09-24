@@ -26,55 +26,52 @@ Auth::routes([
     'confirm' => false,
 ]);
 
-// Semua route di bawah ini hanya bisa diakses setelah login
+// ROUTE SETELAH LOGIN
 Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-    // === ROUTE UNTUK PEMBINA ===
+    // ROUTE PEMBINA
     Route::prefix('pembina')->name('pembina.')->group(function () {
         Route::get('/dashboard', [PembinaController::class, 'index'])->name('dashboard');
         Route::get('/materi', [PembinaController::class, 'materi'])->name('materi');
         Route::get('/jurnal', [PembinaController::class, 'jurnal'])->name('jurnal');
         Route::get('/keuangan', [PembinaController::class, 'keuangan'])->name('keuangan');
         Route::get('/anggota', [PembinaController::class, 'anggota'])->name('anggota');
+
+        // ROUTE PEMBINA (TABEL ANGGOTA)
         Route::get('/tambah-pembina', [PembinaController::class, 'createPembina'])->name('pembina_tambah');
         Route::post('/tambah-pembina', [PembinaController::class, 'storePembina'])->name('pembina_store');
         Route::get('/edit-pembina/{id}', [PembinaController::class, 'editPembina'])->name('pembina_edit');
         Route::put('/update-pembina/{id}', [PembinaController::class, 'updatePembina'])->name('pembina_update');
         Route::delete('/pembina/{id}', [PembinaController::class, 'destroyPembina'])->name('pembina_destroy');
 
-        // Materi (khusus pembina, hanya view)
+        // ROUTE MATERI
         Route::get('/materi', [PembinaController::class, 'materi'])->name('materi');
         Route::get('/materi/{id}', [PembinaController::class, 'materiShow'])->name('materi.show');
 
-        // Tambah Informasi
+        // ROUTE INFORMASI
         Route::get('/tambah-informasi', [PembinaController::class, 'createInformasi'])->name('informasi_tambah');
         Route::post('/tambah-informasi', [PembinaController::class, 'storeInformasi'])->name('informasi_store');
-
-        // Edit & Update Informasi
         Route::get('/edit-informasi/{id}', [PembinaController::class, 'editInformasi'])->name('informasi_edit');
         Route::put('/edit-informasi/{id}', [PembinaController::class, 'updateInformasi'])->name('informasi_update');
-
-        // Hapus Informasi
         Route::delete('/informasi/{id}', [PembinaController::class, 'informasiDestroy'])->name('informasi_destroy');
 
-        Route::get('/anggota/{id}/detail', [PembinaController::class, 'show'])->name('anggota_detail');
+        // ROUTE ANGGOTA
+        Route::get('/anggota/{id}/detail', [PembinaController::class, 'showAnggota'])->name('anggota_detail');
         Route::post('/anggota/{id}/terima', [PembinaController::class, 'terimaAnggota'])->name('anggota.terima');
         Route::post('/anggota/{id}/tolak', [PembinaController::class, 'tolakAnggota'])->name('anggota.tolak');
         Route::delete('/anggota/{id}', [PembinaController::class, 'destroy'])->name('anggota.destroy');
-        // Halaman edit jabatan anggota
         Route::get('/anggota/{id}/edit', [PembinaController::class, 'editAnggota'])->name('anggota_edit');
-
-        // Proses update jabatan anggota
         Route::put('/anggota/{id}/update', [PembinaController::class, 'updateAnggota'])->name('anggota_update');
 
+        // ROUTE PELAKSANAAN
         Route::get('/pelaksanaan-edit/{id}', [PembinaController::class, 'editPelaksanaan'])->name('pelaksanaan_edit');
         Route::put('/pelaksanaan-update/{id}', [PembinaController::class, 'updatePelaksanaan'])->name('pelaksanaan_update');
 
     });
 
-    // === ROUTE UNTUK SEKRETARIS ===
+    // ROUTE SEKRETARIS
     Route::prefix('sekertaris')->name('sekertaris.')->group(function () {
         Route::get('/dashboard', [SekertarisController::class, 'index'])->name('dashboard');
         Route::resource('materi', MateriController::class);
@@ -82,29 +79,31 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/keuangan', [SekertarisController::class, 'keuangan'])->name('keuangan');
     });
 
-    // === ROUTE UNTUK BENDAHARA ===
+    // ROUTE BENDAHARA
     Route::prefix('bendahara')->name('bendahara.')->group(function () {
         Route::get('/dashboard', [BendaharaController::class, 'index'])->name('dashboard');
         Route::get('/materi', [BendaharaController::class, 'materi'])->name('materi');
         Route::get('/jurnal', [BendaharaController::class, 'jurnal'])->name('jurnal');
         Route::resource('keuangan', KeuanganController::class);
-        // Materi (khusus bendahara, hanya view)
+
+        // ROUTE MATERI
         Route::get('/materi', [BendaharaController::class, 'materi'])->name('materi');
         Route::get('/materi/{id}', [BendaharaController::class, 'materiShow'])->name('materi.show');
     });
 
-    // === ROUTE UNTUK SISWA ===
+    // ROUTE SISWA
     Route::prefix('siswa')->name('siswa.')->group(function () {
         Route::get('/dashboard', [SiswaController::class, 'index'])->name('dashboard');
         Route::get('/jurnal', [SiswaController::class, 'jurnal'])->name('jurnal');
         Route::get('/materi', [SiswaController::class, 'materi'])->name('materi');
         Route::get('/keuangan', [SiswaController::class, 'keuangan'])->name('keuangan');
 
-        // Materi (khusus siswa, hanya view)
+        // ROUTE MATERI
         Route::get('/materi', [SiswaController::class, 'materi'])->name('materi');
         Route::get('/materi/{id}', [SiswaController::class, 'materiShow'])->name('materi.show');
     });
 
+    // ROUTE PROFIL YANG BISA DI AKSES OLEH PEMBINA, SEKERTARIS DAN BENDAHARA
     Route::middleware(['auth'])->group(function () {
         Route::get('/edit-profil', [ProfilController::class, 'edit'])->name('edit_profil');
         Route::post('/edit-profil', [ProfilController::class, 'update'])->name('update_profil');

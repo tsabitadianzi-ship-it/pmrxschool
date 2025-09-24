@@ -69,6 +69,9 @@ Route::group(['middleware' => ['auth']], function () {
         // Proses update jabatan anggota
         Route::put('/anggota/{id}/update', [PembinaController::class, 'updateAnggota'])->name('anggota_update');
 
+        Route::get('/pelaksanaan-edit/{id}', [PembinaController::class, 'editPelaksanaan'])->name('pelaksanaan_edit');
+        Route::put('/pelaksanaan-update/{id}', [PembinaController::class, 'updatePelaksanaan'])->name('pelaksanaan_update');
+
     });
 
     // === ROUTE UNTUK SEKRETARIS ===

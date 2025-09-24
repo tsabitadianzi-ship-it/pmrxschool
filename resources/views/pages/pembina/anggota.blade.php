@@ -6,7 +6,7 @@
     <div class="col-md-12">
         
         <!-- Konfirmasi Anggota -->
-        <h2>Konfirmasi Anggota</h2>
+        <h3 class="fw-bold">Konfirmasi Anggota</h3>
         <div class="card card-body">
             <table class="table table-striped dataTable">
                 <thead>
@@ -28,7 +28,7 @@
                         <td>{{ $anggota->kelas }}</td>
                         <td>{{ $anggota->status }}</td>
                         <td>
-                            <a href="{{ route('pembina.anggota_detail', $anggota->id) }}" class="btn btn-sm btn-primary">
+                            <a href="{{ route('pembina.anggota_detail', $anggota->id) }}" class="btn btn-sm btn-info">
                                 <span class="ti ti-eye me-1"></span>
                             </a>
                         </td>
@@ -39,7 +39,7 @@
         </div>
 
         <!-- Anggota Aktif -->
-        <h2>Anggota Aktif</h2>
+        <h3 class="fw-bold mt-4">Anggota Aktif</h3>
         <div class="card card-body">
             <table class="table table-striped dataTable">
                 <thead>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Informasi;
 use App\Models\Keuangan;
+use App\Models\Pelaksanaan;
 use App\Models\User;
 
 class SekertarisController extends Controller
@@ -23,6 +24,7 @@ class SekertarisController extends Controller
         $jumlahAnggota = User::whereIn('role', ['siswa', 'sekertaris', 'bendahara'])->count();
         $anggotaAktif = User::whereIn('role', ['siswa', 'sekertaris', 'bendahara'])->where('status', 'active')->count();
         $anggotaPending = User::where('role', 'siswa')->where('status', 'pending')->count();
+        $pelaksanaan = Pelaksanaan::all();
 
         return view('pages.sekertaris.dashboard', compact(
             'pembina',
@@ -30,6 +32,7 @@ class SekertarisController extends Controller
             'anggotaAktif',
             'anggotaPending',
             'informasi',
+            'pelaksanaan',
         ));
 
     }

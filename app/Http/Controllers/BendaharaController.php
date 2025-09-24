@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Informasi;
 use App\Models\Jurnal;
 use App\Models\Materi;
+use App\Models\Pelaksanaan;
 use App\Models\User;
 
 class BendaharaController extends Controller
@@ -24,6 +25,7 @@ class BendaharaController extends Controller
         $jumlahAnggota = User::whereIn('role', ['siswa', 'sekertaris', 'bendahara'])->count();
         $anggotaAktif = User::whereIn('role', ['siswa', 'sekertaris', 'bendahara'])->where('status', 'active')->count();
         $anggotaPending = User::where('role', 'siswa')->where('status', 'pending')->count();
+        $pelaksanaan = Pelaksanaan::all();
 
         return view('pages.bendahara.dashboard', compact(
             'pembina',
@@ -31,6 +33,7 @@ class BendaharaController extends Controller
             'anggotaAktif',
             'anggotaPending',
             'informasi',
+            'pelaksanaan',
         ));
 
     }

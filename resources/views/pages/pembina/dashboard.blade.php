@@ -3,154 +3,144 @@
 @section('content')
 
 <div class="container">
-    <div class="mb-4">
-        <h2>Dashboard</h2>
-        
-        <!-- Tombol Tambah Pembina -->
-        <a href="{{ route('pembina.pembina_tambah') }}" 
-           class="btn btn-primary">
-            <span class="ti ti-plus me-1"></span> Tambah Pembina
-        </a>
-        <a href="{{ route('pembina.informasi_tambah') }}" 
-           class="btn btn-success">
-            <span class="ti ti-plus me-1"></span> Tambah Informasi
-        </a>
-    </div>
-
-    <div class="card card-body mb-6">
-        <h3>Informasi</h3>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Informasi</th>
-                    <th>Tanggal</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                @forelse($informasi as $i => $info)
-                    <tr>
-                        <td>{{ $i+1 }}</td>
-                        <td>{{ $info->kegiatan }}</td>
-                        <td>{{ \Carbon\Carbon::parse($info->tanggal)->translatedFormat('d F Y') }}</td>
-                        <td>
-                            <div class="d-flex gap-2">
-                                <a href="{{ route('pembina.informasi_edit', $info->id) }}" class="btn btn-sm btn-warning">
-                                    <span class="ti ti-pencil me-1"></span>
-                                </a>
-                                <button type="button" class="btn btn-sm btn-danger"
-                                    onclick="actionDelete('{{ route('pembina.informasi_destroy', $info->id) }}')">
-                                    <span class="ti ti-trash"></span>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                @empty
-                    <tr>
-                        <td colspan="3">Belum ada kegiatan terdekat</td>
-                    </tr>
-                @endforelse
-            </tbody>
-        </table>
-    </div>
-
-    <div class="card card-body mb-6">
-        <h3>Pelaksanaan Ekskul</h3>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold">Dashboard</h2>
         <div>
-            <h5><span class="ti ti-calendar"></span> Hari : Senin</h5>
-            <h5><span class="ti ti-clock"></span> Jam : 15:45</h5>
+            <a href="{{ route('pembina.pembina_tambah') }}" class="btn btn-primary me-2">
+                <span class="ti ti-plus me-1"></span> Tambah Pembina
+            </a>
+            <a href="{{ route('pembina.informasi_tambah') }}" class="btn btn-success">
+                <span class="ti ti-plus me-1"></span> Tambah Informasi
+            </a>
         </div>
     </div>
-    
-    <div class="card card-body mb-6">
-        <h3>Daftar Pembina</h3>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Nama Lengkap</th>
-                    <th>Kontak</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($pembina as $i => $p)
-                    <tr>
-                        <td>{{ $i+1 }}</td>
-                        <td>{{ $p->nama_lengkap }}</td>
-                        <td>{{ $p->no_telp ?? '-' }}</td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
+
+    <!-- Informasi -->
+    <div class="card mb-4 shadow-sm">
+        <div class="card-header fw-bold">
+            INFORMASI KEGIATAN
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped align-middle">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Informasi</th>
+                            <th>Tanggal</th>
+                            <th class="text-center">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse($informasi as $i => $info)
+                            <tr>
+                                <td>{{ $i+1 }}</td>
+                                <td>{{ $info->kegiatan }}</td>
+                                <td>{{ \Carbon\Carbon::parse($info->tanggal)->translatedFormat('d F Y') }}</td>
+                                <td class="text-center">
+                                    <div class="d-inline-flex gap-1">
+                                        <a href="{{ route('pembina.informasi_edit', $info->id) }}" 
+                                        class="btn btn-sm btn-warning">
+                                            <i class="ti ti-pencil"></i>
+                                        </a>
+                                        <button type="button" class="btn btn-sm btn-danger"
+                                            onclick="actionDelete('{{ route('pembina.informasi_destroy', $info->id) }}')">
+                                            <i class="ti ti-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="4" class="text-center text-muted">Belum ada informasi</td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 
-    <div class="card card-body mb-6">
-        <h3>Statistik Anggota</h3>
-        <table class="table table-striped">
-            <tbody>
-                <tr>
-                    <th width="25%">Jumlah Anggota</th>
-                    <th width="10px">:</th>
-                    <td>{{ $jumlahAnggota }}</td>
-                </tr>
-                <tr>
-                    <th width="25%">Aktif</th>
-                    <th width="10px">:</th>
-                    <td>{{ $anggotaAktif }}</td>
-                </tr>
-                <tr>
-                    <th width="25%">Pending</th>
-                    <th width="10px">:</th>
-                    <td>{{ $anggotaPending }}</td>
-                </tr>
-            </tbody>
-        </table>
+    <!-- Pelaksanaan Ekskul -->
+    <div class="card mb-4 shadow-sm">
+        <div class="card-header fw-bold">
+            PELAKSANAAN EKSKUL
+        </div>
+        <div class="card-body">
+            @foreach($pelaksanaan as $item)
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div>
+                        <i class="ti ti-calendar"></i> {{ $item->hari }} <br>
+                        <i class="ti ti-clock"></i> 
+                        {{ \Carbon\Carbon::createFromFormat('H:i:s', $item->jam)->format('H:i') }}
+                    </div>
+                    <div>
+                        <a href="{{ route('pembina.pelaksanaan_edit', $item->id) }}" 
+                        class="btn btn-sm btn-warning">
+                            <i class="ti ti-pencil"></i> Edit
+                        </a>
+                    </div>
+                </div>
+            @endforeach        
+        </div>
+    </div>
+
+
+    <!-- Daftar Pembina -->
+    <div class="card mb-4 shadow-sm">
+        <div class="card-header fw-bold">
+            DAFTAR PEMBINA
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped align-middle">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Nama Lengkap</th>
+                            <th>Kontak</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($pembina as $i => $p)
+                            <tr>
+                                <td>{{ $i+1 }}</td>
+                                <td>{{ $p->nama_lengkap }}</td>
+                                <td>{{ $p->no_telp ?? '-' }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Statistik Anggota -->
+    <div class="card mb-4 shadow-sm">
+        <div class="card-header fw-bold">
+            STATISTIK ANGGOTA
+        </div>
+        <div class="card-body">
+            <div class="row text-center">
+                <div class="col-md-4 mb-3">
+                    <h4 class="fw-bold">{{ $jumlahAnggota }}</h4>
+                    <small class="text-muted">Jumlah Anggota</small>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h4 class="fw-bold text-success">{{ $anggotaAktif }}</h4>
+                    <small class="text-muted">Aktif</small>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h4 class="fw-bold text-danger">{{ $anggotaPending }}</h4>
+                    <small class="text-muted">Pending</small>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
 <form id="form-delete" action="" method="POST" class="d-none">
     @csrf
     @method('DELETE')
 </form>
 @endsection
-
-@push('styles')
-    <link rel="stylesheet" href="{{ asset('/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}" />
-    <link rel="stylesheet" href="{{ asset('/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}" />
-
-@endpush
-
-@push('scripts')
-    <script src="{{ asset('/vendor/libs/datatables-bs5/datatables-bootstrap5.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>     <script>
-    
-
-    function actionDelete(url){
-        Swal.fire({
-            title: "Apakah kamu yakin?",
-            text: "Data yang dihapus tidak bisa dikembalikan!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonText: "Ya, hapus!",
-            cancelButtonText: "Batal"
-        }).then((result) => {
-            if (result.isConfirmed) {
-                $('#form-delete').attr('action', url);
-                $('#form-delete').submit();
-            }
-        });
-    }
-    </script>
-    @if (Session::has('success'))
-        <script type="text/javascript">
-        Swal.fire({
-            icon: 'success',
-            title: 'Berhasil',
-            text: '{{ Session::get('success') }}',
-            showConfirmButten: false,
-            timer: 3000
-        });
-        </script>
-    @endif
-@endpush
-

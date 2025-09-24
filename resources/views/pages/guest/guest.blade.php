@@ -56,8 +56,8 @@
     <!-- Logo -->
     <a href="{{ url('/') }}" class="d-flex align-items-center text-decoration-none">
       <img src="{{ asset('/img/avatars/logo.png') }}" alt="Logo" width="32" height="32" class="me-2" />
-      <span class="fw-bold fs-5">PMR X-School</span>
     </a>
+    <span class="fw-bold fs-5">PMR X-SCHOOL</span>
   </div>
 
   <div class="ms-auto d-flex gap-2 ">

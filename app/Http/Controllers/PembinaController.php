@@ -6,6 +6,7 @@ use App\Models\Informasi;
 use App\Models\Jurnal;
 use App\Models\Keuangan;
 use App\Models\Materi;
+use App\Models\Pelaksanaan;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -33,6 +34,7 @@ class PembinaController extends Controller
         $jumlahAnggota = User::whereIn('role', ['siswa', 'sekertaris', 'bendahara'])->count();
         $anggotaAktif = User::whereIn('role', ['siswa', 'sekertaris', 'bendahara'])->where('status', 'active')->count();
         $anggotaPending = User::where('role', 'siswa')->where('status', 'pending')->count();
+        $pelaksanaan = Pelaksanaan::all();
 
         return view('pages.pembina.dashboard', compact(
             'pembina',
@@ -40,6 +42,7 @@ class PembinaController extends Controller
             'anggotaAktif',
             'anggotaPending',
             'informasi',
+            'pelaksanaan',
         ));
 
     }
@@ -287,5 +290,25 @@ class PembinaController extends Controller
 
         return redirect()->route('pembina.dashboard')
             ->with('success', 'Informasi berhasil dihapus!');
+    }
+
+    public function editPelaksanaan($id)
+    {
+        $pelaksanaan = Pelaksanaan::findOrFail($id);
+
+        return view('pages.pembina.pelaksanaan_edit', compact('pelaksanaan'));
+    }
+
+    public function updatePelaksanaan(Request $request, $id)
+    {
+        $request->validate([
+            'hari' => 'required|string|max:10',
+            'jam' => 'required|date_format:H:i',
+        ]);
+
+        $pelaksanaan = Pelaksanaan::findOrFail($id);
+        $pelaksanaan->update($request->only(['hari', 'jam']));
+
+        return redirect()->route('pembina.dashboard')->with('success', 'Pelaksanaan berhasil diperbarui.');
     }
 }

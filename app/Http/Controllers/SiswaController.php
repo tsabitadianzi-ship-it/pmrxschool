@@ -6,6 +6,7 @@ use App\Models\Informasi;
 use App\Models\Jurnal;
 use App\Models\Keuangan;
 use App\Models\Materi;
+use App\Models\Pelaksanaan;
 use App\Models\User;
 
 class SiswaController extends Controller
@@ -25,6 +26,7 @@ class SiswaController extends Controller
         $jumlahAnggota = User::whereIn('role', ['siswa', 'sekertaris', 'bendahara'])->count();
         $anggotaAktif = User::whereIn('role', ['siswa', 'sekertaris', 'bendahara'])->where('status', 'active')->count();
         $anggotaPending = User::where('role', 'siswa')->where('status', 'pending')->count();
+        $pelaksanaan = Pelaksanaan::all();
 
         return view('pages.siswa.dashboard', compact(
             'pembina',
@@ -32,6 +34,7 @@ class SiswaController extends Controller
             'anggotaAktif',
             'anggotaPending',
             'informasi',
+            'pelaksanaan',
         ));
 
     }

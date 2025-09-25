@@ -15,10 +15,7 @@ class SekertarisController extends Controller
         $pembina = User::where('role', 'pembina')->get();
 
         // ambil data informasi
-        $informasi = Informasi::orderBy('tanggal', 'asc')
-            ->whereDate('tanggal', '>=', now())
-            ->take(5)
-            ->get();
+        $informasi = Informasi::latest('tanggal')->take(5)->get();
 
         // statistik anggota
         $jumlahAnggota = User::whereIn('role', ['siswa', 'sekertaris', 'bendahara'])->count();

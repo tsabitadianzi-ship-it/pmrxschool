@@ -16,11 +16,8 @@ class SiswaController extends Controller
         // ambil data pembina
         $pembina = User::where('role', 'pembina')->get();
 
-        // ambil data informasi
-        $informasi = Informasi::orderBy('tanggal', 'asc')
-            ->whereDate('tanggal', '>=', now())
-            ->take(5)
-            ->get();
+        // Informasi terbaru ditaruh paling atas
+        $informasi = Informasi::orderBy('tanggal', 'desc')->get();
 
         // statistik anggota
         $jumlahAnggota = User::whereIn('role', ['siswa', 'sekertaris', 'bendahara'])->count();

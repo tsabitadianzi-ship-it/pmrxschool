@@ -9,7 +9,7 @@
             <a href="{{ route('pembina.pembina_tambah') }}" class="btn btn-primary me-2">
                 <span class="ti ti-plus me-1"></span> Tambah Pembina
             </a>
-            <a href="{{ route('pembina.informasi_tambah') }}" class="btn btn-success">
+            <a href="{{ route('pembina.informasi.create') }}" class="btn btn-success">
                 <span class="ti ti-plus me-1"></span> Tambah Informasi
             </a>
         </div>
@@ -39,12 +39,12 @@
                                 <td>{{ \Carbon\Carbon::parse($info->tanggal)->translatedFormat('d F Y') }}</td>
                                 <td class="text-center">
                                     <div class="d-inline-flex gap-1">
-                                        <a href="{{ route('pembina.informasi_edit', $info->id) }}" 
+                                        <a href="{{ route('pembina.informasi.edit', $info->id) }}" 
                                         class="btn btn-sm btn-warning">
                                             <i class="ti ti-pencil"></i>
                                         </a>
                                         <button type="button" class="btn btn-sm btn-danger"
-                                            onclick="actionDelete('{{ route('pembina.informasi_destroy', $info->id) }}')">
+                                            onclick="actionDelete('{{ route('pembina.informasi.destroy', $info->id) }}')">
                                             <i class="ti ti-trash"></i>
                                         </button>
                                     </div>

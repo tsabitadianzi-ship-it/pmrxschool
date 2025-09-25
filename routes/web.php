@@ -11,6 +11,7 @@ use App\Http\Controllers\PembinaController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\SekertarisController;
 use App\Http\Controllers\SiswaController;
+use App\Http\Controllers\InformasiController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [GuestController::class, 'index'])->name('pages.guest.guest');
@@ -51,11 +52,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/materi/{id}', [PembinaController::class, 'materiShow'])->name('materi.show');
 
         // ROUTE INFORMASI
-        Route::get('/tambah-informasi', [PembinaController::class, 'createInformasi'])->name('informasi_tambah');
-        Route::post('/tambah-informasi', [PembinaController::class, 'storeInformasi'])->name('informasi_store');
-        Route::get('/edit-informasi/{id}', [PembinaController::class, 'editInformasi'])->name('informasi_edit');
-        Route::put('/edit-informasi/{id}', [PembinaController::class, 'updateInformasi'])->name('informasi_update');
-        Route::delete('/informasi/{id}', [PembinaController::class, 'informasiDestroy'])->name('informasi_destroy');
+        Route::resource('informasi', InformasiController::class);
 
         // ROUTE ANGGOTA
         Route::get('/anggota/{id}/detail', [PembinaController::class, 'showAnggota'])->name('anggota_detail');

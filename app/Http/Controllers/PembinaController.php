@@ -25,10 +25,7 @@ class PembinaController extends Controller
         $pembina = User::where('role', 'pembina')->get();
 
         // ambil data informasi
-        $informasi = Informasi::orderBy('tanggal', 'asc')
-            ->whereDate('tanggal', '>=', now())
-            ->take(5)
-            ->get();
+        $informasi = Informasi::orderBy('tanggal', 'desc')->get();
 
         // statistik anggota
         $jumlahAnggota = User::whereIn('role', ['siswa', 'sekertaris', 'bendahara'])->count();
@@ -232,64 +229,6 @@ class PembinaController extends Controller
 
         return redirect()->route('pembina.anggota')
             ->with('success', 'Pembina berhasil dihapus!');
-    }
-
-    public function createInformasi()
-    {
-        return view('pages.pembina.informasi_tambah');
-    }
-
-    public function storeInformasi(Request $request)
-    {
-        $request->validate([
-            'kegiatan' => 'required|string|max:255',
-            'tanggal' => 'required',
-        ]);
-
-        $informasi = new \App\Models\Informasi;
-        $informasi->kegiatan = $request->kegiatan;
-        $informasi->tanggal = $request->tanggal;
-        $informasi->save();
-
-        return redirect()->route('pembina.dashboard')
-            ->with('success', 'Informasi baru berhasil ditambahkan!');
-    }
-
-    public function editInformasi($id)
-    {
-        $informasi = Informasi::findOrFail($id);
-
-        return view('pages.pembina.informasi_edit', compact('informasi'));
-    }
-
-    /*************  ✨ Windsurf Command ⭐  *************/
-    /**
-     * Update informasi existing in storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    /*******  d3279ff3-c0bd-4a33-af2a-11f06a6cdb18  *******/
-    public function updateInformasi(Request $request, $id)
-    {
-        $request->validate([
-            'kegiatan' => 'required|string|max:255',
-            'tanggal' => 'required|date',
-        ]);
-
-        $informasi = Informasi::findOrFail($id);
-        $informasi->update($request->only(['kegiatan', 'tanggal']));
-
-        return redirect()->route('pembina.dashboard')->with('success', 'Informasi berhasil diperbarui.');
-    }
-
-    public function informasiDestroy($id)
-    {
-        $informasi = Informasi::findOrFail($id);
-        $informasi->delete();
-
-        return redirect()->route('pembina.dashboard')
-            ->with('success', 'Informasi berhasil dihapus!');
     }
 
     public function editPelaksanaan($id)

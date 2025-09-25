@@ -6,7 +6,7 @@
     <div class="col-md-12">
         <h2> Tambah Informasi </h2>
         <div class="card card-body">
-            <form action="{{ route('pembina.informasi_store') }}" method="POST">
+            <form action="{{ route('pembina.informasi.store') }}" method="POST">
                 @csrf
                 <div class="row">
                     <div class="col mb-6">

@@ -18,7 +18,7 @@
                 <div class="d-flex align-items-center gap-1">
                     <div class="avatar avatar-online">
                       <img 
-                        src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->nama_lengkap) }}&background=random&color=fff&size=40"
+                        src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->nama_lengkap) }}&background=c4b5fd&color=fff&size=40"
                         alt="{{ Auth::user()->nama_lengkap }}" 
                         class="rounded-circle" />
                     </div>

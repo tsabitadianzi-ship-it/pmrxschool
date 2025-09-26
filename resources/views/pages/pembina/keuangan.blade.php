@@ -6,7 +6,7 @@
 <div class="row">
     <div class="col-md-12">
 
-        <h2> Data Keuangan </h2>
+        <h2 class="fw-bold"> Data Keuangan </h2>
         <div class="card card-body">
             <table class="table table-striped dataTable">
                 <thead>

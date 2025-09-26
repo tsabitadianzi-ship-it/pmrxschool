@@ -2,7 +2,7 @@
 @section('title', 'Jurnal Sekertaris')
 @section('content')
 <div class="row">
-    <h2> Data Jurnal</h2>
+    <h2 class="fw-bold"> Data Jurnal</h2>
     <div class="col-md-12">
         <div class="card card-body">
          <table class="table table-striped dataTable">

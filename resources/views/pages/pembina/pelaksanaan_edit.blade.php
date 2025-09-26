@@ -28,10 +28,10 @@
                             <input type="time" class="form-control" id="jam" name="jam" value="{{ $pelaksanaan->jam }}">
                         </div>
                     </div>
-                    <a href="{{ route('pembina.dashboard') }}" class="btn btn-secondary btn-sm">
-                        <span class="ti ti-arrow-left me-1"></span> Batal</a>
                     <button type="submit" class="btn btn-success btn-sm">
                         <span class="ti ti-check me-1"></span> Update</button>
+                    <a href="{{ route('pembina.dashboard') }}" class="btn btn-secondary btn-sm">
+                        <span class="ti ti-arrow-left me-1"></span> Batal</a>
                 </form>
             </div>
         </div>

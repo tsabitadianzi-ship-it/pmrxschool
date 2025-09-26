@@ -17,130 +17,135 @@
 
     <!-- Informasi -->
     <div class="card mb-4 shadow-sm">
-        <div class="card-header fw-bold">
-            INFORMASI KEGIATAN
-        </div>
+        <div class="card-header fw-bold">INFORMASI KEGIATAN</div>
         <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-striped align-middle">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Informasi</th>
-                            <th>Tanggal</th>
-                            <th class="text-center">Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @forelse($informasi as $i => $info)
-                            <tr>
-                                <td>{{ $i+1 }}</td>
-                                <td>{{ $info->kegiatan }}</td>
-                                <td>{{ \Carbon\Carbon::parse($info->tanggal)->translatedFormat('d F Y') }}</td>
-                                <td class="text-center">
-                                    <div class="d-inline-flex gap-1">
-                                        <a href="{{ route('pembina.informasi.edit', $info->id) }}" 
-                                        class="btn btn-sm btn-warning">
-                                            <i class="ti ti-pencil"></i>
-                                        </a>
-                                        <button type="button" class="btn btn-sm btn-danger"
-                                            onclick="actionDelete('{{ route('pembina.informasi.destroy', $info->id) }}')">
-                                            <i class="ti ti-trash"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                        @empty
-                            <tr>
-                                <td colspan="4" class="text-center text-muted">Belum ada informasi</td>
-                            </tr>
-                        @endforelse
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-
-    <!-- Pelaksanaan Ekskul -->
-    <div class="card mb-4 shadow-sm">
-        <div class="card-header fw-bold">
-            PELAKSANAAN EKSKUL
-        </div>
-        <div class="card-body">
-            @foreach($pelaksanaan as $item)
-                <div class="d-flex justify-content-between align-items-center mb-3">
+            @forelse($informasi as $info)
+                <div class="d-flex justify-content-between align-items-center border-bottom py-2">
                     <div>
-                        <i class="ti ti-calendar"></i> {{ $item->hari }} <br>
-                        <i class="ti ti-clock"></i> 
-                        {{ \Carbon\Carbon::createFromFormat('H:i:s', $item->jam)->format('H:i') }}
+                        <h6 class="mb-1">{{ $info->kegiatan }}</h6>
+                        <small class="text-muted">
+                            {{ \Carbon\Carbon::parse($info->tanggal)->translatedFormat('d F Y') }}
+                        </small>
                     </div>
-                    <div>
-                        <a href="{{ route('pembina.pelaksanaan_edit', $item->id) }}" 
-                        class="btn btn-sm btn-warning">
-                            <i class="ti ti-pencil"></i> Edit
+                    <div class="d-inline-flex gap-1">
+                        <a href="{{ route('pembina.informasi.edit', $info->id) }}" class="btn btn-sm btn-warning">
+                            <i class="ti ti-pencil"></i>
+                        </a>
+                        <a href="javascript:;" class="btn btn-sm btn-danger"
+                           onclick="actionDelete('{{ route('pembina.informasi.destroy', $info->id) }}')">
+                            <i class="ti ti-trash"></i>
                         </a>
                     </div>
                 </div>
-            @endforeach        
+            @empty
+                <p class="text-muted mb-0">Belum ada informasi</p>
+            @endforelse
         </div>
     </div>
 
+    <div class="row">
+        <!-- Pelaksanaan Ekskul -->
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-header fw-bold">PELAKSANAAN EKSKUL</div>
+                <div class="card-body">
+                    @foreach($pelaksanaan as $item)
+                        <div class="d-flex justify-content-between  border-bottom py-3">
+                            <div class="d-flex align-items-center gap-3">
+                                <span><i class="ti ti-calendar"></i> {{ $item->hari }}</span>
+                                <span><i class="ti ti-clock"></i> {{ \Carbon\Carbon::createFromFormat('H:i:s', $item->jam)->format('H:i') }}
+                                </span>
+                            </div>
+                            <a href="{{ route('pembina.pelaksanaan_edit', $item->id) }}" class="btn btn-sm btn-warning">
+                                <i class="ti ti-pencil"></i> Edit
+                            </a>
+                        </div>
+                    @endforeach
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Statistik Anggota -->
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-header fw-bold">STATISTIK ANGGOTA</div>
+                <div class="card-body">
+                    <div class="row text-center">
+                        <div class="col-4">
+                            <h4 class="fw-bold">{{ $jumlahAnggota }}</h4>
+                            <small class="text-muted">Jumlah</small>
+                        </div>
+                        <div class="col-4">
+                            <h4 class="fw-bold text-success">{{ $anggotaAktif }}</h4>
+                            <small class="text-muted">Aktif</small>
+                        </div>
+                        <div class="col-4">
+                            <h4 class="fw-bold text-danger">{{ $anggotaPending }}</h4>
+                            <small class="text-muted">Pending</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Daftar Pembina -->
-    <div class="card mb-4 shadow-sm">
-        <div class="card-header fw-bold">
-            DAFTAR PEMBINA
-        </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-striped align-middle">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Nama Lengkap</th>
-                            <th>Kontak</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($pembina as $i => $p)
-                            <tr>
-                                <td>{{ $i+1 }}</td>
-                                <td>{{ $p->nama_lengkap }}</td>
-                                <td>{{ $p->no_telp ?? '-' }}</td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-
-    <!-- Statistik Anggota -->
-    <div class="card mb-4 shadow-sm">
-        <div class="card-header fw-bold">
-            STATISTIK ANGGOTA
-        </div>
-        <div class="card-body">
-            <div class="row text-center">
-                <div class="col-md-4 mb-3">
-                    <h4 class="fw-bold">{{ $jumlahAnggota }}</h4>
-                    <small class="text-muted">Jumlah Anggota</small>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <h4 class="fw-bold text-success">{{ $anggotaAktif }}</h4>
-                    <small class="text-muted">Aktif</small>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <h4 class="fw-bold text-danger">{{ $anggotaPending }}</h4>
-                    <small class="text-muted">Pending</small>
+     <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header fw-bold">DAFTAR PEMBINA</div>
+                    <div class="card-body">
+                        @forelse($pembina as $p)
+                            <div class="d-flex justify-content-between align-items-center border-bottom py-2">
+                                <div>
+                                    <h6 class="mb-1">{{ $p->nama_lengkap }}</h6>
+                                    <small class="text-muted">{{ $p->no_telp ?? '-' }}</small>
+                                </div>
+                            </div>
+                        @empty
+                            <p class="text-muted mb-0">Belum ada pembina</p>
+                        @endforelse
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
 <form id="form-delete" action="" method="POST" class="d-none">
     @csrf
     @method('DELETE')
 </form>
 @endsection
+
+@push('scripts')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+function actionDelete(url){
+    Swal.fire({
+        title: "Apakah kamu yakin?",
+        text: "Data yang dihapus tidak bisa dikembalikan!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Ya, hapus!",
+        cancelButtonText: "Batal"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $('#form-delete').attr('action', url);
+            $('#form-delete').submit();
+        }
+    });
+}
+</script>
+@if (Session::has('success'))
+<script type="text/javascript">
+Swal.fire({
+    icon: 'success',
+    title: 'Berhasil',
+    text: '{{ Session::get('success') }}',
+    showConfirmButten: false,
+    timer: 3000
+});
+</script>
+@endif
+@endpush

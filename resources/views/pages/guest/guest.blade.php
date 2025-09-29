@@ -61,15 +61,17 @@
   </div>
 
   <div class="ms-auto d-flex gap-2 ">
-    <a href="{{ route('register') }}" class="btn btn-primary btn-sm">Daftar</a>
-    <a href="{{ route('login') }}" class="btn btn-primary btn-sm">Login</a>
+    <a href="{{ route('register') }}" class="btn btn-sm text-white" style="background-color: #14532d;">Daftar</a>
+    <a href="{{ route('login') }}" class="btn btn-sm text-white" style="background-color: #14532d;">Login</a>
+
   </div>
 </nav>
-    <body>
+    <body style="background: url('{{ asset('/img/favicon/wall.png') }}') no-repeat center center fixed; background-size: cover;">
+
 
   <div class="container mt-12">
-    <h1 class="font-bold text-center mb-1">Selamat Datang di PMR X-School</h1>
-    <p class="text-center text-gray-600 mb-7">
+    <h1 class="font-bold text-white text-center mb-1">Selamat Datang di PMR X-School</h1>
+    <p class="text-center text-white mb-7">
       Belum memiliki akun? Daftar sekarang untuk menikmati semua fitur kami!
     </p>
 
@@ -103,10 +105,7 @@
     <script src="{{ asset('/vendor/libs/typeahead-js/typeahead.js') }}"></script>
     <script src="{{ asset('/vendor/js/menu.js') }}"></script>
 
-    <!-- endbuild -->
-
-    <!-- Vendors JS -->
-
+    
     <!-- Main JS -->
     <script src="{{ asset('/js/main.js') }}"></script>
 

@@ -92,11 +92,11 @@
                         <p><span class="ti ti-phone"></span> {{ $item->no_telp }}</p>
                         <p><span class="ti ti-user"></span> {{ $item->jenis_kelamin }}</p>
                         <div class="d-flex justify-content-center gap-2">
-                            <a href="{{ route('pembina.pembina_edit', $item->id) }}" class="btn btn-sm btn-warning">
+                            <a href="{{ route('pembina.pembina.edit', $item->id) }}" class="btn btn-sm btn-warning">
                                 <span class="ti ti-pencil"></span> Edit
                             </a>
                             <button type="button" class="btn btn-sm btn-danger"
-                                onclick="actionDelete('{{ route('pembina.pembina_destroy', $item->id) }}')">
+                                onclick="actionDelete('{{ route('pembina.pembina.destroy', $item->id) }}')">
                                 <span class="ti ti-trash"></span> Hapus
                             </button>
                         </div>

@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <h2> Tambah Pembina </h2>
             <div class="card card-body">
-            <form action="{{ route('pembina.pembina_store') }}" method="POST">
+            <form action="{{ route('pembina.pembina.store') }}" method="POST">
 
                  @csrf 
                  {{-- Nama & NIS --}}

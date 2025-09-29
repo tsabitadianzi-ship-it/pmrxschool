@@ -6,7 +6,7 @@
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2 class="fw-bold">Dashboard</h2>
         <div>
-            <a href="{{ route('pembina.pembina_tambah') }}" class="btn btn-primary me-2">
+            <a href="{{ route('pembina.pembina.create') }}" class="btn btn-primary me-2">
                 <span class="ti ti-plus me-1"></span> Tambah Pembina
             </a>
             <a href="{{ route('pembina.informasi.create') }}" class="btn btn-success">

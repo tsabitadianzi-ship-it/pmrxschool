@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <h2> Edit Pembina </h2>
             <div class="card card-body">
-            <form action="{{ route('pembina.pembina_update', $pembina->id) }}" method="POST">
+            <form action="{{ route('pembina.pembina.update', $pembina->id) }}" method="POST">
                 @csrf
                 @method('PUT')
 

@@ -19,7 +19,7 @@
     <meta name="description" content="" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="{{ asset('/img/avatars/logo.png') }}" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('/img/favicon/logo.png') }}" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -63,14 +63,14 @@
     <script src="{{ asset('/js/config.js') }}"></script>
   </head>
 
-  <body>
+    <body style="background: url('{{ asset('/img/favicon/wall.png') }}') no-repeat center center fixed; background-size: cover;">
     <!-- Content -->
 
     <div class="container-xxl">
       <div class="row justify-content-center py-5">
         <div class="col-md-7">
             <div class="card card-body ">
-                <img src="{{ asset('/img/avatars/logo.png') }}" 
+                <img src="{{ asset('/img/favicon/logo.png') }}" 
                     alt="Logo" 
                     width="50" 
                     class="mx-auto d-block mb-3" />
@@ -137,7 +137,7 @@
 
                     
                     <div class="d-grid gap-2">
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="btn btn-success" style="background-color: #14532d;">
                             <span class="ti ti-send me-2"></span>
                             Submit
                         </button>

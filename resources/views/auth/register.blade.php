@@ -19,7 +19,7 @@
     <meta name="description" content="" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="{{ asset('/img/favicon/logo.png') }}" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('/img/favicon/logoh.png') }}" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -70,7 +70,7 @@
       <div class="row justify-content-center py-5">
         <div class="col-md-7">
             <div class="card card-body ">
-                <img src="{{ asset('/img/favicon/logo.png') }}" 
+                <img src="{{ asset('/img/favicon/logoh.png') }}" 
                     alt="Logo" 
                     width="50" 
                     class="mx-auto d-block mb-3" />

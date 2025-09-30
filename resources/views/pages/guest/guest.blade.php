@@ -19,7 +19,7 @@
     <meta name="description" content="" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="{{ asset('img/favicon/logo.png') }}" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('img/favicon/logoh.png') }}" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -55,7 +55,7 @@
   <div class="d-flex align-items-center">
     <!-- Logo -->
     <a href="{{ url('/') }}" class="d-flex align-items-center text-decoration-none">
-      <img src="{{ asset('/img/favicon/logo.png') }}" alt="Logo" width="32" height="32" class="me-2" />
+      <img src="{{ asset('/img/favicon/logoh.png') }}" alt="Logo" width="32" height="32" class="me-2" />
     </a>
     <span class="fw-bold fs-5">PMR X-SCHOOL</span>
   </div>

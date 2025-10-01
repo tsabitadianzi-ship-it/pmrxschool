@@ -1,5 +1,5 @@
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme" 
-       style="background-color: #14532d !important; color: white;">
+       style="background-color: #2e6343ff !important; color: white;">
 
           <div class="app-brand demo">
             <a href="{{ url('/') }}" class="d-flex align-items-center text-decoration-none">

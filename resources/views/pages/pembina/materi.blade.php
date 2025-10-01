@@ -24,9 +24,8 @@
                     <span class="ti ti-alert-circle"></span> Tidak ada file terlampir</p>
             @endif
 
-            <!-- Khusus pembina: hanya bisa lihat detail -->
             <div class="flex gap-2">
-                <a href="{{ route('pembina.materi.show', $m->id) }}" class="btn btn-sm btn-info">
+                <a href="{{ route('pembina.materi.show', $m->id) }}" class="btn btn-sm" style="background-color: #209698ff; color: white;">
                     <span class="ti ti-eye"></span> Lihat Detail
                 </a>
                 

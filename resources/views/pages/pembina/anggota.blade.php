@@ -28,7 +28,7 @@
                         <td>{{ $anggota->kelas }}</td>
                         <td>{{ $anggota->status }}</td>
                         <td>
-                            <a href="{{ route('pembina.anggota_detail', $anggota->id) }}" class="btn btn-sm btn-info">
+                            <a href="{{ route('pembina.anggota_detail', $anggota->id) }}" class="btn btn-sm" style="background-color: #209698ff; color: white">
                                 <span class="ti ti-eye me-1"></span>
                             </a>
                         </td>
@@ -61,10 +61,10 @@
                         <td>{{ $item->kelas }}</td>
                         <td>{{ $item->role }}</td>
                         <td>
-                            <a href="{{ route('pembina.anggota_edit', $item->id) }}" class="btn btn-sm btn-warning">
+                            <a href="{{ route('pembina.anggota_edit', $item->id) }}" class="btn btn-sm" style="background-color: #d18c4fff; color:white;">
                                 <span class="ti ti-pencil me-1"></span> 
                             </a>
-                            <button type="button" class="btn btn-sm btn-danger"
+                            <button type="button" class="btn btn-sm" style="background-color: #d14f4fff; color: white;"
                               onclick="actionDelete('{{ route('pembina.anggota.destroy', $item->id) }}')">
                                 <span class="ti ti-trash"></span> 
                             </button>
@@ -83,7 +83,7 @@
                 <div class="card shadow-sm h-100">
                     <div class="card-body text-center">
                         <div class="mb-3">
-                            <img src="https://ui-avatars.com/api/?name={{ urlencode($item->nama_lengkap) }}&background=0D8ABC&color=fff&size=100"
+                            <img src="https://ui-avatars.com/api/?name={{ urlencode($item->nama_lengkap) }}&background=209698ff&color=fff&size=100"
                                 alt="{{ $item->nama_lengkap }}" 
                                 class="rounded-circle shadow">
                         </div>
@@ -92,10 +92,10 @@
                         <p><span class="ti ti-phone"></span> {{ $item->no_telp }}</p>
                         <p><span class="ti ti-user"></span> {{ $item->jenis_kelamin }}</p>
                         <div class="d-flex justify-content-center gap-2">
-                            <a href="{{ route('pembina.pembina.edit', $item->id) }}" class="btn btn-sm btn-warning">
+                            <a href="{{ route('pembina.pembina.edit', $item->id) }}" class="btn btn-sm" style="background-color: #d18c4fff; color:white;">
                                 <span class="ti ti-pencil"></span> Edit
                             </a>
-                            <button type="button" class="btn btn-sm btn-danger"
+                            <button type="button" class="btn btn-sm" style="background-color: #d14f4fff; color: white;"
                                 onclick="actionDelete('{{ route('pembina.pembina.destroy', $item->id) }}')">
                                 <span class="ti ti-trash"></span> Hapus
                             </button>

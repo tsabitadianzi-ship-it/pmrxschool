@@ -66,7 +66,7 @@
 
   </div>
 </nav>
-    <body style="background: url('{{ asset('/img/favicon/wall.png') }}') no-repeat center center fixed; background-size: cover;">
+    <body style="background: url('{{ asset('/img/favicon/wall3.png') }}') no-repeat center center fixed; background-size: cover;">
 
 
   <div class="container mt-12">

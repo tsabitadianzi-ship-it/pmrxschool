@@ -63,7 +63,7 @@
     <script src="{{ asset('/js/config.js') }}"></script>
   </head>
 
-     <body style="background: url('{{ asset('/img/favicon/wall.png') }}') no-repeat center center fixed; background-size: cover;">
+     <body style="background: url('{{ asset('/img/favicon/wall3.png') }}') no-repeat center center fixed; background-size: cover;">
     <!-- Content -->
 
     <div class="container-xxl">

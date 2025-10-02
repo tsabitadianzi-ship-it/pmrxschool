@@ -3,7 +3,7 @@
 @section('title', 'Materi')
 @section('content')
 <div class="p-4">
-    <h2 >Data Materi</h2>
+    <h2 class="fw-bold">Data Materi</h2>
 
     @forelse($materi as $m)
         <div class="border rounded-lg shadow p-4 mb-4 bg-white">
@@ -25,7 +25,7 @@
             @endif
 
             <div class="flex gap-2">
-                <a href="{{ route('bendahara.materi.show', $m->id) }}" class="btn btn-sm btn-info">
+                <a href="{{ route('bendahara.materi.show', $m->id) }}" class="btn btn-sm" style="background-color: #209698ff; color: white;">
                     <span class="ti ti-eye"></span> Lihat Detail
                 </a>
                 

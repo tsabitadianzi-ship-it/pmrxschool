@@ -36,7 +36,7 @@
         <!-- Tombol kembali -->
     <div class="mt-6">
         <a href="{{ route('siswa.materi') }}" 
-           class="btn btn-sm btn-secondary">
+           class="btn btn-sm" style="background-color: #6b7770ff; color: white;">
            <span class="ti ti-arrow-left me-1"></span> Kembali
         </a>
     </div>

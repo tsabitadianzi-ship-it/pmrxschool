@@ -4,7 +4,7 @@
 
     <div class="row">
         <div class="col-md-12">
-            <h2> Edit Jurnal</h2>
+            <h2 class="fw-bold"> Edit Jurnal</h2>
             <div class="card card-body">
             <form action="{{ route('sekertaris.jurnal.update', $jurnal->id) }}" method="POST" enctype="multipart/form-data">
                  @csrf
@@ -46,9 +46,9 @@
                     </div>
                 </div>
                <div class="form-group mb-3">
-                <button type="submit" class="btn btn-sm btn-success">
+                <button type="submit" class="btn btn-sm" style="background-color: #4b9669ff; color: white;">
                     <span class="ti ti-check"></span> Edit</button>
-                 <a href="{{ route('sekertaris.jurnal.index') }}" class="btn btn-sm btn-secondary">
+                 <a href="{{ route('sekertaris.jurnal.index') }}" class="btn btn-sm" style="background-color: #6b7770ff; color:white;">
                     <span class="ti ti-arrow-left"></span> Batal
                 </a>
                </div>

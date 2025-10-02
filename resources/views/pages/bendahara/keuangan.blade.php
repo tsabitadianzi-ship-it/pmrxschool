@@ -4,10 +4,9 @@
 
 @section('content')
 <div class="row">
+    <h2 class="fw-bold"> Data Keuangan </h2>
     <div class="col-md-12">
-
-        <h2> Data Keuangan </h2>
-        <a href="{{ route('bendahara.keuangan.create') }}" class="btn btn-primary mb-3">
+        <a href="{{ route('bendahara.keuangan.create') }}" class="btn mb-3" style="background-color: #d19b4fff; color: white;">
             <span class="ti ti-plus me-1"></span>
             Tambah 
         </a>
@@ -42,11 +41,11 @@
                             <td>
                                 <div class="d-flex gap-1">
                                     <a href="{{ route('bendahara.keuangan.edit', $item->id) }}" 
-                                    class="btn btn-sm btn-warning">
+                                    class="btn btn-sm" style="background-color: #d18c4fff; color: white;">
                                         <span class="ti ti-pencil"></span>
                                     </a>
                                     <a href="javascript:;" 
-                                    class="btn btn-sm btn-danger"
+                                    class="btn btn-sm" style="background-color: #d14f4fff; color: white;"
                                     onclick="actionDelete('{{ route('bendahara.keuangan.destroy', $item->id) }}')">
                                         <span class="ti ti-trash"></span>
                                     </a>

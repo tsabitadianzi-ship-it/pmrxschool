@@ -41,7 +41,7 @@
                     @endif
                     <li>
                       <div class="d-grid px-2 pt-2 pb-1">
-                        <a class="btn btn-sm btn-danger d-flex" onclick="$('#logout-form').submit()" 
+                        <a class="btn btn-sm d-flex" style="background-color: #d14f4fff; color: white;" onclick="$('#logout-form').submit()" 
                         href="javascript:void(0);">
                           <small class="align-middle">Logout</small>
                           <i class="ti ti-logout ms-2 ti-14px"></i>

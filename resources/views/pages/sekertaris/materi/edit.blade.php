@@ -10,21 +10,23 @@
                 <form action="{{ route('sekertaris.materi.update', $materi->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
-                    <div class="form-group mb-3">
-                        <label for="tanggal">Tanggal</label>
-                        <input type="date" class="form-control" id="tanggal" name="tanggal" 
-                               value="{{ old('tanggal', $materi->tanggal) }}" required>
-                        @error('tanggal')
-                            <div class="alert alert-danger mt-1">{{ $message }}</div>
-                        @enderror
-                    </div>
-                    <div class="form-group mb-3">
-                        <label for="judul">Judul</label>
-                        <input type="text" class="form-control" id="judul" name="judul" 
-                               value="{{ old('judul', $materi->judul) }}" required>
-                        @error('judul')
-                            <div class="alert alert-danger mt-1">{{ $message }}</div>
-                        @enderror
+                    <div class="row">
+                        <div class="col mb-6">
+                            <label for="tanggal">Tanggal</label>
+                            <input type="date" class="form-control" id="tanggal" name="tanggal" 
+                                value="{{ old('tanggal', $materi->tanggal) }}" required>
+                            @error('tanggal')
+                                <div class="alert alert-danger mt-1">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="col mb-6">
+                            <label for="judul">Judul</label>
+                            <input type="text" class="form-control" id="judul" name="judul" 
+                                value="{{ old('judul', $materi->judul) }}" required>
+                            @error('judul')
+                                <div class="alert alert-danger mt-1">{{ $message }}</div>
+                            @enderror
+                        </div>
                     </div>
                     <div class="form-group mb-3">
                         <label for="isi">Isi</label>
@@ -48,9 +50,9 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-sm btn-success">
+                        <button type="submit" class="btn btn-sm" style="background-color: #4b9669ff; color: white;">
                             <span class="ti ti-check me-1"></span> Update</button>
-                        <a href="{{ route('sekertaris.materi.index') }}" class="btn btn-sm btn-secondary">
+                        <a href="{{ route('sekertaris.materi.index') }}" class="btn btn-sm" style="background-color: #6b7770ff; color:white;">
                             <span class="ti ti-arrow-left me-1"></span> Batal</a>
                     </div>
                 </form>

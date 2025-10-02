@@ -65,9 +65,9 @@
                     </div>
                 </div>
                <div class="form-group mb-2">
-                <button type="submit" class="btn btn-sm btn-success">
+                <button type="submit" class="btn btn-sm" style="background-color: #4b9669ff; color: white;">
                     <span class="ti ti-check me-1"></span> Tambah</button>
-                 <a href="{{ route('pembina.anggota') }}" class="btn btn-sm btn-secondary">
+                 <a href="{{ route('pembina.dashboard') }}" class="btn btn-sm" style="background-color: #6b7770ff; color: white;">
                     <span class="ti ti-arrow-left me-1"></span> Batal
                 </a>
                </div>

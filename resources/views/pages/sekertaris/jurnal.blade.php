@@ -3,9 +3,9 @@
 @section('content')
 
 <div class="row">
-    <h2> Data Jurnal</h2>
+    <h2 class="fw-bold"> Data Jurnal</h2>
     <div class="mb-4">
-        <a href="{{ route('sekertaris.jurnal.create') }}" class="btn btn-primary">
+        <a href="{{ route('sekertaris.jurnal.create') }}" class="btn" style="background-color: #d19b4fff; color: white;">
             <span class="ti ti-plus me-1"></span> Tambah</a>
     </div>
     <div class="col-md-12">
@@ -31,11 +31,11 @@
                         <td>{{ $item->waktu_mulai }}</td>
                         <td>{{ $item->waktu_selesai }}</td>
                         <td>
-                         <a href="{{ route('sekertaris.jurnal.edit', $item->id) }}" class="btn btn-sm btn-warning">
+                         <a href="{{ route('sekertaris.jurnal.edit', $item->id) }}" class="btn btn-sm" style="background-color: #d18c4fff; color: white;">
                              <span class="ti ti-pencil me-1"></span>
                         </a>
                          <a href="javascript:;" 
-                            class="btn btn-sm btn-danger"
+                            class="btn btn-sm" style="background-color: #d14f4fff; color: white;"
                             onclick="actionDelete('{{ route('sekertaris.jurnal.destroy', $item->id) }}')">
                                 <span class="ti ti-trash"></span>
                         </a>

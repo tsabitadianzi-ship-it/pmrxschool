@@ -34,7 +34,7 @@
         <!-- Tombol kembali -->
     <div class="mt-6">
         <a href="{{ route('sekertaris.materi.index') }}" 
-           class="btn btn-sm btn-danger">
+           class="btn btn-sm" style="background-color: #6b7770ff; color: white;">
             <span class="ti ti-arrow-left me-1"></span> Kembali
         </a>
     </div>

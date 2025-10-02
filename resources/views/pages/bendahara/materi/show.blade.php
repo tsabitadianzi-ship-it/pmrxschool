@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="p-4">
-    <h2>Detail Materi</h2>
+    <h2 class="fw-bold">Detail Materi</h2>
 
     <div class="border rounded-lg shadow p-6 bg-white">
         <!-- Tanggal -->
@@ -36,7 +36,7 @@
         <!-- Tombol kembali -->
     <div class="mt-6">
         <a href="{{ route('bendahara.materi') }}" 
-           class="btn btn-sm btn-secondary">
+           class="btn btn-sm" style="background-color: #6b7770ff; color: white;">
            <span class="ti ti-arrow-left"></span> Kembali
         </a>
     </div>

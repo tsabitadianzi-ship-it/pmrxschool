@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container">
-    <h3 class="mb-3">Detail Anggota</h3>
+    <h2 class="fw-bold">Detail Anggota</h2>
     <div class="card card-body p-0">
         <table class="table table-striped mb-0">
             <tbody>
@@ -52,19 +52,19 @@
     </div>
 
     <div class="d-flex gap-2 mt-3">
-         <a href="{{ route('pembina.anggota') }}" class="btn btn-sm btn-secondary">
+         <a href="{{ route('pembina.anggota') }}" class="btn btn-sm" style="background-color: #6b7770ff; color: white;">
             <span class="ti ti-arrow-left me-1"></span> Kembali
         </a>
         <form action="{{ route('pembina.anggota.terima', $anggota->id) }}" method="POST" class="d-inline">
             @csrf
-            <button type="submit" class="btn btn-sm btn-success">
+            <button type="submit" class="btn btn-sm" style="background-color: #4b9669ff; color: white;">
                 <span class="ti ti-check me-1"></span> Terima
             </button>
         </form>
 
         <form action="{{ route('pembina.anggota.tolak', $anggota->id) }}" method="POST" class="d-inline">
             @csrf
-            <button type="submit" class="btn btn-sm btn-danger">
+            <button type="submit" class="btn btn-sm" style="background-color: #d14f4fff; color: white;">
                 <span class="ti ti-x me-1"></span> Tolak
             </button>
         </form>

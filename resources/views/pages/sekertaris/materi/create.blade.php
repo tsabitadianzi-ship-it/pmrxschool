@@ -9,38 +9,42 @@
             <div class="card card-body">
             <form action="{{ route('sekertaris.materi.store') }}" method="POST" enctype="multipart/form-data">
                  @csrf
-                  <div class="form-group mb-3">
-                    <label for="tanggal">Tanggal</label>
-                    <input type="date" class="form-control" id="tanggal" name="tanggal" required>
-                    @error('tanggal')
-                        <div class="alert alert-danger mt-1">{{ $message }}</div>
-                    @enderror
-                </div>
-                <div class="form-group mb-3">
-                    <label for="judul">Judul</label>
-                    <input type="text" class="form-control" id="judul" name="judul" required>
-                    @error('judul')
-                        <div class="alert alert-danger mt-1">{{ $message }}</div>
-                    @enderror
-                </div>
-                <div class="form-group mb-3">
-                    <label for="isi">Isi</label>
-                    <textarea class="form-control" id="isi" name="isi" rows="4" required></textarea>
-                    @error('isi')
-                        <div class="alert alert-danger mt-1">{{ $message }}</div>
+                 <div class="row">
+                    <div class="col mb-6">
+                        <label for="tanggal">Tanggal</label>
+                        <input type="date" class="form-control" id="tanggal" name="tanggal" required>
+                        @error('tanggal')
+                            <div class="alert alert-danger mt-1">{{ $message }}</div>
                         @enderror
+                    </div>
+                    <div class="col mb-6">
+                        <label for="judul">Judul</label>
+                        <input type="text" class="form-control" id="judul" name="judul" required>
+                        @error('judul')
+                            <div class="alert alert-danger mt-1">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col mb-6">
+                        <label for="isi">Isi</label>
+                        <textarea class="form-control" id="isi" name="isi" rows="4" required></textarea>
+                        @error('isi')
+                            <div class="alert alert-danger mt-1">{{ $message }}</div>
+                            @enderror
+                    </div>
+                    <div class="col mb-6">
+                        <label for="file">File</label>
+                        <input type="file" class="form-control" id="file" name="file">
+                        @error('file')
+                            <div class="alert alert-danger mt-1">{{ $message }}</div>
+                        @enderror
+                    </div>
                 </div>
                 <div class="form-group mb-3">
-                    <label for="file">File</label>
-                    <input type="file" class="form-control" id="file" name="file">
-                    @error('file')
-                        <div class="alert alert-danger mt-1">{{ $message }}</div>
-                     @enderror
-                </div>
-                <div class="form-group mb-3">
-                <button type="submit" class="btn btn-sm btn-success">
+                <button type="submit" class="btn btn-sm" style="background-color: #4b9669ff; color: white;">
                     <span class="ti ti-check me-1"></span> Tambah</button>
-                 <a href="{{ route('sekertaris.materi.index') }}" class="btn btn-sm btn-secondary">
+                 <a href="{{ route('sekertaris.materi.index') }}" class="btn btn-sm" style="background-color: #6b7770ff; color:white;">
                     <span class="ti ti-arrow-left me-1"></span> Batal
                 </a>
                </div>

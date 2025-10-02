@@ -26,28 +26,30 @@
 
             <form action="{{ route('update_profil') }}" method="POST">
                 @csrf
-                <div class="form-group mb-3">
-                    <label for="current_password">Password Lama</label>
-                    <input type="password" name="current_password" id="current_password" 
-                           class="form-control" required>
-                </div>
+                <div class="row">
+                    <div class="col mb-6">
+                        <label for="current_password">Password Lama</label>
+                        <input type="password" name="current_password" id="current_password" 
+                            class="form-control" required>
+                    </div>
 
-                <div class="form-group mb-3">
-                    <label for="new_password">Password Baru</label>
-                    <input type="password" name="new_password" id="new_password" 
-                           class="form-control" required>
+                    <div class="col mb-6">
+                        <label for="new_password">Password Baru</label>
+                        <input type="password" name="new_password" id="new_password" 
+                            class="form-control" required>
+                    </div>
                 </div>
-
+                    
                 <div class="form-group mb-3">
                     <label for="new_password_confirmation">Konfirmasi Password Baru</label>
                     <input type="password" name="new_password_confirmation" 
                            id="new_password_confirmation" class="form-control" required>
                 </div>
 
-                <button type="submit" class="btn btn-sm btn-success">
+                <button type="submit" class="btn btn-sm" style="background-color: #4b9669ff; color: white;">
                     <span class="ti ti-check me-1"></span> Edit
                 </button>
-                <a href="{{ url()->previous() }}" class="btn btn-sm btn-secondary">
+                <a href="{{ url()->previous() }}" class="btn btn-sm" style="background-color: #6b7770ff; color: white;">
                     <span class="ti ti-arrow-left me-1"></span> Batal
                 </a>
             </form>

@@ -51,9 +51,9 @@
                         </div>
                     </div>
                     <div class="form-group mt-3">
-                        <button type="submit" class="btn btn-sm btn-success">
+                        <button type="submit" class="btn btn-sm" style="background-color: #4b9669ff; color:white;">
                             <span class="ti ti-check me-1"></span> Edit</button>
-                        <a href="{{ route('bendahara.keuangan.index') }}" class="btn btn-sm btn-secondary">
+                        <a href="{{ route('bendahara.keuangan.index') }}" class="btn btn-sm" style="background-color: #6b7770ff; color:white;">
                             <span class="ti ti-arrow-left me-1"></span> Batal</a>
                     </div>
                 </form>

@@ -17,9 +17,9 @@
                         <option value="sekertaris" {{ $anggota->role == 'sekertaris' ? 'selected' : '' }}>Sekretaris</option>
                         <option value="bendahara" {{ $anggota->role == 'bendahara' ? 'selected' : '' }}>Bendahara</option>
                     </select>
-                    <button type="submit" class="btn btn-sm btn-success">
+                    <button type="submit" class="btn btn-sm" style="background-color: #4b9669ff; color: white;">
                         <span class="ti ti-check me-1"></span> Update</button>
-                    <a href="{{ route('pembina.anggota') }}" class="btn btn-sm btn-secondary">
+                    <a href="{{ route('pembina.anggota') }}" class="btn btn-sm" style="background-color: #6b7770ff; color: white;">
                     <span class="ti ti-arrow-left"></span> Batal
                 </a>
                 </form>

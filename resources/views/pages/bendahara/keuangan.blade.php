@@ -104,8 +104,8 @@
             icon: 'success',
             title: 'Berhasil',
             text: '{{ Session::get('success') }}',
-            showConfirmButten: false,
-            timer: 3000
+            background: '#fff7ef', 
+            confirmButtonColor: '#4b9669ff' 
         });
         </script>
     @endif

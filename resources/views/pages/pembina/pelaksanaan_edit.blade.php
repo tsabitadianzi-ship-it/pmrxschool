@@ -28,9 +28,9 @@
                             <input type="time" class="form-control" id="jam" name="jam" value="{{ $pelaksanaan->jam }}">
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-success btn-sm">
+                    <button type="submit" class="btn btn-sm" style="background-color: #4b9669ff; color: white;">
                         <span class="ti ti-check me-1"></span> Update</button>
-                    <a href="{{ route('pembina.dashboard') }}" class="btn btn-secondary btn-sm">
+                    <a href="{{ route('pembina.dashboard') }}" class="btn btn-sm" style="background-color: #6b7770ff; color:white;">
                         <span class="ti ti-arrow-left me-1"></span> Batal</a>
                 </form>
             </div>

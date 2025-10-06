@@ -140,12 +140,12 @@ function actionDelete(url){
 @if (Session::has('success'))
 <script type="text/javascript">
 Swal.fire({
-    icon: 'success',
-    title: 'Berhasil',
-    text: '{{ Session::get('success') }}',
-    showConfirmButten: false,
-    timer: 3000
-});
+        icon: 'success',
+        title: 'Berhasil',
+        text: '{{ Session::get('success') }}',
+        background: '#fff7ef', 
+        confirmButtonColor: '#4b9669ff' 
+    });
 </script>
 @endif
 @endpush

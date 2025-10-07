@@ -44,8 +44,7 @@
   <link rel="stylesheet" href="{{ asset('/vendor/css/pages/page-auth.css') }}" />
 </head>
 
-<body>
-  <!-- Content -->
+<body style="background: url('{{ asset('/img/favicon/wall3.png') }}') no-repeat center center fixed; background-size: cover;">  <!-- Content -->
   <div class="container-xxl">
     <div class="authentication-wrapper authentication-basic container-p-y">
       <div class="authentication-inner py-6">

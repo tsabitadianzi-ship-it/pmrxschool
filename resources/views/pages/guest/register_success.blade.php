@@ -56,7 +56,7 @@
             <div class="app-brand justify-content-center mb-6">
               <a href="#" class="app-brand-link">
                 <span class="app-brand-logo demo">
-                  <i class="ti ti-checks text-success" style="font-size: 3rem;"></i>
+                  <i class="ti ti-checks" style="font-size: 3rem; color: #4b9669ff"></i>
                 </span>
               </a>
             </div>
@@ -67,7 +67,7 @@
             <p class="mb-1">Akun Anda berhasil dibuat dengan status <b>Pending</b>.</p>
             <p class="mb-4">Silakan tunggu persetujuan dari pembina sebelum bisa login.</p>
 
-            <a href="{{ route('login') }}" class="btn btn-primary d-grid w-100">
+            <a href="{{ route('login') }}" class="btn d-grid w-100" style="background-color: #4b9669ff; color: white;">
               Kembali ke Halaman Login
             </a>
 

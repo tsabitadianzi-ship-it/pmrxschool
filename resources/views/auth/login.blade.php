@@ -135,13 +135,13 @@
                 </div>
         
                 <div class="mb-6">
-                  <button class="btn btn-success d-grid w-100" style="background-color: #14532d;" type="submit">Login</button>
+                  <button class="btn btn-success d-grid w-100" style="background-color: #2e6343;" type="submit">Login</button>
                 </div>
               </form>
 
               <div class="text-center mt-2">
                 <span>Belum mendaftar? </span>
-                <a href="{{ route('register') }}" style="color: #14532d;" class="fw-bold">Ayo Daftar</a>
+                <a href="{{ route('register') }}" style="color: #2e6343;" class="fw-bold">Ayo Daftar</a>
               </div>
 
             </div>

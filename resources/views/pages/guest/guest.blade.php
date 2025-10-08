@@ -61,8 +61,8 @@
   </div>
 
   <div class="ms-auto d-flex gap-2 ">
-    <a href="{{ route('register') }}" class="btn btn-sm text-white" style="background-color: #14532d;">Daftar</a>
-    <a href="{{ route('login') }}" class="btn btn-sm text-white" style="background-color: #14532d;">Login</a>
+    <a href="{{ route('register') }}" class="btn btn-sm text-white" style="background-color: #2e6343;">Daftar</a>
+    <a href="{{ route('login') }}" class="btn btn-sm text-white" style="background-color: #2e6343;">Login</a>
 
   </div>
 </nav>

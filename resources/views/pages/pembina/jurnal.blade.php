@@ -33,10 +33,26 @@
 @endsection
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}" />
-    <link rel="stylesheet" href="{{ asset('/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}" />
-    <link rel="stylesheet" href="{{ asset('/vendor/libs/sweetalert2/sweetalert2.css') }}" />
+<link rel="stylesheet" href="{{ asset('/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}" />
+<link rel="stylesheet" href="{{ asset('/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}" />
+<link rel="stylesheet" href="{{ asset('/vendor/libs/sweetalert2/sweetalert2.css') }}" />
 
+<style>
+.table thead th {
+    background-color: #4b9669ff;
+    color: #fff;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: none;
+}
+div.dataTables_wrapper div.dataTables_paginate ul.pagination .page-item.active .page-link {
+    background-color: #4b9669ff !important; 
+    border-color: #4b9669ff !important;
+    color: #fff !important;
+    border-radius: 8px;
+}
+</style>
 @endpush
 
 @push('scripts')

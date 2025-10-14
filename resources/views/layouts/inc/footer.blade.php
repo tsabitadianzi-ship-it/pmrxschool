@@ -3,7 +3,7 @@
                 <div
                   class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column">
                   <div class="text-body">
-                    Copyright &copy; {{ date('Y') }}. created by BIM.
+                    © 2025 PMR X-SCHOOL. Dibuat dengan semangat kemanusiaan
                   </div>
                 </div>
               </div>

@@ -55,7 +55,7 @@
          <a href="{{ route('pembina.anggota') }}" class="btn btn-sm" style="background-color: #6b7770ff; color: white;">
             <span class="ti ti-arrow-left me-1"></span> Kembali
         </a>
-        <form action="{{ route('pembina.anggota.terima', $anggota->id) }}" method="POST" class="d-inline">
+        <form action="{{ route('pembina.anggota.terima', $anggota->id) }}" method="POST" onsubmit="return confirm('Terima pendaftaran {{ $anggota->nama_lengkap }}?')>
             @csrf
             <button type="submit" class="btn btn-sm" style="background-color: #4b9669ff; color: white;">
                 <span class="ti ti-check me-1"></span> Terima
@@ -72,3 +72,9 @@
     </div>
 </div>
 @endsection
+
+@if (session('success'))
+    <div class="alert alert-success mt-3">
+        {{ session('success') }}
+    </div>
+@endif

@@ -9,6 +9,8 @@ use App\Models\Materi;
 use App\Models\Pelaksanaan;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
+
 
 class PembinaController extends Controller
 {
@@ -99,20 +101,65 @@ class PembinaController extends Controller
 
     public function terimaAnggota($id)
     {
+        // Ambil data siswa berdasarkan ID
         $user = User::findOrFail($id);
+
+        // Update status siswa menjadi active
         $user->status = 'active';
         $user->save();
 
-        return redirect()->route('pembina.anggota')->with('success', 'Anggota berhasil diterima!');
+        // Pastikan nomor WA berawalan 62
+        $no_telp = $user->no_telp;
+        if (str_starts_with($no_telp, '0')) {
+            $no_telp = '62' . substr($no_telp, 1);
+        }
+
+        // Kirim pesan WhatsApp via Fonnte
+        $response = Http::withHeaders([
+            'Authorization' => env('FONNTE_API_KEY'),
+        ])->post('https://api.fonnte.com/send', [
+            'target' => $no_telp,
+            'message' => "Halo {$user->nama_lengkap}! 👋\n\nPendaftaranmu di *PMR X-SCHOOL* telah *disetujui!* 
+            🎉\nSelamat bergabung bersama kami. \nSekarang kamu sudah bisa login di website kami! \n\nSalam hangat,\nPembina PMR ❤️",
+        ]);
+
+        $result = $response->json();
+
+        // Redirect kembali dengan notifikasi sukses
+        return redirect()->back()->with('success', 'Siswa berhasil dikonfirmasi dan pesan WhatsApp telah dikirim!');
     }
+
 
     public function tolakAnggota($id)
     {
         $user = User::findOrFail($id);
-        $user->delete(); // hapus langsung dari database
 
-        return redirect()->route('pembina.anggota')->with('success', 'Anggota berhasil ditolak dan dihapus!');
+        // Simpan nomor dulu sebelum dihapus
+        $no_telp = $user->no_telp;
+        $nama = $user->nama_lengkap;
+
+        // Pastikan nomor WA berawalan 62
+        if (str_starts_with($no_telp, '0')) {
+            $no_telp = '62' . substr($no_telp, 1);
+        }
+
+        // Kirim pesan penolakan via Fonnte
+        $response = Http::withHeaders([
+            'Authorization' => env('FONNTE_API_KEY'),
+        ])->post('https://api.fonnte.com/send', [
+            'target' => $no_telp,
+            'message' => "Halo {$nama},\n\nTerima kasih sudah mendaftar di *PMR X-SCHOOL* ❤️\nNamun, setelah dilakukan seleksi, 
+            *pendaftaranmu belum dapat diterima* kali ini.\n\nTetap semangat dan terus berkontribusi positif ya! 💪✨",
+        ]);
+
+        $result = $response->json();
+
+        // Setelah kirim WA, hapus datanya dari database
+        $user->delete();
+
+        return redirect()->route('pembina.anggota')->with('success', 'Anggota ditolak dan pesan WhatsApp telah dikirim!');
     }
+
 
     public function destroy($id)
     {

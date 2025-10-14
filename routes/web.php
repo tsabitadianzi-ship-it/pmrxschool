@@ -22,6 +22,17 @@ Route::get('/register/success', function () {
     return view('pages.guest.register_success');
 })->name('register.success');
 
+Route::get('/wa-test', function () {
+    $response = Http::withHeaders([
+        'Authorization' => env('FONNTE_API_KEY'),
+    ])->post('https://api.fonnte.com/send', [
+        'target' => '6285869579250', 
+        'message' => 'Halo! Ini pesan percobaan dari Laravel ',
+    ]);
+
+    return $response->json();
+});
+
 Auth::routes([
     'reset' => false,
     'verify' => false,

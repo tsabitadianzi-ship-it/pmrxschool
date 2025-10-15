@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="p-4">
-    <h2>Detail Materi</h2>
+    <h2 class="fw-bold">Detail Materi</h2>
 
     <div class="border rounded-lg shadow p-6 bg-white">
         <!-- Tanggal -->

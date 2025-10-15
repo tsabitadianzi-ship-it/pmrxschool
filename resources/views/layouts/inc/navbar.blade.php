@@ -1,6 +1,14 @@
 <nav
-            class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
-            id="layout-navbar">
+  class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center"
+  id="layout-navbar"
+  style="
+    background: linear-gradient(90deg, #2f8dacff 0%, #2f8dacff 100%);
+    color: white;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  "
+>
+
             <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
               <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
                 <i class="ti ti-menu-2 ti-md"></i>
@@ -18,13 +26,13 @@
                 <div class="d-flex align-items-center gap-1">
                     <div class="avatar avatar-online">
                       <img 
-                        src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->nama_lengkap) }}&background=4b9669ff&color=fff&size=40"
+                        src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->nama_lengkap) }}&background=7f8586ff&color=fff&size=40"
                         alt="{{ Auth::user()->nama_lengkap }}" 
                         class="rounded-circle" />
                     </div>
 
                     @if(Auth::check())
-                        <span>{{ Auth::user()->nama_lengkap }} ({{ Auth::user()->role }})</span>
+                        <span style="color: white;"> {{ Auth::user()->nama_lengkap }} ({{ Auth::user()->role }})</span>
                     @endif
 
                 </div>

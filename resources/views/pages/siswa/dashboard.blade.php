@@ -9,7 +9,7 @@
 
     <!-- Informasi -->
     <div class="card mb-4 shadow-sm">
-        <div class="card-header fw-bold" style="background-color: #4b9669ff; color:white;">INFORMASI KEGIATAN</div>
+        <div class="card-header fw-bold" style="background-color: #4b8c96ff; color:white;">INFORMASI KEGIATAN</div>
         <div class="card-body">
             @forelse($informasi as $info)
                 <div class="d-flex justify-content-between align-items-center border-bottom py-2">
@@ -30,7 +30,7 @@
     <!-- Daftar Pembina -->
     <div class="col-md-6 mb-4">
         <div class="card shadow-sm">
-            <div class="card-header fw-bold" style="background-color: #4b9669ff; color:white;">DAFTAR PEMBINA</div>
+            <div class="card-header fw-bold" style="background-color: #4b8c96ff; color:white;">DAFTAR PEMBINA</div>
             <div class="card-body">
                 @forelse($pembina as $p)
                     <div class="d-flex justify-content-between align-items-center border-bottom py-2">
@@ -49,7 +49,7 @@
     <!-- Pelaksanaan Ekskul -->
     <div class="col-md-6 mb-4">
         <div class="card shadow-sm">
-            <div class="card-header fw-bold" style="background-color: #4b9669ff; color:white;">PELAKSANAAN EKSKUL</div>
+            <div class="card-header fw-bold" style="background-color: #4b8c96ff; color:white;">PELAKSANAAN EKSKUL</div>
             <div class="card-body">
                 @foreach($pelaksanaan as $item)
                     <div class="d-flex justify-content-between border-bottom py-2">

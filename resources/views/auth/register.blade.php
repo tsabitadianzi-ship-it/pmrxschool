@@ -63,14 +63,14 @@
     <script src="{{ asset('/js/config.js') }}"></script>
   </head>
 
-    <body style="background: url('{{ asset('/img/favicon/wall3.png') }}') no-repeat center center fixed; background-size: cover;">
+    <body style="background: url('{{ asset('/img/backgrounds/bg1.png') }}') no-repeat center center fixed; background-size: cover;">
     <!-- Content -->
 
     <div class="container-xxl">
       <div class="row justify-content-center py-5">
         <div class="col-md-7">
             <div class="card card-body ">
-                <img src="{{ asset('/img/favicon/logoh.png') }}" 
+                <img src="{{ asset('/img/favicon/logob.png') }}" 
                     alt="Logo" 
                     width="50" 
                     class="mx-auto d-block mb-3" />
@@ -137,7 +137,7 @@
 
                     
                     <div class="d-grid gap-2">
-                        <button type="submit" class="btn btn-success" style="background-color: #2e6343;">
+                        <button type="submit" class="btn" style="background-color: #197b9b; color : white;">
                             <span class="ti ti-send me-2"></span>
                             Submit
                         </button>

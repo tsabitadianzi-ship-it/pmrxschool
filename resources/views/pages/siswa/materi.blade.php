@@ -26,7 +26,7 @@
 
             <!-- Khusus pembina: hanya bisa lihat detail -->
             <div>
-                <a href="{{ route('siswa.materi.show', $m->id) }}" class="btn btn-sm" style="background-color: #209698ff; color: white;">
+                <a href="{{ route('siswa.materi.show', $m->id) }}" class="btn btn-sm" style="background-color: #4fb1c0ff; color: white;">
                     <span class="ti ti-eye"></span> Lihat Detail
                 </a>
                 

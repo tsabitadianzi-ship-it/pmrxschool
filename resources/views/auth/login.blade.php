@@ -63,7 +63,7 @@
     <script src="{{ asset('/js/config.js') }}"></script>
   </head>
 
-     <body style="background: url('{{ asset('/img/favicon/wall3.png') }}') no-repeat center center fixed; background-size: cover;">
+     <body style="background: url('{{ asset('/img/backgrounds/bg3.png') }}') no-repeat center center fixed; background-size: cover;">
     <!-- Content -->
 
     <div class="container-xxl">
@@ -75,7 +75,7 @@
               <!-- Logo -->
               <div class="app-brand justify-content-center mb-6">
                     <a href="{{ url('/') }}" class="d-flex align-items-center text-decoration-none">
-                      <img src="{{ asset('/img/favicon/logoh.png') }}" alt="Logo" width="32" height="32" class="me-2" />
+                      <img src="{{ asset('/img/favicon/logob.png') }}" alt="Logo" width="32" height="32" class="me-2" />
                   </span>
                   <span class="app-brand-text demo text-heading fw-bold">PMR X-SCHOOL</span>
                 </a>
@@ -135,13 +135,13 @@
                 </div>
         
                 <div class="mb-6">
-                  <button class="btn btn-success d-grid w-100" style="background-color: #2e6343;" type="submit">Login</button>
+                  <button class="btn d-grid w-100" style="background-color: #197b9b; color: white;" type="submit">Login</button>
                 </div>
               </form>
 
               <div class="text-center mt-2">
                 <span>Belum mendaftar? </span>
-                <a href="{{ route('register') }}" style="color: #2e6343;" class="fw-bold">Ayo Daftar</a>
+                <a href="{{ route('register') }}" style="color: #197b9b;" class="fw-bold">Ayo Daftar</a>
               </div>
 
             </div>

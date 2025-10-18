@@ -3,9 +3,10 @@
 @section('title', 'Materi')
 @section('content')
 <div class="p-4">
-    <h2 class="fw-bold">Data Materi</h2>
+    <h2 class="fw-bold mb-0">Data Materi</h2>
+    <p>Kumpulan materi setiap pertemuan PMR</p>
     <div class="mb-4">
-        <a href="{{ route('sekertaris.materi.create') }}" class="btn" style="background-color: #d19b4fff; color: white;">
+        <a href="{{ route('sekertaris.materi.create') }}" class="btn" style="background-color: #4B8C96; color: white;">
             <span class="ti ti-plus me-1"></span> Tambah
         </a>
     </div>

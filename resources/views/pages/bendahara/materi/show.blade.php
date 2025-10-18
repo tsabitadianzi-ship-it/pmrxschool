@@ -173,7 +173,7 @@
       @endif
 
       <div class="text-center mt-5">
-        <a href="{{ route('siswa.materi') }}" class="btn btn-sm btn-danger">
+        <a href="{{ route('bendahara.materi') }}" class="btn btn-sm btn-danger">
           <i class="ti ti-arrow-left"></i> Kembali
         </a>
       </div>

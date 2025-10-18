@@ -6,7 +6,8 @@
 <div class="row">
     <div class="col-md-12">
 
-        <h2> Data Keuangan </h2>
+        <h2 class="fw-bold mb-0">Data Keuangan</h2>
+        <p class="text-muted mb-3">Catatan pengeluaran dan pemasukan kas PMR!</p>
         <div class="card card-body">
             <table class="table table-striped dataTable">
                 <thead>
@@ -50,7 +51,7 @@
     <link rel="stylesheet" href="{{ asset('/vendor/libs/sweetalert2/sweetalert2.css') }}" />
     <style>
 .table thead th {
-    background-color: #4b9669ff;
+    background-color: #4b8c96ff;
     color: #fff;
     font-weight: 600;
     text-transform: uppercase;
@@ -58,8 +59,8 @@
     border: none;
 }
 div.dataTables_wrapper div.dataTables_paginate ul.pagination .page-item.active .page-link {
-    background-color: #4b9669ff !important; 
-    border-color: #4b9669ff !important;
+    background-color: #4b8c96ff !important; 
+    border-color: #4b8c96ff !important;
     color: #fff !important;
     border-radius: 8px;
 }

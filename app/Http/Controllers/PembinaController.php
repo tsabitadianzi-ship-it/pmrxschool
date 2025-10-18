@@ -30,7 +30,10 @@ class PembinaController extends Controller
         $informasi = Informasi::orderBy('tanggal', 'desc')->get();
 
         // statistik anggota
-        $jumlahAnggota = User::whereIn('role', ['siswa', 'sekertaris', 'bendahara'])->count();
+        $jumlahAnggota = User::whereIn('role', ['siswa', 'sekertaris', 'bendahara'])
+                      ->where('status', 'active') 
+                      ->count();
+        $anggotaAktif = $jumlahAnggota;
         $anggotaAktif = User::whereIn('role', ['siswa', 'sekertaris', 'bendahara'])->where('status', 'active')->count();
         $anggotaPending = User::where('role', 'siswa')->where('status', 'pending')->count();
         $pelaksanaan = Pelaksanaan::all();

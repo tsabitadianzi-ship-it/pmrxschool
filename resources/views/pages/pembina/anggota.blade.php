@@ -8,6 +8,33 @@
         <h2 class="fw-bold mb-0">Manajemen Anggota</h2>
         <p class="text-muted mb-3">Kelola data anggota, konfirmasi pendaftar, dan informasi pembina PMR.</p>
 
+        <div class="row mb-4">
+            <div class="col-md-4 mb-3">
+                <div class="card text-center shadow-sm border-0">
+                    <div class="card-body">
+                        <h5 class="fw-semibold">Anggota Aktif</h5>
+                        <p class="fs-3 fw-bold text-warning">{{ $anggotaAktif->count() }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card text-center shadow-sm border-0">
+                    <div class="card-body">
+                        <h5 class="fw-semibold">Pendaftar Baru</h5>
+                        <p class="fs-3 fw-bold text-warning">{{ $anggotaKonfirmasi->count() }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card text-center shadow-sm border-0">
+                    <div class="card-body">
+                        <h5 class="fw-semibold">Jumlah Pembina</h5>
+                        <p class="fs-3 fw-bold text-warning">{{ $pembina->count() }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Konfirmasi Anggota -->
         <h4 class="fw-semibold text-secondary mt-4 mb-2">Konfirmasi Anggota</h4>
         <div class="card card-body shadow-sm border-0">

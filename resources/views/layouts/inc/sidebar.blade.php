@@ -1,9 +1,9 @@
 <aside id="layout-menu" 
-  class="layout-menu menu-vertical menu bg-menu-theme shadow-lg" 
+  class="layout-menu menu-vertical menu shadow-lg" 
   style="
-    background: linear-gradient(180deg, #197b9b 0%, #156d89 100%);
+    background-color: #1E88A8;
     color: #f9fafb;
-    border-radius: 0 20px 20px 0;
+    border-radius: 0;
     backdrop-filter: blur(8px);
   ">
 

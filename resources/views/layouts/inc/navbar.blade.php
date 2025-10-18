@@ -2,7 +2,7 @@
   class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center"
   id="layout-navbar"
   style="
-    background: linear-gradient(90deg, #2f8dacff 0%, #2f8dacff 100%);
+    background-color: #3BA9BF;
     color: white;
     border-bottom: 1px solid rgba(255, 255, 255, 0.15);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);

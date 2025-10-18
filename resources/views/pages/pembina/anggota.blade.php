@@ -1,13 +1,16 @@
 @extends('layouts.app')
 @section('title', 'Manajemen Anggota')
-@section('content')
 
+@section('content')
 <div class="row">
     <div class="col-md-12">
-        
+
+        <h2 class="fw-bold mb-0">Manajemen Anggota</h2>
+        <p class="text-muted mb-3">Kelola data anggota, konfirmasi pendaftar, dan informasi pembina PMR.</p>
+
         <!-- Konfirmasi Anggota -->
-        <h3 class="fw-bold">Konfirmasi Anggota</h3>
-        <div class="card card-body">
+        <h4 class="fw-semibold text-secondary mt-4 mb-2">Konfirmasi Anggota</h4>
+        <div class="card card-body shadow-sm border-0">
             <table class="table table-striped dataTable">
                 <thead>
                     <tr>
@@ -20,7 +23,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($anggotaKonfirmasi as $i => $anggota)
+                    @forelse($anggotaKonfirmasi as $i => $anggota)
                     <tr>
                         <td class="text-center">{{ $i+1 }}</td>
                         <td>{{ $anggota->nama_lengkap }}</td>
@@ -28,19 +31,24 @@
                         <td>{{ $anggota->kelas }}</td>
                         <td>{{ $anggota->status }}</td>
                         <td>
-                            <a href="{{ route('pembina.anggota_detail', $anggota->id) }}" class="btn btn-sm" style="background-color: #209698ff; color: white">
+                            <a href="{{ route('pembina.anggota_detail', $anggota->id) }}" 
+                               class="btn btn-sm" style="background-color: #4b8c96ff; color: white">
                                 <span class="ti ti-eye me-1"></span>
                             </a>
                         </td>
                     </tr>
-                    @endforeach
+                    @empty
+                    <tr>
+                        <td colspan="6" class="text-center text-muted py-3">Belum ada anggota untuk dikonfirmasi</td>
+                    </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>
 
         <!-- Anggota Aktif -->
-        <h3 class="fw-bold mt-4">Anggota Aktif</h3>
-        <div class="card card-body">
+        <h4 class="fw-semibold text-secondary mt-5 mb-2">Anggota Aktif</h4>
+        <div class="card card-body shadow-sm border-0">
             <table class="table table-striped dataTable">
                 <thead>
                     <tr>
@@ -53,7 +61,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($anggotaAktif as $i => $item)
+                    @forelse($anggotaAktif as $i => $item)
                     <tr>
                         <td class="text-center">{{ $i+1 }}</td>
                         <td>{{ $item->nama_lengkap }}</td>
@@ -61,53 +69,62 @@
                         <td>{{ $item->kelas }}</td>
                         <td>{{ $item->role }}</td>
                         <td>
-                            <a href="{{ route('pembina.anggota_edit', $item->id) }}" class="btn btn-sm" style="background-color: #d18c4fff; color:white;">
-                                <span class="ti ti-pencil me-1"></span> 
+                            <a href="{{ route('pembina.anggota_edit', $item->id) }}" 
+                               class="btn btn-sm" style="background-color: #d18c4fff; color:white;">
+                                <span class="ti ti-pencil me-1"></span>
                             </a>
-                            <button type="button" class="btn btn-sm" style="background-color: #d14f4fff; color: white;"
-                              onclick="actionDelete('{{ route('pembina.anggota.destroy', $item->id) }}')">
-                                <span class="ti ti-trash"></span> 
+                            <button type="button" class="btn btn-sm" 
+                                    style="background-color: #d14f4fff; color: white;"
+                                    onclick="actionDelete('{{ route('pembina.anggota.destroy', $item->id) }}')">
+                                <span class="ti ti-trash"></span>
                             </button>
                         </td>
                     </tr>
-                    @endforeach
+                    @empty
+                    <tr>
+                        <td colspan="6" class="text-center text-muted py-3">Belum ada anggota aktif</td>
+                    </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>
 
         <!-- Pembina -->
-        <h2 class="mt-4">Pembina</h2>
+        <h4 class="fw-semibold text-secondary mt-5 mb-3">Data Pembina</h4>
         <div class="row">
-            @foreach($pembina as $i => $item)
-            <div class="col-md-4 mb-3">
-                <div class="card shadow-sm h-100">
-                    <div class="card-body text-center">
-                        <div class="mb-3">
-                            <img src="https://ui-avatars.com/api/?name={{ urlencode($item->nama_lengkap) }}&background=209698ff&color=fff&size=100"
-                                alt="{{ $item->nama_lengkap }}" 
-                                class="rounded-circle shadow">
-                        </div>
-                        <h5>{{ $item->nama_lengkap }}</h5>
-                        <p class="small">NIP: {{ $item->nis_k }}</p>
-                        <p><span class="ti ti-phone"></span> {{ $item->no_telp }}</p>
-                        <p><span class="ti ti-user"></span> {{ $item->jenis_kelamin }}</p>
+            @forelse($pembina as $item)
+            <div class="col-md-4 mb-4">
+                <div class="card border-0 shadow-sm h-100 text-center">
+                    <div class="card-body">
+                        <img src="https://ui-avatars.com/api/?name={{ urlencode($item->nama_lengkap) }}&background=4b8c96&color=fff&size=100"
+                             alt="{{ $item->nama_lengkap }}" 
+                             class="rounded-circle shadow-sm mb-3">
+                        <h5 class="fw-semibold mb-1">{{ $item->nama_lengkap }}</h5>
+                        <p class="small text-muted mb-2">NIP: {{ $item->nis_k }}</p>
+                        <p class="small mb-1"><span class="ti ti-phone me-1"></span>{{ $item->no_telp }}</p>
+                        <p class="small mb-3"><span class="ti ti-user me-1"></span>{{ $item->jenis_kelamin }}</p>
                         <div class="d-flex justify-content-center gap-2">
-                            <a href="{{ route('pembina.pembina.edit', $item->id) }}" class="btn btn-sm" style="background-color: #d18c4fff; color:white;">
+                            <a href="{{ route('pembina.pembina.edit', $item->id) }}" 
+                               class="btn btn-sm" style="background-color: #d18c4fff; color:white;">
                                 <span class="ti ti-pencil"></span> Edit
                             </a>
-                            <button type="button" class="btn btn-sm" style="background-color: #d14f4fff; color: white;"
-                                onclick="actionDelete('{{ route('pembina.pembina.destroy', $item->id) }}')">
+                            <button type="button" class="btn btn-sm" 
+                                    style="background-color: #d14f4fff; color:white;"
+                                    onclick="actionDelete('{{ route('pembina.pembina.destroy', $item->id) }}')">
                                 <span class="ti ti-trash"></span> Hapus
                             </button>
                         </div>
                     </div>
                 </div>
             </div>
-            @endforeach
+            @empty
+            <p class="text-center text-muted">Belum ada data pembina</p>
+            @endforelse
         </div>
 
     </div>
 </div>
+
 <form id="form-delete" action="" method="POST" class="d-none">
     @csrf
     @method('DELETE')
@@ -115,12 +132,12 @@
 @endsection
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}" />
-    <link rel="stylesheet" href="{{ asset('/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}" />
+<link rel="stylesheet" href="{{ asset('/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}" />
+<link rel="stylesheet" href="{{ asset('/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}" />
 
-    <style>
+<style>
 .table thead th {
-    background-color: #4b9669ff;
+    background-color: #4b8c96ff;
     color: #fff;
     font-weight: 600;
     text-transform: uppercase;
@@ -128,48 +145,61 @@
     border: none;
 }
 div.dataTables_wrapper div.dataTables_paginate ul.pagination .page-item.active .page-link {
-    background-color: #4b9669ff !important; 
-    border-color: #4b9669ff !important;
+    background-color: #4b8c96ff !important;
+    border-color: #4b8c96ff !important;
     color: #fff !important;
     border-radius: 8px;
 }
+.card {
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+.card:hover {
+    transform: none;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+}
 </style>
-
 @endpush
 
 @push('scripts')
-    <script src="{{ asset('/vendor/libs/datatables-bs5/datatables-bootstrap5.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> 
-    <script>
-    $(function () {
-        $('.dataTable').DataTable();
+<script src="{{ asset('/vendor/libs/datatables-bs5/datatables-bootstrap5.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+$(function () {
+    $('.dataTable').DataTable({
+        language: {
+            emptyTable: "Belum ada data yang tersedia"
+        }
     });
+});
 
-    function actionDelete(url){
-        Swal.fire({
-            title: "Apakah kamu yakin?",
-            text: "Data yang dihapus tidak bisa dikembalikan!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonText: "Ya, hapus!",
-            cancelButtonText: "Batal"
-        }).then((result) => {
-            if (result.isConfirmed) {
-                $('#form-delete').attr('action', url);
-                $('#form-delete').submit();
-            }
-        });
-    }
-    </script>
-    @if (Session::has('success'))
-        <script type="text/javascript">
+function actionDelete(url) {
     Swal.fire({
-            icon: 'success',
-            title: 'Berhasil',
-            text: '{{ Session::get('success') }}',
-            background: '#fff7ef', 
-            confirmButtonColor: '#4b9669ff' 
-        });
-        </script>
-    @endif
+        title: "Apakah kamu yakin?",
+        text: "Data yang dihapus tidak bisa dikembalikan!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Ya, hapus!",
+        cancelButtonText: "Batal",
+        confirmButtonColor: "#d14f4f"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $('#form-delete').attr('action', url);
+            $('#form-delete').submit();
+        }
+    });
+}
+</script>
+
+@if (Session::has('success'))
+<script>
+Swal.fire({
+    icon: 'success',
+    title: 'Berhasil',
+    text: '{{ Session::get('success') }}',
+    background: '#fff7ef',
+    confirmButtonColor: '#4b8c96ff'
+});
+</script>
+@endif
 @endpush

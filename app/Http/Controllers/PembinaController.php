@@ -129,7 +129,7 @@ class PembinaController extends Controller
         $result = $response->json();
 
         // Redirect kembali dengan notifikasi sukses
-        return redirect()->back()->with('success', 'Siswa berhasil dikonfirmasi dan pesan WhatsApp telah dikirim!');
+        return redirect()->route('pembina.anggota')->with('success', 'Siswa berhasil dikonfirmasi dan pesan WhatsApp telah dikirim!');
     }
 
 

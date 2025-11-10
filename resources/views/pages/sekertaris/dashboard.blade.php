@@ -92,18 +92,32 @@
   </div>
 
   <!-- Statistik -->
-  <div class="row mb-4 g-3">
-    <div class="col-md-6">
-      <div class="stat-card shadow-sm">
-        <h6>Total Pembina</h6>
-        <h4>{{ $pembina->count() }}</h4>
-      </div>
+  <div class="row mb-4">
+    <div class="col-md-4 mb-3">
+        <div class="card text-center shadow-sm border-0" style="background-color: #fff;">
+            <div class="card-body">
+                <h5 class="fw-semibold">Jumlah Pembina</h5>
+                <p class="fs-3 fw-bold" style="color: #f4a261;">{{ $pembina->count() }}</p>
+            </div>
+        </div>
     </div>
-    <div class="col-md-6">
-      <div class="stat-card shadow-sm">
-        <h6>Jumlah Kegiatan</h6>
-        <h4>{{ $informasi->count() }}</h4>
-      </div>
+
+    <div class="col-md-4 mb-3">
+        <div class="card text-center shadow-sm border-0" style="background-color: #fff;">
+            <div class="card-body">
+                <h5 class="fw-semibold">Total Anggota</h5>
+                <p class="fs-3 fw-bold" style="color: #f4a261;">{{ $jumlahAnggota }}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 mb-3">
+        <div class="card text-center shadow-sm border-0" style="background-color: #fff;">
+            <div class="card-body">
+                <h5 class="fw-semibold">Jumlah Kegiatan</h5>
+                <p class="fs-3 fw-bold" style="color: #f4a261;">{{ $informasi->count() }}</p>
+            </div>
+        </div>
     </div>
   </div>
 

@@ -18,7 +18,7 @@
 
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="{{ asset('/img/favicon/logoh.png') }}" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('/img/favicon/logob.png') }}" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

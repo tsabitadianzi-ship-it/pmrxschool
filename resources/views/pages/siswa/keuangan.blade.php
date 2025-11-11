@@ -7,6 +7,7 @@
     <div class="col-md-12">
 
         <h2 class="fw-bold"> Data Keuangan </h2>
+        <p class="text-muted mb-3">Catatan pengeluaran dan pemasukan kas PMR!</p>
         <div class="card card-body">
             <table class="table table-striped dataTable">
                 <thead>

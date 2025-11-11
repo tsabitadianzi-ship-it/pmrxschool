@@ -140,7 +140,7 @@
   <!-- INFORMASI KEGIATAN -->
   <div class="card mb-4 shadow-sm">
     <div class="card-header d-flex justify-content-between align-items-center">
-      <div><i class="ti ti-info-circle me-2"></i>INFORMASI KEGIATAN</div>
+      <div><i class="ti ti-info-circle me-2"></i>INFORMASI KEGIATAN TERDEKAT</div>
     </div>
     <div class="card-body">
       @forelse($informasi as $info)
@@ -164,7 +164,7 @@
         </div>
       @empty
         <p class="text-center text-muted my-3">
-          <i class="ti ti-inbox me-1"></i> Belum ada informasi kegiatan
+          <i class="ti ti-inbox me-1"></i> Belum ada informasi kegiatan terdekat
         </p>
       @endforelse
     </div>

@@ -27,7 +27,9 @@ class PembinaController extends Controller
         $pembina = User::where('role', 'pembina')->get();
 
         // ambil data informasi
-        $informasi = Informasi::orderBy('tanggal', 'desc')->get();
+        $informasi = Informasi::where('tanggal', '>=', now())
+            ->orderBy('tanggal', 'asc')
+            ->get();
 
         // statistik anggota
         $jumlahAnggota = User::whereIn('role', ['siswa', 'sekertaris', 'bendahara'])

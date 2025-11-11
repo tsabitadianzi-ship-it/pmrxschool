@@ -141,10 +141,31 @@
     </div>
   </div>
 
+  <!-- Notifikasi Baru -->
+  @php
+      $notifications = auth()->user()->unreadNotifications;
+  @endphp
+  @if($notifications->count() > 0)
+  <div class="alert alert-info mb-3">
+      <h6><i class="ti ti-bell me-2 text-primary"></i> Notifikasi Baru</h6>
+      <ul class="mb-0">
+          @foreach($notifications as $notif)
+              <li>
+                  <strong>{{ $notif->data['title'] ?? '' }}</strong> - {{ $notif->data['kegiatan'] ?? '' }}
+                  ({{ \Carbon\Carbon::parse($notif->created_at)->diffForHumans() }})
+              </li>
+          @endforeach
+      </ul>
+  </div>
+  @endif
+  @php
+      auth()->user()->unreadNotifications->markAsRead();
+  @endphp
+
   <!-- Informasi Kegiatan -->
   <div class="card mb-4 shadow-sm">
     <div class="card-header d-flex align-items-center gap-2">
-      <i class="ti ti-info-circle"></i> INFORMASI KEGIATAN
+      <i class="ti ti-info-circle"></i> INFORMASI KEGIATAN TERDEKAT
     </div>
     <div class="card-body">
       @forelse($informasi as $info)
@@ -218,3 +239,18 @@
   </div>
 </div>
 @endsection
+@push('scripts')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@if(auth()->check() && auth()->user()->unreadNotifications->count() > 0)
+<script>
+  const latest = @json(auth()->user()->unreadNotifications->first()->data);
+  Swal.fire({
+    title: '📢 Informasi Baru!',
+    html: `<strong>${latest.kegiatan}</strong><br>
+           <small>${new Date(latest.tanggal).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}</small>`,
+    icon: 'info',
+    confirmButtonColor: '#219EBC'
+  });
+</script>
+@endpush
+@endif

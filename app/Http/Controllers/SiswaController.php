@@ -8,6 +8,7 @@ use App\Models\Keuangan;
 use App\Models\Materi;
 use App\Models\Pelaksanaan;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class SiswaController extends Controller
 {
@@ -17,13 +18,16 @@ class SiswaController extends Controller
         $pembina = User::where('role', 'pembina')->get();
 
         // Informasi terbaru ditaruh paling atas
-        $informasi = Informasi::orderBy('tanggal', 'desc')->get();
+       $informasi = Informasi::where('tanggal', '>=', now())->orderBy('tanggal', 'asc')->get();
 
         // statistik anggota
         $jumlahAnggota = User::whereIn('role', ['siswa', 'sekertaris', 'bendahara'])->count();
         $anggotaAktif = User::whereIn('role', ['siswa', 'sekertaris', 'bendahara'])->where('status', 'active')->count();
         $anggotaPending = User::where('role', 'siswa')->where('status', 'pending')->count();
         $pelaksanaan = Pelaksanaan::all();
+
+         // ===== Ambil notifikasi unread user =====
+        $notifications = Auth::user()->unreadNotifications;
 
         return view('pages.siswa.dashboard', compact(
             'pembina',
@@ -32,6 +36,7 @@ class SiswaController extends Controller
             'anggotaPending',
             'informasi',
             'pelaksanaan',
+            'notifications'
         ));
 
     }

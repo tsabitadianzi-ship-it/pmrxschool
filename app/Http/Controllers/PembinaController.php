@@ -10,7 +10,7 @@ use App\Models\Pelaksanaan;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
-
+use Illuminate\Support\Facades\Auth;
 
 class PembinaController extends Controller
 {
@@ -20,7 +20,6 @@ class PembinaController extends Controller
         $this->middleware('auth');
     }
 
-    // Halaman dashboard pembina
     public function index()
     {
         // ambil data pembina
@@ -33,12 +32,14 @@ class PembinaController extends Controller
 
         // statistik anggota
         $jumlahAnggota = User::whereIn('role', ['siswa', 'sekertaris', 'bendahara'])
-                      ->where('status', 'active') 
-                      ->count();
+                    ->where('status', 'active') 
+                    ->count();
         $anggotaAktif = $jumlahAnggota;
-        $anggotaAktif = User::whereIn('role', ['siswa', 'sekertaris', 'bendahara'])->where('status', 'active')->count();
         $anggotaPending = User::where('role', 'siswa')->where('status', 'pending')->count();
         $pelaksanaan = Pelaksanaan::all();
+
+        // ===== Ambil notifikasi unread untuk pembina =====
+        $notifications = Auth::user()->unreadNotifications;
 
         return view('pages.pembina.dashboard', compact(
             'pembina',
@@ -47,9 +48,10 @@ class PembinaController extends Controller
             'anggotaPending',
             'informasi',
             'pelaksanaan',
+            'notifications' // kirim ke blade
         ));
-
     }
+
 
     public function materi()
     {

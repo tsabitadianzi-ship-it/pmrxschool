@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Informasi;
 use Illuminate\Http\Request;
+use App\Notifications\InformasiBaruNotification;
 
 class InformasiController extends Controller
 {
@@ -28,7 +29,7 @@ class InformasiController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+   public function store(Request $request)
     {
         $request->validate([
             'kegiatan' => 'required|string|max:255',
@@ -40,9 +41,17 @@ class InformasiController extends Controller
         $informasi->tanggal = $request->tanggal;
         $informasi->save();
 
+        // === Kirim notifikasi ke semua pengguna ===
+        $users = \App\Models\User::all();
+        foreach ($users as $user) {
+            $user->notify(new InformasiBaruNotification($informasi));
+        }
+
         return redirect()->route('pembina.dashboard')
-            ->with('success', 'Informasi baru berhasil ditambahkan!');
+            ->with('success', 'Informasi baru berhasil ditambahkan dan notifikasi dikirim!');
     }
+
+
 
     /**
      * Display the specified resource.

@@ -137,6 +137,23 @@
     </div>
 </div>
 
+  @if($notifications->count() > 0)
+      <div class="alert alert-info mb-3">
+          <h6>🔔 Notifikasi Baru</h6>
+          <ul>
+              @foreach($notifications as $notif)
+                  <li>{{ $notif->data['title'] ?? '' }} - {{ $notif->data['kegiatan'] ?? '' }}
+                      ({{ \Carbon\Carbon::parse($notif->created_at)->diffForHumans() }})
+                  </li>
+              @endforeach
+          </ul>
+      </div>
+      @php
+          // tandai semua notifikasi sudah dibaca
+          auth()->user()->unreadNotifications->markAsRead();
+      @endphp
+  @endif
+
   <!-- INFORMASI KEGIATAN -->
   <div class="card mb-4 shadow-sm">
     <div class="card-header d-flex justify-content-between align-items-center">
@@ -259,5 +276,23 @@ Swal.fire({
 });
 </script>
 @endif
+@if(auth()->check() && auth()->user()->unreadNotifications->count() > 0)
+<script>
+  const latest = @json(auth()->user()->unreadNotifications->first()->data);
+  Swal.fire({
+    title: '📢 Informasi Baru!',
+    html: `<strong>${latest.kegiatan}</strong><br>
+           <small>${new Date(latest.tanggal).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}</small>`,
+    icon: 'info',
+    confirmButtonColor: '#219EBC'
+  });
+</script>
+
+{{-- Tandai notifikasi sudah dibaca agar tidak muncul lagi --}}
+@php
+    auth()->user()->unreadNotifications->markAsRead();
+@endphp
+@endif
+
 @endpush
 @endsection

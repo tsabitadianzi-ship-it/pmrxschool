@@ -82,34 +82,37 @@ class KeuanganController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, $id)
-    {
-        $request->validate([
-            'tanggal'     => 'required|date',
-            'tipe'        => 'required|in:Pemasukan,Pengeluaran',
-            'keterangan'  => 'required|string|max:20',
-            'jumlah'      => 'required|numeric|min:0',
-        ]);
+{
+    $request->validate([
+        'tanggal'     => 'required|date',
+        'tipe'        => 'required|in:Pemasukan,Pengeluaran',
+        'keterangan'  => 'required|string|max:20',
+        'jumlah'      => 'required|numeric|min:0',
+    ]);
 
-        $keuangan = Keuangan::findOrFail($id);
+    $keuangan = Keuangan::findOrFail($id);
 
-        $keuangan->tanggal    = $request->tanggal;
-        $keuangan->tipe       = $request->tipe;
-        $keuangan->keterangan = $request->keterangan;
-        $keuangan->jumlah     = $request->jumlah;
+    // Update data transaksi
+    $keuangan->tanggal    = $request->tanggal;
+    $keuangan->tipe       = $request->tipe;
+    $keuangan->keterangan = $request->keterangan;
+    $keuangan->jumlah     = $request->jumlah;
+    $keuangan->save();
 
-        // Hitung total baru (saldo berjalan)
-        $saldoSebelumnya = Keuangan::where('id', '<', $keuangan->id)->sum(DB::raw("
-            CASE WHEN tipe = 'Pemasukan' THEN jumlah ELSE -jumlah END
-        "));
+    // Ambil semua transaksi setelah atau sama dengan id ini (urut berdasarkan tanggal atau id)
+    $transaksi = Keuangan::orderBy('id')->get();
 
-        $keuangan->total = $saldoSebelumnya + 
-            ($keuangan->tipe === 'Pemasukan' ? $keuangan->jumlah : -$keuangan->jumlah);
-
-        $keuangan->save();
-
-        return redirect()->route('bendahara.keuangan.index')
-                        ->with('success', 'Data keuangan berhasil diperbarui!');
+    $saldo = 0;
+    foreach ($transaksi as $t) {
+        $saldo += $t->tipe === 'Pemasukan' ? $t->jumlah : -$t->jumlah;
+        $t->total = $saldo;
+        $t->save();
     }
+
+    return redirect()->route('bendahara.keuangan.index')
+                     ->with('success', 'Data keuangan berhasil diperbarui!');
+}
+
 
     /**
      * Remove the specified resource from storage.

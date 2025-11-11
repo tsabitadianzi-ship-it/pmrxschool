@@ -6,7 +6,7 @@
     <div class="col-md-12">
 
         <h2 class="fw-bold mb-0">Data Jurnal</h2>
-        <p class="text-muted mb-3">Catatan kegiatan harian dan waktu pelaksanaan PMR!</p>
+        <p class="text-muted mb-3">Catatan kegiatan harian dan waktu pelaksanaan ekstrakulikuler PMR</p>
 
         <div class="card card-body">
             <table class="table table-striped dataTable">

@@ -4,7 +4,7 @@
 @section('content')
 <div class="p-4">
     <h2 class="fw-bold mb-0">Data Materi</h2>
-    <p>Kumpulan materi setiap pertemuan PMR</p>
+    <p>Kumpulan materi setiap pertemuan ekstakulikuler PMR</p>
 
     @forelse($materi as $m)
         <div class="border rounded-lg shadow p-4 mb-4 bg-white">

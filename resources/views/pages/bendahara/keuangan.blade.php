@@ -8,15 +8,13 @@
 
         <div class="container py-4 fade-in">
             <h2 class="fw-bold mb-0">Data Keuangan</h2>
-            <p class="text-muted mb-3">Catatan pengeluaran dan pemasukan kas PMR!</p>
-            <a href="{{ route('bendahara.keuangan.create') }}" 
-               class="btn px-3 py-2 text-white shadow-sm"
-               style="background-color: #4B8C96; border-radius: 10px;">
+            <p class="text-muted mb-3">Catatan pengeluaran dan pemasukan kas ekstrakulikuler PMR</p>
+            <a href="{{ route('bendahara.keuangan.create') }}" class="btn btn-add shadow-sm">
                 <i class="ti ti-plus me-1"></i> Tambah Data
             </a>
         </div>
 
-        <div class="card border-0 shadow-sm rounded-3">
+        <div class="card border-0 shadow-sm rounded-3 mt-3">
             <div class="card-body p-4">
                 <table class="table table-striped table-hover dataTable align-middle">
                     <thead>
@@ -47,14 +45,10 @@
                                 <td class="text-end fw-semibold">Rp {{ number_format($item->total, 0, ',', '.') }}</td>
                                 <td class="text-center">
                                     <div class="d-flex justify-content-center gap-1">
-                                        <a href="{{ route('bendahara.keuangan.edit', $item->id) }}" 
-                                           class="btn btn-sm text-white"
-                                           style="background-color: #4B8C96; border-radius: 6px;">
+                                        <a href="{{ route('bendahara.keuangan.edit', $item->id) }}" class="btn btn-sm btn-edit">
                                             <i class="ti ti-pencil"></i>
                                         </a>
-                                        <a href="javascript:;" 
-                                           class="btn btn-sm text-white"
-                                           style="background-color: #C94E4E; border-radius: 6px;"
+                                        <a href="javascript:;" class="btn btn-sm btn-delete"
                                            onclick="actionDelete('{{ route('bendahara.keuangan.destroy', $item->id) }}')">
                                             <i class="ti ti-trash"></i>
                                         </a>
@@ -74,14 +68,13 @@
     @csrf
     @method('DELETE')
 </form>
-@endsection
 
 @push('styles')
 <link rel="stylesheet" href="{{ asset('/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}" />
 <link rel="stylesheet" href="{{ asset('/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}" />
-<link rel="stylesheet" href="{{ asset('/vendor/libs/sweetalert2/sweetalert2.css') }}" />
 
 <style>
+/* === ANIMASI === */
 .fade-in {
     animation: fadeIn 0.6s ease;
 }
@@ -90,6 +83,7 @@
     to { opacity: 1; transform: translateY(0); }
 }
 
+/* === TABEL === */
 .table thead th {
     background-color: #4B8C96;
     color: #fff;
@@ -98,29 +92,55 @@
     letter-spacing: 0.5px;
     border: none;
 }
-
 .table tbody tr:hover {
     background-color: rgba(75, 140, 150, 0.08);
     transition: background-color 0.2s ease-in-out;
 }
-
 div.dataTables_wrapper div.dataTables_paginate ul.pagination .page-item.active .page-link {
     background-color: #4B8C96 !important; 
     border-color: #4B8C96 !important;
     color: #fff !important;
     border-radius: 8px;
 }
-
 div.dataTables_wrapper div.dataTables_info {
     color: #6c757d;
     font-weight: 500;
+}
+
+/* === TOMBOL === */
+.btn-add {
+    background-color: #4B8C96;
+    color: white;
+    border-radius: 10px;
+    padding: 10px 18px;
+}
+.btn-add:hover {
+    background-color: #3e7d85;
+}
+
+.btn-edit {
+    background-color: #4B8C96;
+    color: white;
+    border-radius: 6px;
+}
+.btn-edit:hover {
+    background-color: #3e7d85;
+}
+
+.btn-delete {
+    background-color: #d14f4f;
+    color: white;
+    border-radius: 6px;
+}
+.btn-delete:hover {
+    background-color: #b84141;
 }
 </style>
 @endpush
 
 @push('scripts')
 <script src="{{ asset('/vendor/libs/datatables-bs5/datatables-bootstrap5.js') }}"></script>
-<script src="{{ asset('/vendor/libs/sweetalert2/sweetalert2.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
 $(function () {
     $('.dataTable').DataTable({
@@ -139,32 +159,32 @@ $(function () {
 });
 
 function actionDelete(url){
-    Swal.fire({
-        title: "Yakin ingin menghapus?",
-        text: "Data yang dihapus tidak dapat dikembalikan!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonText: "Ya, hapus!",
-        cancelButtonText: "Batal",
-        confirmButtonColor: "#4B8C96",
-        cancelButtonColor: "#d33"
-    }).then((result) => {
-        if (result.isConfirmed) {
-            $('#form-delete').attr('action', url);
-            $('#form-delete').submit();
-        }
-    });
+  Swal.fire({
+    title: "Apakah kamu yakin?",
+    text: "Data yang dihapus tidak bisa dikembalikan!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonText: "Ya, hapus!",
+    cancelButtonText: "Batal",
+    confirmButtonColor: "#d14f4f"
+  }).then((result) => {
+    if (result.isConfirmed) {
+      $('#form-delete').attr('action', url);
+      $('#form-delete').submit();
+    }
+  });
 }
 </script>
-
 @if (Session::has('success'))
-<script type="text/javascript">
+<script>
 Swal.fire({
     icon: 'success',
     title: 'Berhasil!',
     text: '{{ Session::get('success') }}',
-    confirmButtonColor: '#4B8C96'
+      background: '#ffffff',
+    confirmButtonColor: '#219EBC'
 });
 </script>
 @endif
 @endpush
+@endsection

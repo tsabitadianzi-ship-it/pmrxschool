@@ -87,7 +87,7 @@
   <div class="d-flex justify-content-between align-items-center mb-4">
     <div>
       <h2 class="fw-bold mb-0">Dashboard Pembina</h2>
-      <p class="text-muted mb-0">Selamat datang kembali 👋 Semoga harimu menyenangkan!</p>
+      <p class="text-muted mb-0">Selamat datang kembali! Semoga harimu menyenangkan</p>
     </div>
   </div>
 

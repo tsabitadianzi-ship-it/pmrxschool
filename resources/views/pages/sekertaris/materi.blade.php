@@ -68,14 +68,14 @@
     <script>
 
     function actionDelete(url){
-        console.log("Delete URL:", url); // Debug
         Swal.fire({
             title: "Apakah kamu yakin?",
             text: "Data yang dihapus tidak bisa dikembalikan!",
             icon: "warning",
             showCancelButton: true,
             confirmButtonText: "Ya, hapus!",
-            cancelButtonText: "Batal"
+            cancelButtonText: "Batal",
+            confirmButtonColor: "#d14f4f"
         }).then((result) => {
             if (result.isConfirmed) {
                 $('#form-delete').attr('action', url);
@@ -91,7 +91,7 @@
         title: 'Berhasil',
         text: '{{ Session::get('success') }}',
         background: '#fff7ef', 
-        confirmButtonColor: '#4b9669ff' 
+        confirmButtonColor: '#219EBC' 
     });
     </script>
 @endif

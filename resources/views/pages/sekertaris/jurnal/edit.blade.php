@@ -175,7 +175,7 @@
           <div class="col-md-6 mb-3">
             <label for="waktu_mulai">Waktu Mulai</label>
             <input type="time" class="form-control" id="waktu_mulai" name="waktu_mulai" 
-              value="{{ old('waktu_mulai', $jurnal->waktu_mulai) }}" required>
+              value="{{ old('waktu_mulai', $jurnal->waktu_mulai ?\Carbon\Carbon::parse($jurnal->waktu_mulai)->format('H:i') : '') }}" required>
             @error('waktu_mulai')
               <div class="alert alert-danger mt-1">{{ $message }}</div>
             @enderror
@@ -184,7 +184,7 @@
           <div class="col-md-6 mb-3">
             <label for="waktu_selesai">Waktu Selesai</label>
             <input type="time" class="form-control" id="waktu_selesai" name="waktu_selesai" 
-              value="{{ old('waktu_selesai', $jurnal->waktu_selesai) }}" required>
+              value="{{ old('waktu_selesai', $jurnal->waktu_selesai ?\Carbon\Carbon::parse($jurnal->waktu_selesai)->format('H:i')  : '') }}" required>
             @error('waktu_selesai')
               <div class="alert alert-danger mt-1">{{ $message }}</div>
             @enderror

@@ -30,6 +30,11 @@ class JurnalController extends Controller
      */
     public function store(Request $request)
     {
+        $request->merge([
+            'waktu_mulai'   => substr($request->waktu_mulai, 0, 5),
+            'waktu_selesai' => substr($request->waktu_selesai, 0, 5),
+        ]);
+
         $validated = $request->validate([
             'tanggal' => 'required|date',
             'kegiatan' => 'required|string|max:255',
@@ -67,6 +72,11 @@ class JurnalController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $request->merge([
+            'waktu_mulai'   => substr($request->waktu_mulai, 0, 5),
+            'waktu_selesai' => substr($request->waktu_selesai, 0, 5),
+        ]);
+        
         $validated = $request->validate([
             'tanggal' => 'required|date',
             'kegiatan' => 'required|string|max:255',

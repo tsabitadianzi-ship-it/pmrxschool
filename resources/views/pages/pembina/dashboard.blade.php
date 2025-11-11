@@ -139,7 +139,7 @@
 
   @if($notifications->count() > 0)
       <div class="alert alert-info mb-3">
-          <h6>🔔 Notifikasi Baru</h6>
+          <h6><i class="ti ti-bell me-2 text-primary"></i>Notifikasi Baru</h6>
           <ul>
               @foreach($notifications as $notif)
                   <li>{{ $notif->data['title'] ?? '' }} - {{ $notif->data['kegiatan'] ?? '' }}

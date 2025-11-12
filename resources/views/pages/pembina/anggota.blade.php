@@ -65,7 +65,12 @@
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="6" class="text-center text-muted py-3">Belum ada anggota untuk dikonfirmasi</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td class="text-center text-muted py-3">Belum ada anggota untuk dikonfirmasi</td>
                     </tr>
                     @endforelse
                 </tbody>
@@ -118,7 +123,12 @@
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="6" class="text-center text-muted py-3">Belum ada anggota aktif</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td class="text-center text-muted py-3">Belum ada anggota aktif</td>
                     </tr>
                     @endforelse
                 </tbody>

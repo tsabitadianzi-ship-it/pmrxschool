@@ -6,6 +6,8 @@ use App\Models\Informasi;
 use App\Models\Keuangan;
 use App\Models\Pelaksanaan;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+
 
 class SekertarisController extends Controller
 {
@@ -15,13 +17,15 @@ class SekertarisController extends Controller
         $pembina = User::where('role', 'pembina')->get();
 
         // ambil data informasi
-        $informasi = Informasi::latest('tanggal')->take(5)->get();
+       $informasi = Informasi::where('tanggal', '>=', now())->orderBy('tanggal', 'asc')->get();
 
         // statistik anggota
         $jumlahAnggota = User::whereIn('role', ['siswa', 'sekertaris', 'bendahara'])->count();
         $anggotaAktif = User::whereIn('role', ['siswa', 'sekertaris', 'bendahara'])->where('status', 'active')->count();
         $anggotaPending = User::where('role', 'siswa')->where('status', 'pending')->count();
         $pelaksanaan = Pelaksanaan::all();
+
+        $notifications = Auth::user()->unreadNotifications;
 
         return view('pages.sekertaris.dashboard', compact(
             'pembina',
@@ -30,6 +34,7 @@ class SekertarisController extends Controller
             'anggotaPending',
             'informasi',
             'pelaksanaan',
+            'notifications'
         ));
 
     }

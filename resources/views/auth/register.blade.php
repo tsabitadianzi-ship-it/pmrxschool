@@ -111,7 +111,12 @@
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label for="kelas" class="form-label">Kelas :</label>
-                                <input type="text" name="kelas" class="form-control" required>
+                                <select name="kelas" class="form-control" required>
+                                    <option value="">-- Pilih Kelas --</option>
+                                    <option value="X">X</option>
+                                    <option value="XI">XI</option>
+                                    <option value="XII">XII</option>
+                                </select>
                             </div>
                             <div class="col-md-6">
                                 <label for="jenis_kelamin" class="form-label">Jenis Kelamin :</label>

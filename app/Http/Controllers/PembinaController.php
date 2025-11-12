@@ -217,4 +217,35 @@ class PembinaController extends Controller
 
         return redirect()->route('pembina.dashboard')->with('success', 'Pelaksanaan berhasil diperbarui.');
     }
+
+    public function updateKelas()
+    {
+        // Panggil command atau langsung logic update kelas
+        $users = \App\Models\User::whereIn('role', ['siswa', 'bendahara', 'sekertaris'])->where('status', 'active')->get();
+        $naik = 0;
+        $lulus = 0;
+
+        foreach ($users as $user) {
+            switch ($user->kelas) {
+                case 'X':
+                    $user->kelas = 'XI';
+                    $user->save();
+                    $naik++;
+                    break;
+                case 'XI':
+                    $user->kelas = 'XII';
+                    $user->save();
+                    $naik++;
+                    break;
+                case 'XII':
+                    $user->status = 'alumni';
+                    $user->save();
+                    $lulus++;
+                    break;
+            }
+        }
+
+        return redirect()->back()->with('success', "Kelas berhasil diperbarui! ($naik naik kelas, $lulus jadi alumni)");
+    }
+
 }

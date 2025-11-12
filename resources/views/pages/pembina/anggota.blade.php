@@ -7,7 +7,6 @@
 
         <h2 class="fw-bold mb-0">Manajemen Anggota</h2>
         <p class="text-muted mb-3">Kelola data anggota, konfirmasi pendaftar, dan informasi pembina PMR.</p>
-
         <div class="row mb-4">
             <div class="col-md-4 mb-3">
                 <div class="card text-center shadow-sm border-0">
@@ -73,8 +72,18 @@
             </table>
         </div>
 
+        <div class="d-flex justify-content-end mt-8">
+            <button type="button" 
+                    class="btn"
+                    style="background-color: #d14f4fff; color: white; padding: 10px 20px; font-size: 1rem; border-radius: 8px; gap: 8px;"
+                    onclick="confirmUpdateKelas('{{ route('pembina.pangkat_kelas') }}')">
+                <i class="ti ti-arrow-up me-1"></i>
+                Update Kelas Anggota
+            </button>
+        </div>
+
         <!-- Anggota Aktif -->
-        <h4 class="fw-semibold text-secondary mt-5 mb-2">Anggota Aktif</h4>
+        <h4 class="fw-semibold text-secondary mb-2">Anggota Aktif</h4>
         <div class="card card-body shadow-sm border-0">
             <table class="table table-striped dataTable">
                 <thead>
@@ -229,4 +238,23 @@ Swal.fire({
 });
 </script>
 @endif
+
+<script>
+    function confirmUpdateKelas(url) {
+    Swal.fire({
+        title: "Yakin ingin update kelas semua anggota?",
+        text: "Perubahan ini tidak bisa dikembalikan!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Ya, update!",
+        cancelButtonText: "Batal",
+        confirmButtonColor: "#219EBC"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = url;
+        }
+    });
+}
+
+</script>
 @endpush

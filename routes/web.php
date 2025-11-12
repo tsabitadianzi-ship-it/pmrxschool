@@ -53,7 +53,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/anggota', [PembinaController::class, 'anggota'])->name('anggota');
 
         // ROUTE PEMBINA (TABEL ANGGOTA)
-        Route::resource('/pembina', Pembina_userController::class);
+        Route::resource('/pembina', Pembina_userController::class)->except(['show']);
         // ROUTE MATERI
         Route::get('/materi', [PembinaController::class, 'materi'])->name('materi');
         Route::get('/materi/{id}', [PembinaController::class, 'materiShow'])->name('materi.show');
@@ -68,6 +68,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::delete('/anggota/{id}', [PembinaController::class, 'destroy'])->name('anggota.destroy');
         Route::get('/anggota/{id}/edit', [PembinaController::class, 'editAnggota'])->name('anggota_edit');
         Route::put('/anggota/{id}/update', [PembinaController::class, 'updateAnggota'])->name('anggota_update');
+
+        //ROUTE NAIK KELAS
+        Route::get('/pembina/update-kelas', [PembinaController::class, 'updateKelas'])->name('pangkat_kelas');
 
         // ROUTE PELAKSANAAN
         Route::get('/pelaksanaan-edit/{id}', [PembinaController::class, 'editPelaksanaan'])->name('pelaksanaan_edit');

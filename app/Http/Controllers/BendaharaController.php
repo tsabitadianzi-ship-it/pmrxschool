@@ -7,6 +7,7 @@ use App\Models\Jurnal;
 use App\Models\Materi;
 use App\Models\Pelaksanaan;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class BendaharaController extends Controller
 {
@@ -24,6 +25,7 @@ class BendaharaController extends Controller
         $anggotaPending = User::where('role', 'siswa')->where('status', 'pending')->count();
         $pelaksanaan = Pelaksanaan::all();
 
+        $notifications = Auth::user()->unreadNotifications;
         return view('pages.bendahara.dashboard', compact(
             'pembina',
             'jumlahAnggota',
@@ -31,6 +33,7 @@ class BendaharaController extends Controller
             'anggotaPending',
             'informasi',
             'pelaksanaan',
+            'notifications'
         ));
 
     }

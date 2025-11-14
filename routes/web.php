@@ -77,7 +77,6 @@ Route::group(['middleware' => ['auth']], function () {
         Route::put('/pelaksanaan-update/{id}', [PembinaController::class, 'updatePelaksanaan'])->name('pelaksanaan_update');
 
         // ROUTE TUTORIAL
-        Route::get('/tutorial', [PembinaController::class, 'Tutorial'])->name('tutorial');
         Route::get('/tutorial-edit/{id}', [PembinaController::class, 'EditTutorial'])->name('tutorial_edit');
         Route::put('/tutorial-update/{id}', [PembinaController::class, 'UpdateTutorial'])->name('tutorial_update');
 

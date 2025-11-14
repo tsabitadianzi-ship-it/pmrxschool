@@ -8,6 +8,7 @@ use App\Models\Keuangan;
 use App\Models\Materi;
 use App\Models\Pelaksanaan;
 use App\Models\User;
+use App\Models\Tutorial;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Auth;
@@ -22,35 +23,20 @@ class PembinaController extends Controller
 
     public function index()
     {
-        // ambil data pembina
         $pembina = User::where('role', 'pembina')->get();
-
-        // ambil data informasi
-        $informasi = Informasi::where('tanggal', '>=', now())
-            ->orderBy('tanggal', 'asc')
-            ->get();
-
-        // statistik anggota
-        $jumlahAnggota = User::whereIn('role', ['siswa', 'sekertaris', 'bendahara'])
-                    ->where('status', 'active') 
-                    ->count();
-        $anggotaAktif = $jumlahAnggota;
-        $anggotaPending = User::where('role', 'siswa')->where('status', 'pending')->count();
+        $informasi = Informasi::where('tanggal', '>=', now())->orderBy('tanggal', 'asc')->get();
+        $jumlahAnggota = User::whereIn('role', ['siswa','sekertaris','bendahara'])->where('status','active')->count();
         $pelaksanaan = Pelaksanaan::all();
-
-        // ===== Ambil notifikasi unread untuk pembina =====
         $notifications = Auth::user()->unreadNotifications;
 
+        // Ambil tutorial pertama
+        $tutorial = Tutorial::first();
+
         return view('pages.pembina.dashboard', compact(
-            'pembina',
-            'jumlahAnggota',
-            'anggotaAktif',
-            'anggotaPending',
-            'informasi',
-            'pelaksanaan',
-            'notifications' // kirim ke blade
+            'pembina','jumlahAnggota','informasi','pelaksanaan','notifications','tutorial'
         ));
     }
+
 
 
     public function materi()
@@ -248,10 +234,10 @@ class PembinaController extends Controller
         return redirect()->back()->with('success', "Kelas berhasil diperbarui! ($naik naik kelas, $lulus jadi alumni)");
     }
 
-    public function Tutorial()
+    public function EditTutorial($id)
     {
-        $tutorial = Tutorial::first();
-        return view('pages.pembina.dashboard', compact('tutorial'));
+        $tutorial = Tutorial::findOrFail($id);
+        return view('pages.pembina.tutorial_edit', compact('tutorial'));
     }
 
     public function UpdateTutorial(Request $request, $id)
@@ -286,7 +272,7 @@ class PembinaController extends Controller
             'tutor_kesepuluh'
         ]));
 
-        return redirect()->route('tutorial')->with('success', 'Tutorial berhasil diperbarui.');
+        return redirect()->route('pembina.dashboard')->with('success', 'Tutorial berhasil diperbarui.');
     }
 
 }

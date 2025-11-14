@@ -189,55 +189,62 @@
 
   <!-- PEMBINA & PELAKSANAAN -->
   <div class="row g-3">
-    <!-- DAFTAR PEMBINA -->
-    <div class="col-md-6">
-      <div class="card shadow-sm">
-        <div class="card-header"><i class="ti ti-users me-2"></i>DAFTAR PEMBINA</div>
-        <div class="card-body">
-          @forelse($pembina as $p)
-            <div class="d-flex align-items-center border-bottom py-2">
-              <div class="avatar-circle me-3">{{ strtoupper(substr($p->nama_lengkap, 0, 1)) }}</div>
-              <div>
-                <h6 class="mb-0">{{ $p->nama_lengkap }}</h6>
-                <small class="text-muted">{{ $p->no_telp ?? '-' }}</small>
+      <!-- DAFTAR PEMBINA -->
+      <div class="col-md-6">
+        <div class="card shadow-sm">
+          <div class="card-header"><i class="ti ti-users me-2"></i>DAFTAR PEMBINA</div>
+          <div class="card-body">
+            @forelse($pembina as $p)
+              <div class="d-flex align-items-center border-bottom py-2">
+                <div class="avatar-circle me-3">{{ strtoupper(substr($p->nama_lengkap, 0, 1)) }}</div>
+                <div>
+                  <h6 class="mb-0">{{ $p->nama_lengkap }}</h6>
+                  <small class="text-muted">{{ $p->no_telp ?? '-' }}</small>
+                </div>
               </div>
-            </div>
-          @empty
-            <p class="text-center text-muted my-3">
-              <i class="ti ti-inbox me-1"></i> Belum ada pembina
-            </p>
-          @endforelse
+            @empty
+              <p class="text-center text-muted my-3">
+                <i class="ti ti-inbox me-1"></i> Belum ada pembina
+              </p>
+            @endforelse
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- PELAKSANAAN EKSKUL -->
-    <div class="col-md-6">
-      <div class="card shadow-sm">
-        <div class="card-header"><i class="ti ti-calendar-time me-2"></i>PELAKSANAAN EKSKUL</div>
-        <div class="card-body">
-          @forelse($pelaksanaan as $item)
-            <div class="d-flex justify-content-between align-items-center border-bottom py-2">
-              <div>
-                <i class="ti ti-calendar me-1"></i>{{ $item->hari }}
+      <!-- PELAKSANAAN EKSKUL -->
+      <div class="col-md-6">
+        <div class="card shadow-sm">
+          <div class="card-header"><i class="ti ti-calendar-time me-2"></i>PELAKSANAAN EKSKUL</div>
+          <div class="card-body">
+            @forelse($pelaksanaan as $item)
+              <div class="d-flex justify-content-between align-items-center border-bottom py-2">
+                <div>
+                  <i class="ti ti-calendar me-1"></i>{{ $item->hari }}
+                </div>
+                <div class="d-inline-flex align-items-center gap-2">
+                  <span><i class="ti ti-clock me-1"></i>{{ \Carbon\Carbon::createFromFormat('H:i:s', $item->jam)->format('H:i') }}</span>
+                  <a href="{{ route('pembina.pelaksanaan_edit', $item->id) }}" class="btn btn-sm btn-warning-custom">
+                    <i class="ti ti-pencil"></i>
+                  </a>
+                </div>
               </div>
-              <div class="d-inline-flex align-items-center gap-2">
-                <span><i class="ti ti-clock me-1"></i>{{ \Carbon\Carbon::createFromFormat('H:i:s', $item->jam)->format('H:i') }}</span>
-                <a href="{{ route('pembina.pelaksanaan_edit', $item->id) }}" class="btn btn-sm btn-warning-custom">
-                  <i class="ti ti-pencil"></i>
-                </a>
-              </div>
-            </div>
-          @empty
-            <p class="text-center text-muted my-2">
-              <i class="ti ti-inbox me-1"></i> Belum ada jadwal pelaksanaan
-            </p>
-          @endforelse
+            @empty
+              <p class="text-center text-muted my-2">
+                <i class="ti ti-inbox me-1"></i> Belum ada jadwal pelaksanaan
+              </p>
+            @endforelse
+          </div>
         </div>
       </div>
-    </div>
   </div>
-</div>
+
+  <!-- Tombol Tutorial di bawah Pelaksanaan Ekskul tapi di luar card -->
+  <div class="container d-flex justify-content-end">
+    <a href="{{ route('pembina.tutorial_edit', $tutorial->id) }}" class="btn btn-main">
+      <i class="ti ti-pencil me-1"></i> Edit Tutorial
+    </a>
+  </div>
+
 
 <!-- FORM DELETE -->
 <form id="form-delete" action="" method="POST" class="d-none">

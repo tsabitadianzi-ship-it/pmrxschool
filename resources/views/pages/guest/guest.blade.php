@@ -196,29 +196,33 @@
     </div>
 
     <div class="tutorial-list">
-      <div class="tutorial-step">
-        <span>1</span>
-        <div class="tutorial-text">Klik tombol <b>Daftar</b> di kanan atas halaman.</div>
-      </div>
-      <div class="tutorial-step">
-        <span>2</span>
-        <div class="tutorial-text">Isi formulir pendaftaran dengan data diri yang lengkap.</div>
-      </div>
-      <div class="tutorial-step">
-        <span>3</span>
-        <div class="tutorial-text">Periksa kembali data kamu, lalu klik <b>Kirim</b>.</div>
-      </div>
-      <div class="tutorial-step">
-        <span>4</span>
-        <div class="tutorial-text">Tunggu konfirmasi dari pembina PMR yang akan dikirim via <i>Whatsapp</i>.</div>
-      </div>
-      <div class="tutorial-step">
-        <span>5</span>
-        <div class="tutorial-text">Setelah mendapat konfirmasi, klik tombol <b>Login</b> untuk masuk ke akun kamu.</div>
-      </div>
-    </div>
-  </div>
+
+    @php 
+        $steps = [
+            $tutorial->tutor_pertama,
+            $tutorial->tutor_kedua,
+            $tutorial->tutor_ketiga,
+            $tutorial->tutor_keempat,
+            $tutorial->tutor_kelima,
+            $tutorial->tutor_keenam,
+            $tutorial->tutor_ketujuh,
+            $tutorial->tutor_kedelapan,
+            $tutorial->tutor_kesembilan,
+            $tutorial->tutor_kesepuluh
+        ];
+    @endphp
+
+    @foreach($steps as $index => $step)
+        @if($step != null)
+            <div class="tutorial-step">
+                <span>{{ $loop->iteration }}</span>
+                <div class="tutorial-text">{{ $step }}</div>
+            </div>
+        @endif
+    @endforeach
+
 </div>
+
 
   </div>
 

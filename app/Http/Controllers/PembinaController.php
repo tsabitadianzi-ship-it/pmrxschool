@@ -248,4 +248,45 @@ class PembinaController extends Controller
         return redirect()->back()->with('success', "Kelas berhasil diperbarui! ($naik naik kelas, $lulus jadi alumni)");
     }
 
+    public function Tutorial()
+    {
+        $tutorial = Tutorial::first();
+        return view('pages.pembina.dashboard', compact('tutorial'));
+    }
+
+    public function UpdateTutorial(Request $request, $id)
+    {
+        $request->validate([
+            'judul' => 'required|string|max:20',
+            'tutor_pertama' => 'required|string',
+            'tutor_kedua' => 'required|string',
+            'tutor_ketiga' => 'required|string',
+            'tutor_keempat' => 'required|string',
+            'tutor_kelima' => 'required|string',
+            'tutor_keenam' => 'nullable|string',
+            'tutor_ketujuh' => 'nullable|string',
+            'tutor_kedelapan' => 'nullable|string',
+            'tutor_kesembilan' => 'nullable|string',
+            'tutor_kesepuluh' => 'nullable|string',
+        ]);
+
+        $tutorial = Tutorial::findOrFail($id);
+
+        $tutorial->update($request->only([
+            'judul',
+            'tutor_pertama',
+            'tutor_kedua',
+            'tutor_ketiga',
+            'tutor_keempat',
+            'tutor_kelima',
+            'tutor_keenam',
+            'tutor_ketujuh',
+            'tutor_kedelapan',
+            'tutor_kesembilan',
+            'tutor_kesepuluh'
+        ]));
+
+        return redirect()->route('tutorial')->with('success', 'Tutorial berhasil diperbarui.');
+    }
+
 }

@@ -273,7 +273,7 @@ class PembinaController extends Controller
             'tutor_kesepuluh'
         ]));
 
-        return redirect()->route('pembina.dashboard')->with('success', 'Tutorial berhasil diperbarui.');
+        return redirect()->route('pembina.landingpage_edit')->with('success', 'Tutorial berhasil diperbarui.');
     }
 
     public function CreateTentangpmr()
@@ -324,7 +324,7 @@ class PembinaController extends Controller
     {
         $tentangpmr = Tentangpmr::findOrFail($id);
         $tentangpmr->delete();
-        return redirect()->route('pages.pembina.landingpage_edit')->with('success', 'Tentang PMR berhasil dihapus.');
+        return redirect()->route('pembina.landingpage_edit')->with('success', 'Tentang PMR berhasil dihapus.');
     }
     public function EditLandingPage() {
     $tentangpmr = Tentangpmr::all(); 

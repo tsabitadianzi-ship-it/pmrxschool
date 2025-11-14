@@ -8,6 +8,7 @@ use App\Models\Keuangan;
 use App\Models\Materi;
 use App\Models\Pelaksanaan;
 use App\Models\User;
+use App\Models\Tentangpmr;
 use App\Models\Tutorial;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -277,13 +278,13 @@ class PembinaController extends Controller
 
     public function CreateTentangpmr()
     {
-        return view('pages.pembina.tentangpmr_create');
+        return view('pages.pembina.crudtentangpmr.tentangpmr_create');
     }
 
     public function EditTentangpmr($id)
     {
         $tentangpmr = Tentangpmr::findOrFail($id);
-        return view('pages.pembina.tentangpmr_edit', compact('tentangpmr'));
+        return view('pages.pembina.crudtentangpmr.tentangpmr_edit', compact('tentangpmr'));
     }
 
     public function UpdateTentangpmr(Request $request, $id)
@@ -309,4 +310,9 @@ class PembinaController extends Controller
         $tentangpmr->delete();
         return redirect()->route('pembina.dashboard')->with('success', 'Tentang PMR berhasil dihapus.');
     }
+    public function EditLandingPage() {
+    $tentangpmr = Tentangpmr::all(); 
+    $tutorial = Tutorial::first();   
+    return view('pages.pembina.landingpage_edit', compact('tentangpmr', 'tutorial'));
+}
 }

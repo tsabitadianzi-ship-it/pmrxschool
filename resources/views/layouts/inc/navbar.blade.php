@@ -47,6 +47,14 @@
                           </a>
                         </li>
                     @endif
+                    @if(Auth::check() && Auth::user()->role === 'pembina')
+                        <li>
+                            <a class="dropdown-item" href="{{ route('pembina.landingpage_edit') }}">
+                                <i class="ti ti-edit me-3 ti-md"></i>
+                                <span class="align-middle">Edit Landing Page</span>
+                            </a>
+                        </li>
+                    @endif
                     <li>
                       <div class="d-grid px-2 pt-2 pb-1">
                         <a class="btn btn-sm d-flex" style="background-color: #d14f4fff; color: white;" onclick="$('#logout-form').submit()" 
@@ -61,10 +69,7 @@
                     </li>
                   </ul>
                 </li>
-                <!--/ User -->
               </ul>
-              
-
             </div>
 
             <!-- Search Small Screens -->

@@ -85,6 +85,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/tentangpmr-edit/{id}', [PembinaController::class, 'EditTentangpmr'])->name('crudtentangpmr.tentangpmr_edit');
         Route::put('/tentangpmr-update/{id}', [PembinaController::class, 'UpdateTentangpmr'])->name('crudtentangpmr.tentangpmr_update');
         Route::delete('/tentangpmr-delete/{id}', [PembinaController::class, 'DeleteTentangpmr'])->name('crudtentangpmr.tentangpmr_delete');
+        Route::post('/tentangpmr-store', [PembinaController::class, 'StoreTentangpmr'])->name('crudtentangpmr.tentangpmr_store');
 
         // Halaman edit landing page
         Route::get('/landingpage-edit', [PembinaController::class, 'EditLandingPage'])->name('landingpage_edit');

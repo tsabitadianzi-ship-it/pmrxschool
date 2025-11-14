@@ -238,14 +238,6 @@
       </div>
   </div>
 
-  <!-- Tombol Tutorial di bawah Pelaksanaan Ekskul tapi di luar card -->
-  <div class="container d-flex justify-content-end">
-    <a href="{{ route('pembina.tutorial_edit', $tutorial->id) }}" class="btn btn-main">
-      <i class="ti ti-pencil me-1"></i> Edit Tutorial
-    </a>
-  </div>
-
-
 <!-- FORM DELETE -->
 <form id="form-delete" action="" method="POST" class="d-none">
   @csrf

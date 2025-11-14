@@ -275,4 +275,38 @@ class PembinaController extends Controller
         return redirect()->route('pembina.dashboard')->with('success', 'Tutorial berhasil diperbarui.');
     }
 
+    public function CreateTentangpmr()
+    {
+        return view('pages.pembina.tentangpmr_create');
+    }
+
+    public function EditTentangpmr($id)
+    {
+        $tentangpmr = Tentangpmr::findOrFail($id);
+        return view('pages.pembina.tentangpmr_edit', compact('tentangpmr'));
+    }
+
+    public function UpdateTentangpmr(Request $request, $id)
+    {
+        $request->validate([
+            'judul' => 'required|string|max:20',
+            'isi' => 'required|string',
+        ]);
+
+        $tentangpmr = Tentangpmr::findOrFail($id);
+
+        $tentangpmr->update($request->only([
+            'judul',
+            'isi'
+        ]));
+
+        return redirect()->route('pembina.dashboard')->with('success', 'Tentang PMR berhasil diperbarui.');
+    }
+
+    public function DeleteTentangpmr($id)
+    {
+        $tentangpmr = Tentangpmr::findOrFail($id);
+        $tentangpmr->delete();
+        return redirect()->route('pembina.dashboard')->with('success', 'Tentang PMR berhasil dihapus.');
+    }
 }

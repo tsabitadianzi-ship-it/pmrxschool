@@ -80,6 +80,11 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/tutorial-edit/{id}', [PembinaController::class, 'EditTutorial'])->name('tutorial_edit');
         Route::put('/tutorial-update/{id}', [PembinaController::class, 'UpdateTutorial'])->name('tutorial_update');
 
+        //ROUTE TENTANG PMR
+        Route::get('/tentangpmr-edit/{id}', [PembinaController::class, 'EditTentangpmr'])->name('tentangpmr_edit');
+        Route::put('/tentangpmr-update/{id}', [PembinaController::class, 'UpdateTentangpmr'])->name('tentangpmr_update');
+        Route::delete('/tentangpmr-delete/{id}', [PembinaController::class, 'DeleteTentangpmr'])->name('tentangpmr_delete');
+
     });
 
     // ROUTE SEKRETARIS

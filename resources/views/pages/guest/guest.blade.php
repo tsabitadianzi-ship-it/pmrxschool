@@ -131,6 +131,21 @@
       padding-bottom: 2rem;
       opacity: 0.8;
     }
+
+    .tentangpmr h4 {
+        margin-bottom: 0.3rem; /* sebelumnya 0.5~0.8rem */
+    }
+
+    .tentangpmr h6 {
+        margin-top: 0.4rem;    /* jarak dari judul utama */
+        margin-bottom: 0.3rem; /* jarak ke paragraf */
+    }
+
+    .tentangpmr p {
+        margin-bottom: 0.5rem; /* jarak antar paragraf */
+        line-height: 1.5;      /* rapat tapi masih terbaca */
+    }
+
   </style>
 </head>
 
@@ -153,78 +168,63 @@
   <!-- Content -->
   <div class="container mt-5">
     <div class="text-center mb-5">
-      <h1>Selamat Datang di PMR X-SCHOOL</h1>
-      <p class="mt-2 text-secondary">Hai selamat datang di PMR X-SCHOOL. Sebelum login klik tombol daftar untuk bergabung bersama kami!</p>
+        <h1>Selamat Datang di PMR X-SCHOOL</h1>
+        <p class="mt-2 text-secondary">Hai selamat datang di PMR X-SCHOOL. Sebelum login klik tombol daftar untuk bergabung bersama kami!</p>
     </div>
 
     <div class="row g-4 justify-content-center">
-      <!-- Tentang PMR -->
-      <div class="col-lg-6 col-md-10">
-        <div class="card">
-          <div class="mb-3">
-            <h4 class="fw-bold mb-2">Tentang PMR</h4>
-            <h6 class="text-muted">Pelayanan Kesehatan Sekolah</h6>
-          </div>
-          <p>
-            PMR adalah unit kegiatan yang berfokus pada pelayanan kesehatan di lingkungan sekolah.
-            Kami menyediakan pertolongan pertama, edukasi kesehatan, dan kegiatan sosial kemanusiaan
-            untuk menumbuhkan rasa empati serta tanggung jawab sosial siswa.
-          </p>
-
-          <h6 class="mt-3 text-primary fw-bold">Kegiatan Rutin dan Pelatihan</h6>
-          <p>
-            Kami rutin mengadakan pelatihan <b>pertolongan pertama (P3K)</b>, donor darah, simulasi evakuasi bencana,
-            dan penyuluhan kesehatan. Anggota juga aktif dalam kegiatan sosial seperti bakti lingkungan
-            dan kunjungan kemanusiaan.
-          </p>
-
-          <h6 class="mt-3 text-primary fw-bold">Manfaat Bergabung</h6>
-          <p>
-            Bergabung dengan PMR tidak hanya mengajarkan keterampilan hidup, tetapi juga melatih empati,
-            kepemimpinan, dan rasa tanggung jawab sosial. Setiap anggota diajarkan untuk menjadi pribadi yang
-            peduli, disiplin, dan tangguh.
-          </p>
-        </div>
-      </div>
-
-      <!-- Tutorial Mendaftar -->
-<div class="col-lg-6 col-md-10">
-  <div class="card">
-    <div class="mb-3">
-      <h4 class="fw-bold mb-2">Tutorial Mendaftar</h4>
-      <h6 class="text-muted">Panduan mudah untuk mulai bergabung</h6>
-    </div>
-
-    <div class="tutorial-list">
-
-    @php 
-        $steps = [
-            $tutorial->tutor_pertama,
-            $tutorial->tutor_kedua,
-            $tutorial->tutor_ketiga,
-            $tutorial->tutor_keempat,
-            $tutorial->tutor_kelima,
-            $tutorial->tutor_keenam,
-            $tutorial->tutor_ketujuh,
-            $tutorial->tutor_kedelapan,
-            $tutorial->tutor_kesembilan,
-            $tutorial->tutor_kesepuluh
-        ];
-    @endphp
-
-    @foreach($steps as $index => $step)
-        @if($step != null)
-            <div class="tutorial-step">
-                <span>{{ $loop->iteration }}</span>
-                <div class="tutorial-text">{{ $step }}</div>
+        <!-- Tentang PMR -->
+        <div class="col-lg-6 col-md-10">
+            <div class="card tentangpmr">
+                <div class="mb-3">
+                    <h4 class="fw-bold ">Tentang PMR</h4>
+                    <h6 class="text-muted">Pelayanan Kesehatan Sekolah</h6>
+                </div>
+                @foreach($tentangpmr as $item)
+                    <h6 class="text-primary fw-bold">{{ $item->judul }}</h6>
+                    <p>{{ $item->isi }}</p>
+                @endforeach
             </div>
-        @endif
-    @endforeach
+        </div>
 
+        <!-- Tutorial Mendaftar -->
+        <div class="col-lg-6 col-md-10">
+            <div class="card">
+                <div class="mb-3">
+                    <h4 class="fw-bold mb-2">Tutorial Mendaftar</h4>
+                    <h6 class="text-muted">Panduan mudah untuk mulai bergabung</h6>
+                </div>
+
+                <div class="tutorial-list">
+                    @php 
+                        $steps = [
+                            $tutorial->tutor_pertama,
+                            $tutorial->tutor_kedua,
+                            $tutorial->tutor_ketiga,
+                            $tutorial->tutor_keempat,
+                            $tutorial->tutor_kelima,
+                            $tutorial->tutor_keenam,
+                            $tutorial->tutor_ketujuh,
+                            $tutorial->tutor_kedelapan,
+                            $tutorial->tutor_kesembilan,
+                            $tutorial->tutor_kesepuluh
+                        ];
+                    @endphp
+
+                    @foreach($steps as $index => $step)
+                        @if($step != null)
+                            <div class="tutorial-step">
+                                <span>{{ $loop->iteration }}</span>
+                                <div class="tutorial-text">{{ $step }}</div>
+                            </div>
+                        @endif
+                    @endforeach
+                </div>
+            </div>
+        </div>
+
+    </div> <!-- akhir row -->
 </div>
-
-
-  </div>
 
   <!-- Footer -->
   <footer>

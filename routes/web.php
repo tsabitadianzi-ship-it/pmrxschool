@@ -12,6 +12,7 @@ use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\SekertarisController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\InformasiController;
+use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\Pembina_userController;
 use Illuminate\Support\Facades\Route;
 
@@ -90,6 +91,12 @@ Route::group(['middleware' => ['auth']], function () {
         // Halaman edit landing page
         Route::get('/landingpage-edit', [PembinaController::class, 'EditLandingPage'])->name('landingpage_edit');
 
+        // routeAbsensi
+        Route::get('/absensi', [AbsensiController::class, 'indexPembina'])->name('absensi');
+        Route::get('/absensi/{id}', [AbsensiController::class, 'showPembina'])->name('absensi.show');
+        Route::get('/absensi/{id}/edit', [AbsensiController::class, 'editPembina'])->name('absensi.edit');
+        Route::put('/absensi/{id}', [AbsensiController::class, 'updatePembina'])->name('absensi.update');
+
     });
 
     // ROUTE SEKRETARIS
@@ -98,6 +105,18 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('materi', MateriController::class);
         Route::resource('jurnal', JurnalController::class);
         Route::get('/keuangan', [SekertarisController::class, 'keuangan'])->name('keuangan');
+
+       // CRUD Absensi
+        Route::get('/absensi', [AbsensiController::class, 'index'])->name('absensi');
+        Route::get('/absensi/create', [AbsensiController::class, 'create'])->name('absensi.create');
+        Route::post('/absensi/store-mass', [AbsensiController::class, 'storeMass'])->name('absensi.storeMass');
+        Route::post('/absensi', [AbsensiController::class, 'store'])->name('absensi.store');
+        Route::get('/absensi/edit-status/{id}', [AbsensiController::class, 'edit'])->name('absensi.edit');
+        Route::put('/absensi/update-status/{id}', [AbsensiController::class, 'updateStatus'])->name('updatestatus');
+        Route::get('/absensi/show/{tanggal}', [AbsensiController::class, 'show'])->name('absensi.show');
+        Route::delete('/absensi/{id}', [AbsensiController::class, 'destroy'])->name('absensi.destroy');
+
+
     });
 
     // ROUTE BENDAHARA
@@ -110,6 +129,10 @@ Route::group(['middleware' => ['auth']], function () {
         // ROUTE MATERI
         Route::get('/materi', [BendaharaController::class, 'materi'])->name('materi');
         Route::get('/materi/{id}', [BendaharaController::class, 'materiShow'])->name('materi.show');
+
+        //routeAbsensi
+        Route::get('/absensi', [AbsensiController::class, 'indexBendahara'])->name('absensi');
+        Route::get('/absensi/{tanggal}', [AbsensiController::class, 'showBendahara'])->name('absensi.show');
     });
 
     // ROUTE SISWA
@@ -122,6 +145,10 @@ Route::group(['middleware' => ['auth']], function () {
         // ROUTE MATERI
         Route::get('/materi', [SiswaController::class, 'materi'])->name('materi');
         Route::get('/materi/{id}', [SiswaController::class, 'materiShow'])->name('materi.show');
+
+        // ROUTE ABSENSI
+        Route::get('/absensi', [AbsensiController::class, 'indexSiswa'])->name('absensi');
+        Route::get('/absensi/{tanggal}', [AbsensiController::class, 'showSiswa'])->name('absensi.show');
     });
 
     // ROUTE PROFIL YANG BISA DI AKSES OLEH PEMBINA, SEKERTARIS DAN BENDAHARA

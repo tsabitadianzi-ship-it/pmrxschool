@@ -43,6 +43,11 @@
         </a>
       </li>
       <li class="menu-item mb-1">
+        <a href="{{ route('pembina.absensi') }}" class="menu-link aesth-link">
+          <i class="menu-icon tf-icons ti ti-clipboard"></i><span>Absensi</span>
+        </a>
+      </li>
+      <li class="menu-item mb-1">
         <a href="{{ route('pembina.anggota') }}" class="menu-link aesth-link">
           <i class="menu-icon tf-icons ti ti-users"></i><span>Anggota</span>
         </a>
@@ -71,6 +76,11 @@
           <i class="menu-icon tf-icons ti ti-wallet"></i><span>Keuangan</span>
         </a>
       </li>
+      <li class="menu-item mb-1">
+        <a href="{{ route('siswa.absensi') }}" class="menu-link aesth-link">
+          <i class="menu-icon tf-icons ti ti-clipboard"></i><span>Absensi</span>
+        </a>
+      </li>
     @endif
 
     {{-- BENDAHARA --}}
@@ -95,6 +105,11 @@
           <i class="menu-icon tf-icons ti ti-wallet"></i><span>Keuangan</span>
         </a>
       </li>
+      <li class="menu-item mb-1">
+        <a href="{{ route('bendahara.absensi') }}" class="menu-link aesth-link">
+          <i class="menu-icon tf-icons ti ti-clipboard"></i><span>Absensi</span>
+        </a>
+      </li>
     @endif
 
     {{-- SEKERTARIS --}}
@@ -117,6 +132,11 @@
       <li class="menu-item mb-1">
         <a href="{{ route('sekertaris.keuangan') }}" class="menu-link aesth-link">
           <i class="menu-icon tf-icons ti ti-wallet"></i><span>Keuangan</span>
+        </a>
+      </li>
+      <li class="menu-item mb-1">
+        <a href="{{ route('sekertaris.absensi') }}" class="menu-link aesth-link">
+          <i class="menu-icon tf-icons ti ti-clipboard"></i><span>Absensi</span>
         </a>
       </li>
     @endif

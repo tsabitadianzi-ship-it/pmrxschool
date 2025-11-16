@@ -163,7 +163,8 @@
 
           <div class="col-md-6 mb-3">
             <label for="jam">Jam</label>
-            <input type="time" class="form-control" id="jam" name="jam" value="{{ $pelaksanaan->jam }}" required>
+            <input type="time" class="form-control" id="jam" name="jam" value="{{ substr($pelaksanaan->jam, 0, 5) }}"
+ required>
           </div>
         </div>
 

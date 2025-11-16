@@ -17,7 +17,7 @@ class BendaharaController extends Controller
         $pembina = User::where('role', 'pembina')->get();
 
         // ambil data informasi
-        $informasi = Informasi::latest('tanggal')->take(5)->get();
+       $informasi = Informasi::where('tanggal', '>=', now())->orderBy('tanggal', 'asc')->get();
 
         // statistik anggota
         $jumlahAnggota = User::whereIn('role', ['siswa', 'sekertaris', 'bendahara'])->count();

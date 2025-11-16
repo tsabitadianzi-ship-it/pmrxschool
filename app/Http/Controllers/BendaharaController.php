@@ -22,6 +22,7 @@ class BendaharaController extends Controller
         // statistik anggota
         $jumlahAnggota = User::whereIn('role', ['siswa', 'sekertaris', 'bendahara'])->count();
         $anggotaAktif = User::whereIn('role', ['siswa', 'sekertaris', 'bendahara'])->where('status', 'active')->count();
+        $jumlahAnggota = User::whereIn('role', ['siswa','sekertaris','bendahara'])->where('status','active')->count();
         $anggotaPending = User::where('role', 'siswa')->where('status', 'pending')->count();
         $pelaksanaan = Pelaksanaan::all();
 

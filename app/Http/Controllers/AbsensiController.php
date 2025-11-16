@@ -43,7 +43,9 @@ class AbsensiController extends Controller
 
         Absensi::create($request->all());
 
-        return redirect()->route('sekertaris.absensi')->with('success', 'Absensi berhasil ditambahkan.');
+        return redirect()->route('sekertaris.absensi')->with('success', 'Absensi berhasil disimpan!');
+
+
     }
 
     public function edit($id)
@@ -65,12 +67,11 @@ class AbsensiController extends Controller
     return redirect()->route('sekertaris.absensi.show', $absensi->tanggal)->with('success', 'Status absensi berhasil diperbarui.');
     }
 
-    public function destroy($id)
+    public function destroyByTanggal($tanggal)
     {
-        $absensi = Absensi::findOrFail($id);
-        $absensi->delete();
+        Absensi::where('tanggal', $tanggal)->delete();
 
-        return redirect()->route('sekertaris.absensi')->with('success', 'Absensi berhasil dihapus.');
+        return redirect()->route('sekertaris.absensi')->with('success', 'Semua absensi pada tanggal tersebut berhasil dihapus.');
     }
 
     public function show($tanggal)
@@ -100,8 +101,10 @@ class AbsensiController extends Controller
             ]);
         }
 
-        return redirect()->back()->with('success', 'Absensi berhasil disimpan!');
+        return redirect()->route('sekertaris.absensi')
+                        ->with('success', 'Absensi berhasil disimpan!');
     }
+
 
     // Tampil semua absensi untuk pembina
     public function indexPembina(Request $request)

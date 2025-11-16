@@ -114,7 +114,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/absensi/edit-status/{id}', [AbsensiController::class, 'edit'])->name('absensi.edit');
         Route::put('/absensi/update-status/{id}', [AbsensiController::class, 'updateStatus'])->name('updatestatus');
         Route::get('/absensi/show/{tanggal}', [AbsensiController::class, 'show'])->name('absensi.show');
-        Route::delete('/absensi/{id}', [AbsensiController::class, 'destroy'])->name('absensi.destroy');
+        Route::delete('/absensi/tanggal/{tanggal}', [AbsensiController::class, 'destroyByTanggal'])
+            ->name('absensi.destroyByTanggal');
 
 
     });

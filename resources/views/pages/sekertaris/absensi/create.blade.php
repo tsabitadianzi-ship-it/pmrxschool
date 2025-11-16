@@ -232,5 +232,3 @@
     });
   </script>
   @endif
-</body>
-</html>

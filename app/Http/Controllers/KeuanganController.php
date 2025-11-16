@@ -119,8 +119,21 @@ class KeuanganController extends Controller
      */
     public function destroy(string $id)
     {
-        $keuangan = Keuangan::find($id);
+    
+        $keuangan = Keuangan::findOrFail($id);
         $keuangan->delete();
-        return redirect()->route('bendahara.keuangan.index');
+
+        $transaksi = Keuangan::orderBy('id')->get();
+
+        $saldo = 0;
+        foreach ($transaksi as $t) {
+            $saldo += $t->tipe === 'Pemasukan' ? $t->jumlah : -$t->jumlah;
+            $t->total = $saldo;
+            $t->save();
+        }
+
+        return redirect()->route('bendahara.keuangan.index')
+                        ->with('success', 'Data berhasil dihapus!');
     }
+
 }

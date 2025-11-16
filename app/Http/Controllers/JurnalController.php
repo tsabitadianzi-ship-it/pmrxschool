@@ -12,7 +12,7 @@ class JurnalController extends Controller
      */
     public function index()
     {
-        $jurnal = Jurnal::orderBy('created_at', 'desc')->get();
+        $jurnal = Jurnal::orderBy('id', 'desc')->get();
 
         return view('pages.sekertaris.jurnal', compact('jurnal'));
     }

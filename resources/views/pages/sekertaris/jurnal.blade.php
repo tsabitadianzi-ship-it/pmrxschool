@@ -144,7 +144,7 @@ $(function () {
                 next: "Berikutnya"
             }
         },
-        order: [[1, 'desc']],
+        order: [],
         pageLength: 10
     });
 });

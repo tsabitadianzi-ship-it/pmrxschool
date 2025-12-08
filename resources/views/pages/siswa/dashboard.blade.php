@@ -3,23 +3,11 @@
 
 @section('content')
 <style>
-  /* === BASE STYLE === */
   body {
     background-color: #F8FBFD;
     min-height: 100vh;
     position: relative;
   }
-
-  .fade-in {
-    animation: fadeIn 0.8s ease;
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  /* === CARD & STAT === */
   .card {
     background: #F7F9FA;
     border-radius: 16px;
@@ -43,7 +31,6 @@
     box-shadow: 0 2px 8px rgba(33, 158, 188, 0.25);
   }
 
-  /* === STAT CARD === */
   .stat-card {
     background-color: #D0F0FA; /* versi pastel dari #219EBC */
     border-radius: 14px;
@@ -70,7 +57,6 @@
     margin-top: 4px;
   }
 
-  /* === AVATAR === */
   .avatar-circle {
     width: 42px;
     height: 42px;
@@ -83,7 +69,6 @@
     font-weight: 600;
   }
 
-  /* === TEXT === */
   h2 {
     color: #2f4f4f;
     font-weight: 700;

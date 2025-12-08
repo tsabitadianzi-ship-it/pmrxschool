@@ -3,9 +3,6 @@
 
 @section('content')
 <style>
-body { background-color: #F8FBFD; }
-
-/* === HEADER === */
 .page-header {
     margin-bottom: 1.5rem;
 }
@@ -25,7 +22,6 @@ body { background-color: #F8FBFD; }
     padding: 8px 16px;
 }
 
-/* === CARD TANGGAL === */
 .card-tanggal {
     background: #fff;
     border-radius: 16px;
@@ -72,13 +68,11 @@ body { background-color: #F8FBFD; }
 </style>
 
 <div class="container py-4 fade-in">
-    <!-- Header -->
     <div class="page-header d-flex flex-column align-items-start">
         <h2>Data Absensi</h2>
         <p>Catatan absensi kehadiran anggota PMR</p>
     </div>
 
-    <!-- Card Tanggal -->
     @forelse($absensiPerTanggal as $tanggal => $absensis)
         <div class="card card-tanggal">
             <div class="card-tanggal-header">

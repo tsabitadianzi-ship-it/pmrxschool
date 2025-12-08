@@ -53,38 +53,11 @@
   }
   .btn-back:hover { background-color: #58615bff; transform: translateY(-1px); }
 
-  /* === DATATABLE PAGINATION === */
-  div.dataTables_wrapper div.dataTables_paginate ul.pagination .page-item.active .page-link {
-      background-color: #4B8C96 !important; 
-      border-color: #4B8C96 !important;
-      color: #fff !important;
-      border-radius: 8px;
+  .btn-edit {
+    background-color: #d18c4fff; color: white; border-radius: 10px;
+    padding: 8px 16px; font-weight: 500; font-size: 0.95rem; transition: 0.2s;
   }
-  div.dataTables_wrapper div.dataTables_paginate ul.pagination .page-link {
-      background-color: #4B8C96 !important;
-      color: #fff !important;
-      border: none !important;
-      border-radius: 6px !important;
-      margin: 0 4px;
-  }
-  div.dataTables_wrapper div.dataTables_paginate ul.pagination .page-link:hover {
-      background-color: #3e7d85 !important;
-      color: #fff !important;
-  }
-  div.dataTables_wrapper div.dataTables_paginate ul.pagination .previous .page-link,
-  div.dataTables_wrapper div.dataTables_paginate ul.pagination .next .page-link {
-      background-color: transparent !important;
-      color: #6c757d !important;
-      border: 1px solid #dee2e6 !important;
-  }
-  div.dataTables_wrapper div.dataTables_paginate ul.pagination .previous .page-link:hover,
-  div.dataTables_wrapper div.dataTables_paginate ul.pagination .next .page-link:hover {
-      background-color: #e2e6ea !important;
-      color: #495057 !important;
-  }
-
-  .text-center.mt-3 .btn-back { padding: 8px 20px; }
-
+  .btn-edit:hover { background-color: #3e7d85; transform: translateY(-1px); }
 </style>
 @endpush
 
@@ -130,7 +103,6 @@
 
 @push('scripts')
 <script src="{{ asset('/vendor/libs/datatables-bs5/datatables-bootstrap5.js') }}"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
   $(function () {
     $('.dataTable').DataTable({

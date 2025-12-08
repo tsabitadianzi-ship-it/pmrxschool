@@ -10,36 +10,27 @@
   body {
       background: url('{{ asset('/img/backgrounds/bg1.png') }}') no-repeat center center fixed;
       background-size: cover;
-      font-family: "Public Sans", sans-serif;
   }
 
   .main-area {
       display: flex;
       justify-content: center;
-      align-items: flex-start;
-      min-height: calc(100vh - 80px);
-      padding: 50px 20px;
+      
   }
 
   .card-detail {
       width: 100%;
       max-width: 950px;
       background: rgba(255,255,255,0.95);
-      backdrop-filter: blur(10px);
       border-radius: 20px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
       padding: 2.5rem;
-      animation: fadeIn 0.6s ease;
-      border: 1px solid #cde3df;
   }
 
-  @keyframes fadeIn { from {opacity:0; transform:translateY(10px);} to {opacity:1; transform:translateY(0);} }
 
-  h2 { color: #164b5c; font-weight: 700; text-align: center; margin-bottom: 1.5rem; }
+  h2 { color: #164b5c; font-weight: 700; text-align: center;  }
 
   .table thead th {
     background-color: #4B8C96; color: #fff; font-weight: 600;
-    text-transform: uppercase; letter-spacing: 0.5px; border: none;
   }
   .table tbody tr:hover { background-color: rgba(75,140,150,0.08); transition: 0.2s; }
   .badge { font-weight: 500; font-size: 0.9rem; }
@@ -48,18 +39,16 @@
   .bg-danger { background-color: #d14f4fff !important; color: white; }
 
   .btn-back {
-    background-color: #6b7770ff; color: white; border: none; border-radius: 10px;
-    padding: 10px 18px; font-weight: 500; transition: 0.2s;
-  }
-  .btn-back:hover { background-color: #58615bff; transform: translateY(-1px); }
+    background-color: #6b7770ff; color: white; border-radius: 10px;
+    padding: 10px 18px; font-weight: 500; }
+  .btn-back:hover { background-color: #58615bff; }
 
   .btn-edit {
     background-color: #d18c4fff; color: white; border-radius: 10px;
-    padding: 8px 16px; font-weight: 500; font-size: 0.95rem; transition: 0.2s;
+    padding: 8px 16px;
   }
-  .btn-edit:hover { background-color: #3e7d85; transform: translateY(-1px); }
+  .btn-edit:hover { background-color: #3e7d85; }
 
-  /* === DATATABLE PAGINATION === */
   div.dataTables_wrapper div.dataTables_paginate ul.pagination .page-item.active .page-link {
       background-color: #4B8C96 !important; 
       border-color: #4B8C96 !important;
@@ -80,7 +69,6 @@
       color: #fff !important;
   }
 
-  /* Tombol Previous & Next tetap abu-abu */
   div.dataTables_wrapper div.dataTables_paginate ul.pagination .previous .page-link,
   div.dataTables_wrapper div.dataTables_paginate ul.pagination .next .page-link {
       background-color: transparent !important;

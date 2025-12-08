@@ -3,6 +3,51 @@
 @section('title', 'Detail Anggota')
 
 @section('content')
+<style>
+body {
+    background: url('{{ asset('/img/backgrounds/bg1.png') }}') no-repeat center center fixed;
+    background-size: cover;
+}
+
+.main-area {
+    display: flex;
+    justify-content: center;
+}
+
+.card-detail {
+    width: 100%;
+    max-width: 900px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 18px;
+    padding: 2.5rem;
+}
+
+h2 { color: #164b5c; font-weight: 700; }
+th { color: #164b5c; font-weight: 600; }
+td { color: #3b5358; }
+
+.btn-back, .btn-submit, .btn-decline {
+    border-radius: 10px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 6px 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+  
+}
+
+.btn-back { background-color: #6b7770; }
+.btn-submit { background-color: #219EBC; }
+.btn-decline { background-color: #d14f4f; }
+
+
+
+.btn-container form {
+    display: inline-flex;
+}
+</style>
 <div class="main-area">
     <div class="card-detail">
         <h2 class="fw-bold text-center mb-4">Detail Anggota</h2>
@@ -22,7 +67,6 @@
             </table>
         </div>
 
-        <!-- TOMBOL -->
         <div class="d-flex gap-2 mt-4 justify-content-center align-items-center flex-wrap btn-container">
             <a href="{{ route('pembina.anggota') }}" class="btn btn-back">
                 <i class="ti ti-arrow-left me-1"></i> Kembali
@@ -53,71 +97,5 @@
 @endsection
 
 @push('styles')
-<style>
-body {
-    background: url('{{ asset('/img/backgrounds/bg1.png') }}') no-repeat center center fixed;
-    background-size: cover;
-    min-height: 100vh;
-    font-family: "Public Sans", sans-serif;
-    overflow-x: hidden;
-    margin: 0;
-}
 
-.main-area {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: calc(100vh - 80px);
-    padding: 50px 20px;
-}
-
-.card-detail {
-    width: 100%;
-    max-width: 900px;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(8px);
-    border-radius: 18px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-    padding: 2.5rem;
-    animation: fadeIn 0.6s ease;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-h2 { color: #164b5c; font-weight: 700; }
-th { color: #164b5c; font-weight: 600; }
-td { color: #3b5358; }
-
-.btn-back, .btn-submit, .btn-decline {
-    border: none;
-    border-radius: 10px;
-    font-weight: 500;
-    font-size: 0.95rem;
-    padding: 6px 14px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.25s ease;
-    color: white;
-    height: 38px;
-    min-width: 90px;
-}
-
-.btn-back { background-color: #6b7770; }
-.btn-submit { background-color: #219EBC; }
-.btn-decline { background-color: #d14f4f; }
-
-.btn-back:hover, .btn-submit:hover, .btn-decline:hover {
-    transform: translateY(-1px);
-    opacity: 0.9;
-}
-
-.btn-container form {
-    display: inline-flex;
-    margin: 0;
-}
-</style>
 @endpush

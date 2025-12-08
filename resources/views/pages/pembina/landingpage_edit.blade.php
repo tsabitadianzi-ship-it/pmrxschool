@@ -16,16 +16,13 @@
     body {
       background: url('{{ asset('/img/backgrounds/bg1.png') }}') no-repeat center center fixed;
       background-size: cover;
-      font-family: "Public Sans", sans-serif;
-      margin: 0;
-      padding: 0;
+    
     }
 
     .main-container {
       display: flex;
       justify-content: center;
       padding: 50px 20px;
-      min-height: 100vh;
     }
 
     .card-main {
@@ -34,37 +31,27 @@
       background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(8px);
       border-radius: 20px;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
       padding: 30px 40px;
-      animation: fadeIn 0.6s ease;
-      border: 1px solid #cfe5e8;
     }
 
     h2, h4 {
       color: #164b5c;
-      font-weight: 700;
     }
 
     .section-title {
       border-left: 5px solid #219EBC;
       padding-left: 12px;
-      margin-bottom: 18px;
-      font-size: 1.3rem;
     }
 
-    /* Tombol modern */
     .btn-custom {
       border-radius: 10px;
       font-weight: 600;
       padding: 8px 18px;
-      transition: 0.3s;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
     }
 
     .btn-theme {
       background-color: #219EBC;
       color: white;
-      border: none;
     }
     .btn-theme:hover { background-color: #1a7e96; transform: translateY(-2px); box-shadow: 0 6px 15px rgba(0,0,0,0.2); }
 
@@ -82,8 +69,7 @@
       border-radius: 15px;
       padding: 20px;
       border: 1px solid #dce7e8;
-      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.07);
-      margin-bottom: 25px;
+
     }
 
     table {
@@ -99,30 +85,22 @@
       background-color: #f3fcff;
     }
 
-    /* Tombol aksi di tabel */
     .btn-edit {
       background-color: #d18c4f;
       color: white;
       border-radius: 6px;
       padding: 6px 12px;
-      transition: 0.2s;
       font-weight: 600;
       display: flex;
       align-items: center;
       gap: 4px;
     }
-    .btn-edit:hover {
-        background-color: #c07a3e;
-        transform: translateY(-2px);
-        box-shadow: 0 3px 8px rgba(0,0,0,0.2);
-    }
-
+  
     .btn-delete {
         background-color: #d14f4f;
         color: white;
         border-radius: 6px;
         padding: 6px 12px;
-        transition: 0.2s;
         font-weight: 600;
         display: flex;
         align-items: center;
@@ -130,14 +108,9 @@
     }
     .btn-delete:hover {
         background-color: #b84141;
-        transform: translateY(-2px);
         box-shadow: 0 3px 8px rgba(0,0,0,0.2);
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(12px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
   </style>
 </head>
 

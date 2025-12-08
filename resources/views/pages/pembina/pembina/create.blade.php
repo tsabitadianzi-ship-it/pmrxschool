@@ -3,6 +3,73 @@
 @section('title', 'Tambah Pembina')
 
 @section('content')
+<style>
+body {
+    background: url('{{ asset('/img/backgrounds/bg1.png') }}') no-repeat center center fixed;
+    background-size: cover;
+}
+
+.main-area {
+    display: flex;
+    justify-content: center;
+    
+}
+
+.card-detail {
+    width: 100%;
+    max-width: 900px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 2.5rem;
+    border: 1px solid #cde3df;
+}
+
+h2 {
+    color: #164b5c;
+    text-align: center;
+    font-weight: 700;
+}
+
+label {
+    color: #176b86;
+}
+
+.form-control, textarea {
+    border-radius: 10px;
+    padding: 10px 12px;
+}
+
+.form-control:focus, textarea:focus {
+    border-color: #219EBC;
+}
+
+.btn-submit {
+    background-color: #219EBC;
+    color: white;
+    border-radius: 10px;
+    padding: 10px 18px;
+}
+
+.btn-submit:hover {
+    background-color: #468d9fff;
+}
+
+.btn-cancel {
+    background-color: #6b7770ff;
+    color: white;
+    border-radius: 10px;
+    padding: 10px 18px;
+}
+
+.btn-cancel:hover {
+    background-color: #58615bff;
+}
+
+.alert {
+    border-radius: 10px;
+    margin-top: 5px;
+    padding: 8px 12px;
+}
+</style>
 <div class="main-area">
     <div class="card-detail">
         <h2>Tambah Pembina</h2>
@@ -78,96 +145,5 @@
 @endsection
 
 @push('styles')
-<style>
-body {
-    background: url('{{ asset('/img/backgrounds/bg1.png') }}') no-repeat center center fixed;
-    background-size: cover;
-    font-family: "Public Sans", sans-serif;
-    margin: 0;
-    min-height: 100vh;
-    overflow-x: hidden;
-}
 
-.main-area {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: calc(100vh - 80px);
-    padding: 50px 20px;
-}
-
-.card-detail {
-    width: 100%;
-    max-width: 900px;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-    padding: 2.5rem;
-    border: 1px solid #cde3df;
-    animation: fadeIn 0.6s ease;
-}
-
-@keyframes fadeIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
-
-h2 {
-    color: #164b5c;
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 1.5rem;
-}
-
-label {
-    font-weight: 600;
-    color: #176b86;
-}
-
-.form-control, textarea {
-    border-radius: 10px;
-    border: 1px solid #bcd4da;
-    padding: 10px 12px;
-    transition: 0.2s ease;
-}
-
-.form-control:focus, textarea:focus {
-    border-color: #219EBC;
-    box-shadow: 0 0 6px rgba(33, 158, 188, 0.3);
-}
-
-.btn-submit {
-    background-color: #219EBC;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    padding: 10px 18px;
-    font-weight: 500;
-    transition: 0.2s;
-}
-
-.btn-submit:hover {
-    background-color: #468d9fff;
-    transform: translateY(-1px);
-}
-
-.btn-cancel {
-    background-color: #6b7770ff;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    padding: 10px 18px;
-    font-weight: 500;
-    transition: 0.2s;
-}
-
-.btn-cancel:hover {
-    background-color: #58615bff;
-    transform: translateY(-1px);
-}
-
-.alert {
-    border-radius: 10px;
-    margin-top: 5px;
-    padding: 8px 12px;
-}
-</style>
 @endpush

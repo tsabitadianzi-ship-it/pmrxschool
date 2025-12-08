@@ -3,65 +3,17 @@
 
 @section('content')
 <style>
-  /* === BASE === */
-  body {
-    background-color: #F8FBFD;
-    min-height: 100vh;
-  }
-
-  .fade-in {
-    animation: fadeIn 0.8s ease;
-  }
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  /* === CARD === */
-  .card {
-    background: #ffffff;
-    border-radius: 16px;
-    border: 1px solid rgba(0,0,0,0.05);
-    box-shadow: 0 4px 16px rgba(0,0,0,0.05);
-  }
-
   .card-header {
     background-color: #219EBC;
     color: #fff;
-    font-weight: 600;
-    border-top-left-radius: 16px !important;
-    border-top-right-radius: 16px !important;
   }
 
-  /* === STATISTICS === */
-  .stat-card {
-    background-color: #D0F0FA;
-    border-radius: 14px;
-    padding: 1rem;
-    text-align: center;
-  }
-  .stat-card h6 {
-    color: #287C96;
-    font-weight: 500;
-  }
-  .stat-card h4 {
-    color: #125366;
-    font-weight: 700;
-    margin-top: 4px;
-  }
-
-  /* === BUTTONS === */
   .btn-main {
     background-color: #219EBC;
     color: white;
-    border: none;
-    border-radius: 8px;
-    transition: 0.2s ease;
+  
   }
-  .btn-main:hover {
-    background-color: #197B9B;
-  }
-
+  
   .btn-warning-custom {
     background-color: #d18c4fff;
     color: white;
@@ -71,7 +23,6 @@
     color: white;
   }
 
-  /* === MISC === */
   .avatar-circle {
     width: 42px;
     height: 42px;
@@ -86,12 +37,10 @@
 
   h2 {
     color: #2f4f4f;
-    font-weight: 700;
   }
 </style>
 
 <div class="container py-4 fade-in">
-  <!-- HEADER -->
   <div class="d-flex justify-content-between align-items-center mb-4">
     <div>
       <h2 class="fw-bold mb-0">Dashboard Pembina</h2>
@@ -154,7 +103,6 @@
       @endphp
   @endif
 
-  <!-- INFORMASI KEGIATAN -->
   <div class="card mb-4 shadow-sm">
     <div class="card-header d-flex justify-content-between align-items-center">
       <div><i class="ti ti-info-circle me-2"></i>INFORMASI KEGIATAN TERDEKAT</div>
@@ -187,9 +135,7 @@
     </div>
   </div>
 
-  <!-- PEMBINA & PELAKSANAAN -->
   <div class="row g-3">
-      <!-- DAFTAR PEMBINA -->
       <div class="col-md-6">
         <div class="card shadow-sm">
           <div class="card-header"><i class="ti ti-users me-2"></i>DAFTAR PEMBINA</div>
@@ -211,7 +157,6 @@
         </div>
       </div>
 
-      <!-- PELAKSANAAN EKSKUL -->
       <div class="col-md-6">
         <div class="card shadow-sm">
           <div class="card-header"><i class="ti ti-calendar-time me-2"></i>PELAKSANAAN EKSKUL</div>
@@ -238,7 +183,6 @@
       </div>
   </div>
 
-<!-- FORM DELETE -->
 <form id="form-delete" action="" method="POST" class="d-none">
   @csrf
   @method('DELETE')

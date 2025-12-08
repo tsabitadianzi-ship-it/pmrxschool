@@ -2,6 +2,21 @@
 @section('title', 'Manajemen Anggota')
 
 @section('content')
+<style>
+.table thead th {
+    background-color: #4b8c96ff;
+    color: #fff;
+
+}
+div.dataTables_wrapper div.dataTables_paginate ul.pagination .page-item.active .page-link {
+    background-color: #4b8c96ff !important;
+    border-color: #4b8c96ff !important;
+    color: #fff !important;
+    border-radius: 8px;
+}
+
+
+</style>
 <div class="row">
     <div class="col-md-12">
 
@@ -34,7 +49,6 @@
             </div>
         </div>
 
-        <!-- Konfirmasi Anggota -->
         <h4 class="fw-semibold text-secondary mt-4 mb-2">Konfirmasi Anggota</h4>
         <div class="card card-body shadow-sm border-0">
             <table class="table table-striped dataTable">
@@ -87,7 +101,6 @@
             </button>
         </div>
 
-        <!-- Anggota Aktif -->
         <h4 class="fw-semibold text-secondary mb-2">Anggota Aktif</h4>
         <div class="card card-body shadow-sm border-0">
             <table class="table table-striped dataTable">
@@ -135,7 +148,6 @@
             </table>
         </div>
 
-        <!-- Pembina -->
         <h4 class="fw-semibold text-secondary mt-5 mb-3">Data Pembina</h4>
         <div class="row">
             @forelse($pembina as $item)
@@ -180,31 +192,6 @@
 @push('styles')
 <link rel="stylesheet" href="{{ asset('/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}" />
 <link rel="stylesheet" href="{{ asset('/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}" />
-
-<style>
-.table thead th {
-    background-color: #4b8c96ff;
-    color: #fff;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    border: none;
-}
-div.dataTables_wrapper div.dataTables_paginate ul.pagination .page-item.active .page-link {
-    background-color: #4b8c96ff !important;
-    border-color: #4b8c96ff !important;
-    color: #fff !important;
-    border-radius: 8px;
-}
-.card {
-    border-radius: 12px;
-    transition: all 0.3s ease;
-}
-.card:hover {
-    transform: none;
-    box-shadow: 0 6px 16px rgba(0,0,0,0.06);
-}
-</style>
 @endpush
 
 @push('scripts')

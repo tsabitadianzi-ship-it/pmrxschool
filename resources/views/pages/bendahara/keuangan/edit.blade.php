@@ -1,49 +1,24 @@
-<!doctype html>
-<html lang="id">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Edit Data Keuangan</title>
+@extends('layouts.app-no-sidebar')
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/tabler-icons@1.39.1/iconfont/tabler-icons.min.css" rel="stylesheet">
+@section('title', 'Edit Data Keuangan')
 
-  <style>
-    body {
+@push('styles')
+<style>
+  body {
       background: url('{{ asset('/img/backgrounds/bg1.png') }}') no-repeat center center fixed;
       background-size: cover;
       font-family: "Public Sans", sans-serif;
-      margin: 0;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
+  }
 
-    #layout-navbar {
-      background-color: #219EBC;
-      color: white;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      padding: 0.75rem 2rem;
-      position: sticky;
-      top: 0;
-      z-index: 1030;
-    }
-
-    #layout-navbar .nav-link,
-    #layout-navbar .dropdown-toggle {
-      color: white !important;
-      font-weight: 500;
-    }
-
-    .main-area {
+  .main-area {
       display: flex;
       justify-content: center;
       align-items: flex-start;
-      min-height: calc(100vh - 80px);
+      min-height: calc(100vh - 80px); /* tinggi navbar */
       padding: 50px 20px;
-    }
+  }
 
-    .card-detail {
+  .card-detail {
       width: 100%;
       max-width: 700px;
       background: rgba(255, 255, 255, 0.95);
@@ -52,38 +27,38 @@
       box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
       padding: 2.5rem;
       animation: fadeIn 0.6s ease;
-    }
+  }
 
-    @keyframes fadeIn {
+  @keyframes fadeIn {
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
-    }
+  }
 
-    h2 {
+  h2 {
       color: #164b5c;
       font-weight: 700;
       text-align: center;
       margin-bottom: 1.5rem;
-    }
+  }
 
-    label {
+  label {
       font-weight: 600;
       color: #176b86;
-    }
+  }
 
-    .form-control {
+  .form-control {
       border-radius: 10px;
       border: 1px solid #bcd4da;
       padding: 10px 12px;
       transition: 0.2s ease;
-    }
+  }
 
-    .form-control:focus {
+  .form-control:focus {
       border-color: #219EBC;
       box-shadow: 0 0 6px rgba(33, 158, 188, 0.3);
-    }
+  }
 
-    .btn-submit {
+  .btn-submit {
       background-color: #219EBC;
       color: white;
       border: none;
@@ -91,14 +66,14 @@
       padding: 10px 18px;
       font-weight: 500;
       transition: 0.2s;
-    }
+  }
 
-    .btn-submit:hover {
+  .btn-submit:hover {
       background-color: #468d9fff;
       transform: translateY(-1px);
-    }
+  }
 
-    .btn-cancel {
+  .btn-cancel {
       background-color: #6b7770ff;
       color: white;
       border: none;
@@ -106,130 +81,99 @@
       padding: 10px 18px;
       font-weight: 500;
       transition: 0.2s;
-    }
+  }
 
-    .btn-cancel:hover {
+  .btn-cancel:hover {
       background-color: #58615bff;
       transform: translateY(-1px);
-    }
+  }
 
-    .alert {
+  .alert {
       border-radius: 10px;
       margin-top: 5px;
       padding: 8px 12px;
-    }
-  </style>
-</head>
+  }
+</style>
+@endpush
 
-<body>
-  <!-- ✅ NAVBAR -->
-  <nav class="navbar navbar-expand-xl" id="layout-navbar">
-    <div class="container-fluid d-flex justify-content-between align-items-center">
-      <span class="fw-bold fs-5">Edit Data Keuangan</span>
+@section('content')
+<div class="main-area">
+  <div class="card-detail">
+    <h2>Edit Data Keuangan</h2>
 
-      <ul class="navbar-nav ms-auto align-items-center">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" data-bs-toggle="dropdown">
-            <img 
-              src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->nama_lengkap) }}&background=7f8586ff&color=fff&size=40"
-              alt="{{ Auth::user()->nama_lengkap }}" 
-              class="rounded-circle me-2" width="36" height="36">
-            <span>{{ Auth::user()->nama_lengkap }}</span>
-          </a>
-          <ul class="dropdown-menu dropdown-menu-end">
-            <li><hr class="dropdown-divider"></li>
-            <li>
-              <form id="logout-form" method="POST" action="{{ route('logout') }}">
-                @csrf
-                <button class="dropdown-item text-danger" type="submit">
-                  <i class="ti ti-logout me-2"></i> Logout
-                </button>
-              </form>
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-  </nav>
+    {{-- ✅ Alert Sukses --}}
+    @if(session('success'))
+      <div class="alert alert-success">{{ session('success') }}</div>
+    @endif
 
-  <!-- ✅ CONTENT -->
-  <div class="main-area">
-    <div class="card-detail">
-      <h2>Edit Data Keuangan</h2>
+    {{-- ⚠️ Error --}}
+    @if($errors->any())
+      <div class="alert alert-danger">
+        <ul class="mb-0">
+          @foreach($errors->all() as $error)
+            <li>{{ $error }}</li>
+          @endforeach
+        </ul>
+      </div>
+    @endif
 
-      {{-- ✅ Alert Sukses --}}
-      @if(session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
-      @endif
+    <form action="{{ route('bendahara.keuangan.update', $keuangan->id) }}" method="POST">
+      @csrf
+      @method('PUT')
 
-      {{-- ⚠️ Error --}}
-      @if($errors->any())
-        <div class="alert alert-danger">
-          <ul class="mb-0">
-            @foreach($errors->all() as $error)
-              <li>{{ $error }}</li>
-            @endforeach
-          </ul>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="tanggal">Tanggal</label>
+          <input type="date" class="form-control" id="tanggal" name="tanggal"
+                 value="{{ old('tanggal', $keuangan->tanggal) }}" required>
         </div>
-      @endif
-
-      <form action="{{ route('bendahara.keuangan.update', $keuangan->id) }}" method="POST">
-        @csrf
-        @method('PUT')
-
-        <div class="row">
-          <div class="col-md-6 mb-3">
-            <label for="tanggal">Tanggal</label>
-            <input type="date" class="form-control" id="tanggal" name="tanggal"
-                   value="{{ old('tanggal', $keuangan->tanggal) }}" required>
-          </div>
-          <div class="col-md-6 mb-3">
-            <label for="tipe">Tipe</label>
-            <select class="form-control" id="tipe" name="tipe" required>
-              <option value="Pemasukan" {{ old('tipe', $keuangan->tipe) == 'Pemasukan' ? 'selected' : '' }}>Pemasukan</option>
-              <option value="Pengeluaran" {{ old('tipe', $keuangan->tipe) == 'Pengeluaran' ? 'selected' : '' }}>Pengeluaran</option>
-            </select>
-          </div>
+        <div class="col-md-6 mb-3">
+          <label for="tipe">Tipe</label>
+          <select class="form-control" id="tipe" name="tipe" required>
+            <option value="Pemasukan" {{ old('tipe', $keuangan->tipe) == 'Pemasukan' ? 'selected' : '' }}>Pemasukan</option>
+            <option value="Pengeluaran" {{ old('tipe', $keuangan->tipe) == 'Pengeluaran' ? 'selected' : '' }}>Pengeluaran</option>
+          </select>
         </div>
+      </div>
 
-        <div class="row">
-          <div class="col-md-6 mb-3">
-            <label for="jumlah">Jumlah (Rp)</label>
-            <input type="number" class="form-control" id="jumlah" name="jumlah"
-                   value="{{ old('jumlah', $keuangan->jumlah) }}" required>
-          </div>
-          <div class="col-md-6 mb-3">
-            <label for="keterangan">Keterangan</label>
-            <input type="text" class="form-control" id="keterangan" name="keterangan" maxlength="20"
-                   value="{{ old('keterangan', $keuangan->keterangan) }}" required>
-          </div>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="jumlah">Jumlah (Rp)</label>
+          <input type="number" class="form-control" id="jumlah" name="jumlah"
+                 value="{{ old('jumlah', $keuangan->jumlah) }}" required>
         </div>
+        <div class="col-md-6 mb-3">
+          <label for="keterangan">Keterangan</label>
+          <input type="text" class="form-control" id="keterangan" name="keterangan" maxlength="20"
+                 value="{{ old('keterangan', $keuangan->keterangan) }}" required>
+        </div>
+      </div>
 
-        <div class="text-center mt-4">
-          <button type="submit" class="btn btn-submit btn-sm me-2">
-            <i class="ti ti-check me-1"></i> Edit
-          </button>
-          <a href="{{ route('bendahara.keuangan.index') }}" class="btn btn-cancel btn-sm">
-            <i class="ti ti-arrow-left me-1"></i> Batal
-          </a>
-        </div>
-      </form>
-    </div>
+      <div class="text-center mt-4">
+        <button type="submit" class="btn btn-submit btn-sm me-2">
+          <i class="ti ti-check me-1"></i> Edit
+        </button>
+        <a href="{{ route('bendahara.keuangan.index') }}" class="btn btn-cancel btn-sm">
+          <i class="ti ti-arrow-left me-1"></i> Batal
+        </a>
+      </div>
+    </form>
   </div>
+</div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-  @if (Session::has('success'))
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-      Swal.fire({
-        icon: 'success',
-        title: 'Berhasil',
-        text: '{{ Session::get('success') }}',
-        showConfirmButton: false,
-        timer: 3000
-      });
-    </script>
-  @endif
-</body>
-</html>
+{{-- Optional: SweetAlert success --}}
+@if (Session::has('success'))
+  @push('scripts')
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script>
+    Swal.fire({
+      icon: 'success',
+      title: 'Berhasil',
+      text: '{{ Session::get('success') }}',
+      showConfirmButton: false,
+      timer: 3000
+    });
+  </script>
+  @endpush
+@endif
+@endsection

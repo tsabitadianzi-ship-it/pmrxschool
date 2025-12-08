@@ -25,7 +25,7 @@
             @endif
 
             <div class="flex gap-2">
-                <a href="{{ route('bendahara.materi.show', $m->id) }}" class="btn btn-sm" style="background-color: #209698ff; color: white;">
+                <a href="{{ route('siswa.materi.show', $m->id) }}" class="btn btn-sm" style="background-color: #209698ff; color: white;">
                     <span class="ti ti-eye"></span> Lihat Detail
                 </a>
                 

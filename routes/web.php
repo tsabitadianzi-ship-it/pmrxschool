@@ -140,7 +140,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::prefix('siswa')->name('siswa.')->group(function () {
         Route::get('/dashboard', [SiswaController::class, 'index'])->name('dashboard');
         Route::get('/jurnal', [SiswaController::class, 'jurnal'])->name('jurnal');
-        Route::get('/materi', [SiswaController::class, 'materi'])->name('materi');
         Route::get('/keuangan', [SiswaController::class, 'keuangan'])->name('keuangan');
 
         // ROUTE MATERI

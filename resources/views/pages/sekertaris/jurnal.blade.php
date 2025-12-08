@@ -130,7 +130,9 @@ div.dataTables_wrapper div.dataTables_info {
 @endpush
 
 @push('scripts')
+<script src="{{ asset('/vendor/libs/datatables/jquery.dataTables.js') }}"></script>
 <script src="{{ asset('/vendor/libs/datatables-bs5/datatables-bootstrap5.js') }}"></script>
+<script src="{{ asset('/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
 $(function () {

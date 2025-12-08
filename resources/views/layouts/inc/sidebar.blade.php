@@ -145,12 +145,6 @@
 </aside>
 
 <style>
-/* 🌈 Sidebar Aesthetic Final */
-#layout-menu {
-  transition: all 0.3s ease;
-}
-
-/* Menu link style */
 .menu-link.aesth-link {
   color: #f1f5f9 !important;
   border-radius: 10px;
@@ -158,24 +152,19 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  transition: all 0.25s ease;
   font-weight: 500;
   letter-spacing: 0.2px;
 }
 
-/* Hover effect elegan */
 .menu-link.aesth-link:hover {
   background-color: rgba(255, 255, 255, 0.15);
-  transform: translateX(4px);
   color: #ffffff !important;
   text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
 }
 
-/* Ikon lebih proporsional */
 .menu-link.aesth-link i {
-  font-size: 1.5rem; /* diperbesar */
+  font-size: 1.5rem; 
   opacity: 0.9;
-  transition: all 0.25s ease;
 }
 
 .menu-link.aesth-link:hover i {
@@ -183,14 +172,12 @@
   transform: scale(1.1);
 }
 
-/* Aktif menu highlight */
 .menu-item.active > .menu-link {
   background-color: rgba(255, 255, 255, 0.25);
   color: #fff !important;
   box-shadow: 0 0 12px rgba(255, 255, 255, 0.25);
 }
 
-/* Scrollbar halus */
 .menu-inner::-webkit-scrollbar {
   width: 6px;
 }

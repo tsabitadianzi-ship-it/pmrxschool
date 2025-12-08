@@ -12,25 +12,20 @@
 
     <link rel="icon" type="image/x-icon" href="{{ asset('/img/favicon/logob.png') }}" />
 
-    <!-- Fonts & Icons -->
     <link rel="stylesheet" href="{{ asset('/vendor/fonts/fontawesome.css') }}" />
     <link rel="stylesheet" href="{{ asset('/vendor/fonts/tabler-icons.css') }}" />
     <link rel="stylesheet" href="{{ asset('/vendor/fonts/flag-icons.css') }}" />
 
-    <!-- Core CSS -->
     <link rel="stylesheet" href="{{ asset('/vendor/css/rtl/core.css') }}" />
     <link rel="stylesheet" href="{{ asset('/vendor/css/rtl/theme-default.css') }}" />
     <link rel="stylesheet" href="{{ asset('/css/demo.css') }}" />
 
-    <!-- Vendor CSS -->
     <link rel="stylesheet" href="{{ asset('/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
     <link rel="stylesheet" href="{{ asset('/vendor/libs/node-waves/node-waves.css') }}" />
 
-    <!-- Theme Config (WAJIB) -->
     <script src="{{ asset('/js/config.js') }}"></script>
 
     <style>
-        /* Supaya navbar & content full-width tanpa sidebar */
         .layout-wrapper {
             display: block !important;
         }
@@ -60,7 +55,6 @@
 
 </div>
 
-<!-- Core JS -->
 <script src="{{ asset('/vendor/libs/jquery/jquery.js') }}"></script>
 <script src="{{ asset('/vendor/libs/popper/popper.js') }}"></script>
 <script src="{{ asset('/vendor/js/bootstrap.js') }}"></script>

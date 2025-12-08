@@ -15,45 +15,36 @@
 
   <title>Registrasi Berhasil - PMR X-SCHOOL</title>
 
-  <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="{{ asset('/img/favicon/logob.png') }}" />
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap"
     rel="stylesheet" />
 
-  <!-- Icons -->
   <link rel="stylesheet" href="{{ asset('/vendor/fonts/fontawesome.css') }}" />
   <link rel="stylesheet" href="{{ asset('/vendor/fonts/tabler-icons.css') }}" />
   <link rel="stylesheet" href="{{ asset('/vendor/fonts/flag-icons.css') }}" />
 
-  <!-- Core CSS -->
   <link rel="stylesheet" href="{{ asset('/vendor/css/rtl/core.css') }}" class="template-customizer-core-css" />
   <link rel="stylesheet" href="{{ asset('/vendor/css/rtl/theme-default.css') }}" class="template-customizer-theme-css" />
   <link rel="stylesheet" href="{{ asset('/css/demo.css') }}" />
 
-  <!-- Vendors CSS -->
   <link rel="stylesheet" href="{{ asset('/vendor/libs/node-waves/node-waves.css') }}" />
   <link rel="stylesheet" href="{{ asset('/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
   <link rel="stylesheet" href="{{ asset('/vendor/libs/typeahead-js/typeahead.css') }}" />
 
-  <!-- Page CSS -->
   <link rel="stylesheet" href="{{ asset('/vendor/css/pages/page-auth.css') }}" />
 </head>
 
 <body style="background: url('{{ asset('/img/backgrounds/bg1.png') }}') no-repeat center center fixed; background-size: cover; background-color: #f6fbff;">
-  <!-- Content -->
   <div class="container-xxl">
     <div class="authentication-wrapper authentication-basic container-p-y">
       <div class="authentication-inner py-6">
-        <!-- Register Success -->
         <div class="card" style="border-radius: 16px; box-shadow: 0 4px 14px rgba(33, 158, 188, 0.08);">
           <div class="card-body text-center">
 
-            <!-- Logo -->
             <div class="app-brand justify-content-center mb-6">
               <a href="#" class="app-brand-link">
                 <span class="app-brand-logo demo">
@@ -61,7 +52,6 @@
                 </span>
               </a>
             </div>
-            <!-- /Logo -->
 
             <h3 class="fw-bold mb-3" style="color: #287C96;">Registrasi Berhasil</h3>
             <p class="mb-1">Akun Anda berhasil dibuat dengan status <b>Pending</b>.</p>
@@ -73,13 +63,10 @@
 
           </div>
         </div>
-        <!-- /Register Success -->
       </div>
     </div>
   </div>
-  <!-- / Content -->
 
-  <!-- Core JS -->
   <script src="{{ asset('/vendor/libs/jquery/jquery.js') }}"></script>
   <script src="{{ asset('/vendor/libs/popper/popper.js') }}"></script>
   <script src="{{ asset('/vendor/js/bootstrap.js') }}"></script>
@@ -90,7 +77,6 @@
   <script src="{{ asset('/vendor/libs/typeahead-js/typeahead.js') }}"></script>
   <script src="{{ asset('/vendor/js/menu.js') }}"></script>
 
-  <!-- Main JS -->
   <script src="{{ asset('/js/main.js') }}"></script>
 </body>
 </html>

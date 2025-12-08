@@ -16,26 +16,19 @@
 
   <title>PMR X-SCHOOL</title>
 
-  <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="{{ asset('img/favicon/logob.png') }}" />
-
-  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-
-  <!-- Core Styles -->
   <link rel="stylesheet" href="{{ asset('/vendor/css/rtl/core.css') }}" />
   <link rel="stylesheet" href="{{ asset('/vendor/css/rtl/theme-default.css') }}" />
   <link rel="stylesheet" href="{{ asset('/css/demo.css') }}" />
 
   <style>
-    /* 🌿 Background & Font */
     body {
-      background-color: #c2cacd85; /* solid background */
+      background-color: #c2cacd85; 
       font-family: 'Poppins', sans-serif;
       color: #1e293b;
     }
 
-    /* ✨ Navbar */
     nav.navbar {
       backdrop-filter: blur(10px);
       background-color: rgba(33, 158, 188, 0.9) !important;
@@ -43,7 +36,6 @@
       margin: 1.5rem auto;
       padding: 0.8rem 1.5rem;
       width: 95%;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
     }
 
     .navbar .fw-bold {
@@ -51,28 +43,22 @@
       font-weight: 600;
     }
 
-    /* 💠 Tombol */
     .btn-custom {
       background-color: #219ebc;
       color: white;
       border-radius: 8px;
       padding: 0.4rem 1rem;
       font-weight: 500;
-      transition: all 0.2s ease;
     }
 
     .btn-custom:hover {
       background-color: #197b9b;
     }
 
-    /* 💎 Card */
     .card {
       background: #ffffff;
       border-radius: 1rem;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
       padding: 2rem;
-      border: none;
-      /* hapus transform hover */
     }
 
     h1 {
@@ -98,7 +84,6 @@
       margin-bottom: 0.8rem;
     }
 
-    /* 📋 Tutorial Step */
     .tutorial-step {
       display: flex;
       align-items: flex-start;
@@ -133,24 +118,23 @@
     }
 
     .tentangpmr h4 {
-        margin-bottom: 0.3rem; /* sebelumnya 0.5~0.8rem */
+        margin-bottom: 0.3rem; 
     }
 
     .tentangpmr h6 {
-        margin-top: 0.4rem;    /* jarak dari judul utama */
-        margin-bottom: 0.3rem; /* jarak ke paragraf */
+        margin-top: 0.4rem;    
+        margin-bottom: 0.3rem; 
     }
 
     .tentangpmr p {
-        margin-bottom: 0.5rem; /* jarak antar paragraf */
-        line-height: 1.5;      /* rapat tapi masih terbaca */
+        margin-bottom: 0.5rem; 
+        line-height: 1.5;      
     }
 
   </style>
 </head>
 
 <body style="background: url('{{ asset('/img/backgrounds/bg2.png') }}') no-repeat center center fixed; background-size: cover;">
-  <!-- Navbar -->
   <nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center" id="layout-navbar">
     <div class="d-flex align-items-center">
       <a href="{{ url('/') }}" class="d-flex align-items-center text-decoration-none">
@@ -165,7 +149,6 @@
     </div>
   </nav>
 
-  <!-- Content -->
   <div class="container mt-5">
     <div class="text-center mb-5">
         <h1>Selamat Datang di PMR X-SCHOOL</h1>
@@ -173,7 +156,6 @@
     </div>
 
     <div class="row g-4 justify-content-center">
-        <!-- Tentang PMR -->
         <div class="col-lg-6 col-md-10">
             <div class="card tentangpmr">
                 <div class="mb-3">
@@ -187,7 +169,6 @@
             </div>
         </div>
 
-        <!-- Tutorial Mendaftar -->
         <div class="col-lg-6 col-md-10">
             <div class="card">
                 <div class="mb-3">
@@ -223,10 +204,9 @@
             </div>
         </div>
 
-    </div> <!-- akhir row -->
+    </div> 
 </div>
 
-  <!-- Footer -->
   <footer>
     <p>© 2025 PMR X-SCHOOL. Dibuat dengan semangat kemanusiaan</p>
   </footer>

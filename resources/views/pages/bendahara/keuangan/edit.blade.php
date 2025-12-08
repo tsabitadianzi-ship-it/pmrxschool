@@ -7,38 +7,25 @@
   body {
       background: url('{{ asset('/img/backgrounds/bg1.png') }}') no-repeat center center fixed;
       background-size: cover;
-      font-family: "Public Sans", sans-serif;
   }
 
   .main-area {
       display: flex;
       justify-content: center;
-      align-items: flex-start;
-      min-height: calc(100vh - 80px); /* tinggi navbar */
-      padding: 50px 20px;
   }
 
   .card-detail {
       width: 100%;
       max-width: 700px;
       background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
       border-radius: 20px;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
       padding: 2.5rem;
-      animation: fadeIn 0.6s ease;
-  }
-
-  @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
   }
 
   h2 {
       color: #164b5c;
       font-weight: 700;
       text-align: center;
-      margin-bottom: 1.5rem;
   }
 
   label {
@@ -50,12 +37,10 @@
       border-radius: 10px;
       border: 1px solid #bcd4da;
       padding: 10px 12px;
-      transition: 0.2s ease;
   }
 
   .form-control:focus {
       border-color: #219EBC;
-      box-shadow: 0 0 6px rgba(33, 158, 188, 0.3);
   }
 
   .btn-submit {
@@ -65,27 +50,22 @@
       border-radius: 10px;
       padding: 10px 18px;
       font-weight: 500;
-      transition: 0.2s;
   }
 
   .btn-submit:hover {
       background-color: #468d9fff;
-      transform: translateY(-1px);
   }
 
   .btn-cancel {
       background-color: #6b7770ff;
       color: white;
-      border: none;
       border-radius: 10px;
       padding: 10px 18px;
       font-weight: 500;
-      transition: 0.2s;
   }
 
   .btn-cancel:hover {
       background-color: #58615bff;
-      transform: translateY(-1px);
   }
 
   .alert {
@@ -101,12 +81,10 @@
   <div class="card-detail">
     <h2>Edit Data Keuangan</h2>
 
-    {{-- ✅ Alert Sukses --}}
     @if(session('success'))
       <div class="alert alert-success">{{ session('success') }}</div>
     @endif
 
-    {{-- ⚠️ Error --}}
     @if($errors->any())
       <div class="alert alert-danger">
         <ul class="mb-0">
@@ -161,7 +139,6 @@
   </div>
 </div>
 
-{{-- Optional: SweetAlert success --}}
 @if (Session::has('success'))
   @push('scripts')
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

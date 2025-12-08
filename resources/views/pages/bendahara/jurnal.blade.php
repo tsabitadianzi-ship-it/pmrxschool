@@ -2,6 +2,26 @@
 @section('title', 'Jurnal Bendahara')
 
 @section('content')
+<style>
+.table thead th {
+    background-color: #4b8c96ff;
+    color: #fff;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+div.dataTables_wrapper div.dataTables_paginate ul.pagination .page-item.active .page-link {
+    background-color: #4b8c96ff !important;
+    border-color: #4b8c96ff !important;
+    color: #fff !important;
+    border-radius: 8px;
+}
+
+.dataTables_wrapper .dataTables_info {
+    color: #6c757d;
+}
+</style>
 <div class="row">
     <div class="col-md-12">
 
@@ -47,27 +67,6 @@
 <link rel="stylesheet" href="{{ asset('/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}" />
 <link rel="stylesheet" href="{{ asset('/vendor/libs/sweetalert2/sweetalert2.css') }}" />
 
-<style>
-.table thead th {
-    background-color: #4b8c96ff;
-    color: #fff;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    border: none;
-}
-
-div.dataTables_wrapper div.dataTables_paginate ul.pagination .page-item.active .page-link {
-    background-color: #4b8c96ff !important;
-    border-color: #4b8c96ff !important;
-    color: #fff !important;
-    border-radius: 8px;
-}
-
-.dataTables_wrapper .dataTables_info {
-    color: #6c757d;
-}
-</style>
 @endpush
 
 @push('scripts')

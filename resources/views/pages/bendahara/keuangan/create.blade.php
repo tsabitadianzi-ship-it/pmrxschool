@@ -7,31 +7,19 @@
   body {
       background: url('{{ asset('/img/backgrounds/bg1.png') }}') no-repeat center center fixed;
       background-size: cover;
-      font-family: "Public Sans", sans-serif;
   }
 
   .main-area {
       display: flex;
       justify-content: center;
-      align-items: flex-start;
-      min-height: calc(100vh - 80px); /* 80px = tinggi navbar */
-      padding: 50px 20px;
   }
 
   .card-detail {
       width: 100%;
       max-width: 900px;
       background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
       border-radius: 20px;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
       padding: 2.5rem;
-      animation: fadeIn 0.6s ease;
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
   }
 
   label {
@@ -48,37 +36,30 @@
 
   .form-control:focus {
       border-color: #219EBC;
-      box-shadow: 0 0 6px rgba(33, 158, 188, 0.3);
   }
 
   .btn-submit {
       background-color: #219EBC;
       color: white;
-      border: none;
       border-radius: 10px;
       padding: 10px 18px;
       font-weight: 500;
-      transition: 0.2s;
   }
 
   .btn-submit:hover {
       background-color: #468d9fff;
-      transform: translateY(-1px);
   }
 
   .btn-cancel {
       background-color: #6b7770ff;
       color: white;
-      border: none;
       border-radius: 10px;
       padding: 10px 18px;
       font-weight: 500;
-      transition: 0.2s;
   }
 
   .btn-cancel:hover {
       background-color: #58615bff;
-      transform: translateY(-1px);
   }
 
   .alert {

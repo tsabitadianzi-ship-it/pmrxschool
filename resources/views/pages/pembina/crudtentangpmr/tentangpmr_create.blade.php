@@ -23,7 +23,6 @@
     border: 1px solid #cde3df;
   }
 
-
   h2 {
     color: #164b5c;
     font-weight: 700;

@@ -7,15 +7,11 @@
   body {
       background: url('{{ asset('/img/backgrounds/bg1.png') }}') no-repeat center center fixed;
       background-size: cover;
-      font-family: "Public Sans", sans-serif;
   }
 
   .main-area {
       display: flex;
       justify-content: center;
-      align-items: flex-start;
-      min-height: calc(100vh - 80px);
-      padding: 30px 10px;
   }
 
   .card-detail {
@@ -25,13 +21,9 @@
       border-radius: 18px;
       box-shadow: 0 8px 24px rgba(0,0,0,0.12);
       padding: 2rem;
-      animation: fadeIn 0.6s ease;
   }
 
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+  
 </style>
 @endpush
 

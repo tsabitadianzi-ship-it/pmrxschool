@@ -10,36 +10,24 @@
   body {
       background: url('{{ asset('/img/backgrounds/bg1.png') }}') no-repeat center center fixed;
       background-size: cover;
-      font-family: "Public Sans", sans-serif;
   }
 
   .main-area {
       display: flex;
       justify-content: center;
-      align-items: flex-start;
-      min-height: calc(100vh - 80px);
-      padding: 50px 20px;
   }
 
   .card-detail {
       width: 100%;
       max-width: 950px;
       background: rgba(255,255,255,0.95);
-      backdrop-filter: blur(10px);
-      border-radius: 20px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
       padding: 2.5rem;
-      animation: fadeIn 0.6s ease;
-      border: 1px solid #cde3df;
   }
-
-  @keyframes fadeIn { from {opacity:0; transform:translateY(10px);} to {opacity:1; transform:translateY(0);} }
 
   h2 { color: #164b5c; font-weight: 700; text-align: center; margin-bottom: 1.5rem; }
 
   .table thead th {
     background-color: #4B8C96; color: #fff; font-weight: 600;
-    text-transform: uppercase; letter-spacing: 0.5px; border: none;
   }
   .table tbody tr:hover { background-color: rgba(75,140,150,0.08); transition: 0.2s; }
   .badge { font-weight: 500; font-size: 0.9rem; }
@@ -58,6 +46,41 @@
     padding: 8px 16px; font-weight: 500; font-size: 0.95rem; transition: 0.2s;
   }
   .btn-edit:hover { background-color: #3e7d85; transform: translateY(-1px); }
+  div.dataTables_wrapper div.dataTables_paginate ul.pagination .page-item.active .page-link {
+      background-color: #4B8C96 !important; 
+      border-color: #4B8C96 !important;
+      color: #fff !important;
+      border-radius: 8px;
+  }
+
+  div.dataTables_wrapper div.dataTables_paginate ul.pagination .page-link {
+      background-color: #4B8C96 !important;
+      color: #fff !important;
+      border: none !important;
+      border-radius: 6px !important;
+      margin: 0 4px;
+  }
+
+  div.dataTables_wrapper div.dataTables_paginate ul.pagination .page-link:hover {
+      background-color: #3e7d85 !important;
+      color: #fff !important;
+  }
+
+  div.dataTables_wrapper div.dataTables_paginate ul.pagination .previous .page-link,
+  div.dataTables_wrapper div.dataTables_paginate ul.pagination .next .page-link {
+      background-color: transparent !important;
+      color: #6c757d !important;
+      border: 1px solid #dee2e6 !important;
+  }
+
+  div.dataTables_wrapper div.dataTables_paginate ul.pagination .previous .page-link:hover,
+  div.dataTables_wrapper div.dataTables_paginate ul.pagination .next .page-link:hover {
+      background-color: #e2e6ea !important;
+      color: #495057 !important;
+  }
+
+  .text-center.mt-3 .btn-back { padding: 8px 20px; }
+
 </style>
 @endpush
 

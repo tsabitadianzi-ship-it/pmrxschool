@@ -3,6 +3,57 @@
 @section('title', 'Data Keuangan')
 
 @section('content')
+<style>
+.table thead th {
+    background-color: #4B8C96;
+    color: #fff;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: none;
+}
+.table tbody tr:hover {
+    background-color: rgba(75, 140, 150, 0.08);
+}
+div.dataTables_wrapper div.dataTables_paginate ul.pagination .page-item.active .page-link {
+    background-color: #4B8C96 !important; 
+    border-color: #4B8C96 !important;
+    color: #fff !important;
+    border-radius: 8px;
+}
+div.dataTables_wrapper div.dataTables_info {
+    color: #6c757d;
+    font-weight: 500;
+}
+
+.btn-add {
+    background-color: #4B8C96;
+    color: white;
+    border-radius: 10px;
+    padding: 10px 18px;
+}
+.btn-add:hover {
+    background-color: #3e7d85;
+}
+
+.btn-edit {
+    background-color: #4B8C96;
+    color: white;
+    border-radius: 6px;
+}
+.btn-edit:hover {
+    background-color: #3e7d85;
+}
+
+.btn-delete {
+    background-color: #d14f4f;
+    color: white;
+    border-radius: 6px;
+}
+.btn-delete:hover {
+    background-color: #b84141;
+}
+</style>
 <div class="row fade-in">
     <div class="col-md-12">
 
@@ -73,69 +124,7 @@
 <link rel="stylesheet" href="{{ asset('/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}" />
 <link rel="stylesheet" href="{{ asset('/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}" />
 
-<style>
-/* === ANIMASI === */
-.fade-in {
-    animation: fadeIn 0.6s ease;
-}
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(8px); }
-    to { opacity: 1; transform: translateY(0); }
-}
 
-/* === TABEL === */
-.table thead th {
-    background-color: #4B8C96;
-    color: #fff;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    border: none;
-}
-.table tbody tr:hover {
-    background-color: rgba(75, 140, 150, 0.08);
-    transition: background-color 0.2s ease-in-out;
-}
-div.dataTables_wrapper div.dataTables_paginate ul.pagination .page-item.active .page-link {
-    background-color: #4B8C96 !important; 
-    border-color: #4B8C96 !important;
-    color: #fff !important;
-    border-radius: 8px;
-}
-div.dataTables_wrapper div.dataTables_info {
-    color: #6c757d;
-    font-weight: 500;
-}
-
-/* === TOMBOL === */
-.btn-add {
-    background-color: #4B8C96;
-    color: white;
-    border-radius: 10px;
-    padding: 10px 18px;
-}
-.btn-add:hover {
-    background-color: #3e7d85;
-}
-
-.btn-edit {
-    background-color: #4B8C96;
-    color: white;
-    border-radius: 6px;
-}
-.btn-edit:hover {
-    background-color: #3e7d85;
-}
-
-.btn-delete {
-    background-color: #d14f4f;
-    color: white;
-    border-radius: 6px;
-}
-.btn-delete:hover {
-    background-color: #b84141;
-}
-</style>
 @endpush
 
 @push('scripts')

@@ -3,30 +3,14 @@
 
 @section('content')
 <style>
-  /* === BASE STYLE === */
   body {
     background-color: #F8FBFD;
     min-height: 100vh;
-    position: relative;
   }
 
-  .fade-in {
-    animation: fadeIn 0.8s ease;
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  /* === CARD & HEADER === */
   .card {
     background: #FFFFFF;
     border-radius: 16px;
-    border: 1px solid rgba(0, 0, 0, 0.04);
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
-    transition: none !important;
-    transform: none !important;
   }
 
   .card-header {
@@ -35,16 +19,13 @@
     font-weight: 600;
     border-top-left-radius: 16px !important;
     border-top-right-radius: 16px !important;
-    box-shadow: 0 2px 8px rgba(33, 158, 188, 0.25);
   }
 
-  /* === STAT CARD === */
   .stat-card {
-    background-color: #D0F0FA; /* versi pastel dari #219EBC */
+    background-color: #D0F0FA; 
     border-radius: 14px;
     padding: 1.2rem;
     text-align: center;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
   }
 
   .stat-card h6 {
@@ -58,7 +39,6 @@
     margin-top: 4px;
   }
 
-  /* === AVATAR === */
   .avatar-circle {
     width: 42px;
     height: 42px;
@@ -71,19 +51,15 @@
     font-weight: 600;
   }
 
-  /* === TEXT === */
   h2 {
     color: #2f4f4f;
     font-weight: 700;
   }
 
-  .border-bottom {
-    border-color: rgba(0, 0, 0, 0.05) !important;
-  }
+  
 </style>
 
 <div class="container py-4 fade-in">
-  <!-- Header -->
   <div class="d-flex justify-content-between align-items-center mb-4">
     <div>
       <h2 class="fw-bold mb-0">Dashboard Bendahara</h2>
@@ -91,7 +67,6 @@
     </div>
   </div>
 
-  <!-- Statistik -->
    <div class="row mb-4">
     <div class="col-md-4 mb-3">
         <div class="card text-center shadow-sm border-0" style="background-color: #fff;">
@@ -121,7 +96,6 @@
     </div>
   </div>
 
-    <!-- Notifikasi Baru -->
   @php
       $notifications = auth()->user()->unreadNotifications;
   @endphp
@@ -142,7 +116,6 @@
       auth()->user()->unreadNotifications->markAsRead();
   @endphp
 
-  <!-- Informasi Kegiatan -->
   <div class="card mb-4 shadow-sm">
     <div class="card-header d-flex align-items-center gap-2">
       <i class="ti ti-info-circle"></i> INFORMASI KEGIATAN
@@ -168,9 +141,7 @@
     </div>
   </div>
 
-  <!-- Pembina & Pelaksanaan Ekskul -->
   <div class="row g-3">
-    <!-- Pembina -->
     <div class="col-md-6">
       <div class="card shadow-sm">
         <div class="card-header d-flex align-items-center gap-2">
@@ -196,7 +167,6 @@
       </div>
     </div>
 
-    <!-- Pelaksanaan Ekskul -->
     <div class="col-md-6">
       <div class="card shadow-sm">
         <div class="card-header d-flex align-items-center gap-2">

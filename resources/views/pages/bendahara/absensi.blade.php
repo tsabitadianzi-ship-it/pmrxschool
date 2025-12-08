@@ -5,7 +5,6 @@
 <style>
 body { background-color: #F8FBFD; }
 
-/* === HEADER === */
 .page-header {
     margin-bottom: 1.5rem;
 }
@@ -16,22 +15,21 @@ body { background-color: #F8FBFD; }
 .page-header p {
     color: #6c757d;
     margin-bottom: 0.8rem;
+
 }
 .btn-main {
     background-color: #4B8C96;
     color: white;
-    border: none;
     border-radius: 8px;
     padding: 8px 16px;
 }
 
-/* === CARD TANGGAL === */
 .card-tanggal {
     background: #fff;
     border-radius: 16px;
     border: none;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.05);
     margin-bottom: 1rem;
+
 }
 .card-tanggal-header {
     background-color: #7ac0d5ff;
@@ -72,13 +70,11 @@ body { background-color: #F8FBFD; }
 </style>
 
 <div class="container py-4 fade-in">
-    <!-- Header -->
     <div class="page-header d-flex flex-column align-items-start">
         <h2>Data Absensi</h2>
         <p>Catatan absensi kehadiran anggota PMR</p>
     </div>
 
-    <!-- Card Tanggal -->
     @forelse($absensiPerTanggal as $tanggal => $absensis)
         <div class="card card-tanggal">
             <div class="card-tanggal-header">

@@ -10,32 +10,24 @@
 body {
     background: url('{{ asset('/img/backgrounds/bg1.png') }}') no-repeat center center fixed;
     background-size: cover;
-    font-family: "Public Sans", sans-serif;
 }
 .main-area {
     display: flex;
     justify-content: center;
-    align-items: flex-start;
-    min-height: calc(100vh - 80px);
-    padding: 50px 20px;
 }
 .card-detail {
     width: 100%;
     max-width: 950px;
     background: rgba(255,255,255,0.95);
-    backdrop-filter: blur(10px);
     border-radius: 20px;
     padding: 2.5rem;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
 }
 h2 { 
     color: #164b5c; 
     font-weight: 700; 
     text-align: center; 
-    margin-bottom: 1.5rem;
 }
 
-/* === TABEL === */
 .table thead th {
     background-color: #4B8C96;
     color: #fff;
@@ -44,31 +36,28 @@ h2 {
     letter-spacing: 0.5px;
     border: none;
 }
-.table tbody tr:hover { background-color: rgba(75, 140, 150, 0.08); transition: 0.2s; }
+.table tbody tr:hover { background-color: rgba(75, 140, 150, 0.08); }
 .badge { font-weight: 500; }
 .bg-success { background-color: #4fd167ff !important; color: white; }
 .bg-warning { background-color: #d18c4fff !important; color: white; }
 .bg-danger { background-color: #d14f4fff !important; color: white; }
 
-/* === TOMBOL === */
 .btn-back, .btn-edit {
     border-radius: 10px;
     font-weight: 500;
-    transition: .2s;
 }
 .btn-back {
     background:#6b7770ff;
     color:white;
 }
-.btn-back:hover { background:#58615bff; transform: translateY(-1px); }
+.btn-back:hover { background:#58615bff; transform: }
 
 .btn-edit {
     background:#d18c4fff;
     color:white;
 }
-.btn-edit:hover { background:#3e7d85; transform: translateY(-1px); }
+.btn-edit:hover { background:#3e7d85; transform: }
 
-/* === DATATABLE PAGINATION === */
 div.dataTables_wrapper div.dataTables_paginate ul.pagination .page-item.active .page-link {
     background-color: #4B8C96 !important; 
     border-color: #4B8C96 !important;
@@ -99,7 +88,6 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination .next .page-link:ho
     color: #495057 !important;
 }
 
-/* Tombol Kembali */
 .text-center.mt-3 .btn-back { padding: 8px 20px; }
 </style>
 @endpush

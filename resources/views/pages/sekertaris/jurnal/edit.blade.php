@@ -3,6 +3,43 @@
 @section('title', 'Edit Jurnal')
 
 @section('content')
+<style>
+body {
+    background: url('{{ asset('/img/backgrounds/bg1.png') }}') no-repeat center center fixed;
+    background-size: cover;
+}
+.main-area {
+    display: flex;
+    justify-content: center;
+}
+.card-detail {
+    width: 100%;
+    max-width: 900px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 2.5rem;
+}
+h2 { color:#164b5c; font-weight:700; text-align:center; }
+label { font-weight:600; color:#176b86; }
+.form-control {
+    border-radius:10px;
+    border:1px solid #bcd4da;
+    padding:10px 12px;
+}
+.form-control:focus {
+    border-color:#219EBC;
+}
+.btn-submit {
+    background:#219EBC; color:white; border:none;
+    border-radius:10px; padding:10px 18px; font-weight:500;
+}
+.btn-submit:hover { background:#468d9fff; }
+.btn-cancel {
+    background:#6b7770ff; color:white;
+    padding:10px 18px; border-radius:10px;
+}
+.btn-cancel:hover { background:#58615bff; }
+</style>
 <div class="main-area">
     <div class="card-detail">
         <h2>Edit Jurnal</h2>
@@ -65,52 +102,4 @@
 
 
 @push('styles')
-<style>
-body {
-    background: url('{{ asset('/img/backgrounds/bg1.png') }}') no-repeat center center fixed;
-    background-size: cover;
-    font-family: "Public Sans", sans-serif;
-    min-height: 100vh;
-    margin: 0;
-}
-.main-area {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: calc(100vh - 80px);
-    padding: 50px 20px;
-}
-.card-detail {
-    width: 100%;
-    max-width: 900px;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    padding: 2.5rem;
-    border: 1px solid #cde3df;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-}
-h2 { color:#164b5c; font-weight:700; text-align:center; margin-bottom:1.5rem; }
-label { font-weight:600; color:#176b86; }
-.form-control {
-    border-radius:10px;
-    border:1px solid #bcd4da;
-    transition:.2s;
-    padding:10px 12px;
-}
-.form-control:focus {
-    border-color:#219EBC;
-    box-shadow:0 0 6px rgba(33,158,188,.3);
-}
-.btn-submit {
-    background:#219EBC; color:white; border:none;
-    border-radius:10px; padding:10px 18px; font-weight:500;
-}
-.btn-submit:hover { background:#468d9fff; transform:translateY(-1px); }
-.btn-cancel {
-    background:#6b7770ff; color:white;
-    padding:10px 18px; border-radius:10px;
-}
-.btn-cancel:hover { background:#58615bff; transform:translateY(-1px); }
-</style>
 @endpush

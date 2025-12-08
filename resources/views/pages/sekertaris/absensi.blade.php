@@ -4,9 +4,6 @@
 @section('content')
 
 <style>
-body { background-color: #F8FBFD; }
-
-/* === HEADER === */
 .page-header h2 {
     font-weight: 700;
     color: #2f4f4f;
@@ -21,12 +18,10 @@ body { background-color: #F8FBFD; }
     padding: 8px 16px;
 }
 
-/* === CARD TANGGAL === */
 .card-tanggal {
     background: #fff;
     border-radius: 16px;
     border: none;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.05);
     margin-bottom: 1.2rem;
 }
 .card-tanggal-header {
@@ -59,7 +54,6 @@ body { background-color: #F8FBFD; }
     font-size: 0.85rem;
 }
 
-/* STATUS BADGE */
 .card-tanggal-body {
     padding: 1rem;
     display: flex;

@@ -6,28 +6,31 @@ use Illuminate\Http\Request;
 use App\Models\Absensi;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+
 class AbsensiController extends Controller
 {
+    private function absensiQuery()
+    {
+        return Absensi::with('user')
+            ->whereHas('user', function($q){
+                $q->where('role', '!=', 'pembina')
+                ->where('status', 'active');
+            })
+            ->orderBy('tanggal', 'desc');
+    }
+
     public function index(Request $request)
     {
-        $jenis = $request->query('jenis');
-
-        $query = Absensi::with('user')->orderBy('tanggal', 'desc');
-
-        if ($jenis) {
-            $query->where('jenis', $jenis);
-        }
-
-        $absensiPerTanggal = $query->whereHas('user', function($q){
-            $q->where('role', '!=', 'pembina'); 
-        })->get()->groupBy('tanggal');
+        $absensiPerTanggal = $this->absensiQuery()->get()->groupBy('tanggal');
 
         return view('pages.sekertaris.absensi', compact('absensiPerTanggal'));
     }
 
     public function create()
     {
-        $users = User::whereIn('role', ['siswa','sekertaris','bendahara'])->get(); // exclude pembina
+        $users = User::whereIn('role', ['siswa','sekertaris','bendahara'])
+            ->where('status', 'active')
+            ->get();
         return view('pages.sekertaris.absensi.create', compact('users'));
     }
 
@@ -36,184 +39,124 @@ class AbsensiController extends Controller
         $request->validate([
             'user_id' => 'required|exists:users,id',
             'tanggal' => 'required|date',
-            'jenis' => 'required|in:Mingguan,Khusus',
             'kegiatan' => 'nullable|string|max:255',
             'status' => 'required|in:Hadir,Izin,Tidak Hadir',
         ]);
 
+        $user = User::find($request->user_id);
+        if ($user->role === 'pembina') {
+            return back()->with('error', 'Pembina tidak boleh diabsen!');
+        }
+
         Absensi::create($request->all());
-
         return redirect()->route('sekertaris.absensi')->with('success', 'Absensi berhasil disimpan!');
-
-
-    }
-
-    public function edit($id)
-    {
-        $absensi = Absensi::with('user')->findOrFail($id);
-        return view('pages.sekertaris.absensi.edit', compact('absensi'));
-    }
-
-    public function updateStatus(Request $request, $id)
-    {
-        $request->validate([
-            'status' => 'required|in:Hadir,Izin,Tidak Hadir',
-        ]);
-
-        $absensi = Absensi::findOrFail($id);
-        $absensi->status = $request->status;
-        $absensi->save();
-
-    return redirect()->route('sekertaris.absensi.show', $absensi->tanggal)->with('success', 'Status absensi berhasil diperbarui.');
-    }
-
-    public function destroyByTanggal($tanggal)
-    {
-        Absensi::where('tanggal', $tanggal)->delete();
-
-        return redirect()->route('sekertaris.absensi')->with('success', 'Semua absensi pada tanggal tersebut berhasil dihapus.');
     }
 
     public function show($tanggal)
     {
-        $absensis = Absensi::with('user')
+        $absensis = $this->absensiQuery()
             ->where('tanggal', $tanggal)
             ->get();
 
         return view('pages.sekertaris.absensi.show', compact('absensis', 'tanggal'));
     }
 
+    public function edit($id)
+    {
+        $absensi = Absensi::with('user')->findOrFail($id);
+        if ($absensi->user->role === 'pembina') {
+            return back()->with('error', 'Tidak dapat mengedit absensi pembina!');
+        }
+
+        return view('pages.sekertaris.absensi.edit', compact('absensi'));
+    }
+
+    public function updateStatus(Request $request, $id)
+    {
+        $request->validate(['status' => 'required|in:Hadir,Izin,Tidak Hadir']);
+
+        $absensi = Absensi::findOrFail($id);
+        if ($absensi->user->role === 'pembina') {
+            return back()->with('error', 'Tidak dapat mengubah absensi pembina!');
+        }
+
+        $absensi->update(['status' => $request->status]);
+
+        return redirect()->route('sekertaris.absensi.show', $absensi->tanggal)
+            ->with('success', 'Status absensi berhasil diperbarui.');
+    }
+
+    public function destroyByTanggal($tanggal)
+    {
+        Absensi::where('tanggal', $tanggal)
+            ->whereHas('user', function($q){
+                $q->where('role', '!=', 'pembina');
+            })
+            ->delete();
+
+        return redirect()->route('sekertaris.absensi')
+            ->with('success', 'Absensi pada tanggal tersebut berhasil dihapus.');
+    }
 
     public function storeMass(Request $request)
     {
         $request->validate([
             'tanggal' => 'required|date',
             'kegiatan' => 'required|string|max:255',
-            'status'   => 'required|array',
+            'status' => 'required|array',
         ]);
 
         foreach ($request->status as $user_id => $status) {
-            Absensi::create([
-                'user_id' => $user_id,
-                'tanggal' => $request->tanggal,
-                'kegiatan' => $request->kegiatan,
-                'status' => $status,
-            ]);
+            $user = User::find($user_id);
+
+            if ($user && $user->role !== 'pembina') {
+                Absensi::create([
+                    'user_id' => $user_id,
+                    'tanggal' => $request->tanggal,
+                    'kegiatan' => $request->kegiatan,
+                    'status' => $status,
+                ]);
+            }
         }
 
-        return redirect()->route('sekertaris.absensi')
-                        ->with('success', 'Absensi berhasil disimpan!');
+        return redirect()->route('sekertaris.absensi')->with('success', 'Absensi berhasil disimpan!');
     }
 
+    // ==== HALAMAN UNTUK ROLE LAIN ====
 
-    // Tampil semua absensi untuk pembina
-    public function indexPembina(Request $request)
+    public function indexPembina()
     {
-        $jenis = $request->query('jenis');
-
-        $query = Absensi::with('user')->orderBy('tanggal', 'desc');
-
-        if ($jenis) {
-            $query->where('jenis', $jenis);
-        }
-
-        // Ambil semua absensi siswa, sekertaris, bendahara (exclude pembina)
-        $absensiPerTanggal = $query->whereHas('user', function($q){
-            $q->where('role', '!=', 'pembina'); 
-        })->get()->groupBy('tanggal');
-
+        $absensiPerTanggal = $this->absensiQuery()->get()->groupBy('tanggal');
         return view('pages.pembina.absensi', compact('absensiPerTanggal'));
     }
 
-    // Show detail absensi per tanggal
     public function showPembina($tanggal)
     {
-        $absensis = Absensi::with('user')
-            ->where('tanggal', $tanggal)
-            ->get();
-
+        $absensis = $this->absensiQuery()->where('tanggal', $tanggal)->get();
         return view('pages.pembina.absensi.show', compact('absensis', 'tanggal'));
     }
 
-    // Form edit absensi
-    public function editPembina($id)
+    public function indexSiswa()
     {
-        $absensi = Absensi::with('user')->findOrFail($id);
-        return view('pages.pembina.absensi.edit', compact('absensi'));
-    }
-
-    // Update data absensi
-    public function updatePembina(Request $request, $id)
-    {
-        $request->validate([
-            'status' => 'required|in:Hadir,Izin,Tidak Hadir',
-            'kegiatan' => 'nullable|string|max:255',
-        ]);
-
-        $absensi = Absensi::findOrFail($id);
-        $absensi->update($request->only('status', 'kegiatan'));
-
-        return redirect()->route('pembina.absensi.show', $absensi->tanggal)->with('success', 'Absensi berhasil diperbarui.');
-    }
-
-    public function indexSiswa(Request $request)
-    {
-        $jenis = $request->query('jenis');
-
-        $query = Absensi::with('user')->orderBy('tanggal', 'desc');
-
-        if ($jenis) {
-            $query->where('jenis', $jenis);
-        }
-
-        // Ambil semua absensi siswa, sekertaris, bendahara (exclude pembina)
-        $absensiPerTanggal = $query->whereHas('user', function($q){
-            $q->where('role', '!=', 'pembina'); 
-        })->get()->groupBy('tanggal');
-
+        $absensiPerTanggal = $this->absensiQuery()->get()->groupBy('tanggal');
         return view('pages.siswa.absensi', compact('absensiPerTanggal'));
     }
 
-
     public function showSiswa($tanggal)
     {
-        $absensis = Absensi::with('user')
-            ->where('tanggal', $tanggal)
-            ->whereHas('user', function($q){
-                $q->where('role', '!=', 'pembina'); 
-            })->get();
-
+        $absensis = $this->absensiQuery()->where('tanggal', $tanggal)->get();
         return view('pages.siswa.absensi.show', compact('absensis', 'tanggal'));
     }
 
-    public function indexBendahara(Request $request)
+    public function indexBendahara()
     {
-        $jenis = $request->query('jenis');
-
-        $query = Absensi::with('user')->orderBy('tanggal', 'desc');
-
-        if ($jenis) {
-            $query->where('jenis', $jenis);
-        }
-
-        // Ambil semua absensi siswa, sekertaris, bendahara (exclude pembina)
-        $absensiPerTanggal = $query->whereHas('user', function($q){
-            $q->where('role', '!=', 'pembina'); 
-        })->get()->groupBy('tanggal');
-
+        $absensiPerTanggal = $this->absensiQuery()->get()->groupBy('tanggal');
         return view('pages.bendahara.absensi', compact('absensiPerTanggal'));
     }
 
     public function showBendahara($tanggal)
     {
-        $absensis = Absensi::with('user')
-            ->where('tanggal', $tanggal)
-            ->whereHas('user', function($q){
-                $q->where('role', '!=', 'pembina'); 
-            })->get();
-
+        $absensis = $this->absensiQuery()->where('tanggal', $tanggal)->get();
         return view('pages.bendahara.absensi.show', compact('absensis', 'tanggal'));
     }
-
-
 }

@@ -5,16 +5,12 @@
 @push('styles')
 <link rel="stylesheet" href="{{ asset('/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}" />
 <link rel="stylesheet" href="{{ asset('/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}" />
-
 <style>
 body {
     background: url('{{ asset('/img/backgrounds/bg1.png') }}') no-repeat center center fixed;
     background-size: cover;
 }
-.main-area {
-    display: flex;
-    justify-content: center;
-}
+.main-area { display: flex; justify-content: center; }
 .card-detail {
     width: 100%;
     max-width: 950px;
@@ -22,11 +18,7 @@ body {
     border-radius: 20px;
     padding: 2.5rem;
 }
-h2 { 
-    color: #164b5c; 
-    font-weight: 700; 
-    text-align: center; 
-}
+h2 { color: #164b5c; font-weight: 700; text-align: center; }
 
 .table thead th {
     background-color: #4B8C96;
@@ -37,26 +29,17 @@ h2 {
     border: none;
 }
 .table tbody tr:hover { background-color: rgba(75, 140, 150, 0.08); }
+
 .badge { font-weight: 500; }
 .bg-success { background-color: #4fd167ff !important; color: white; }
 .bg-warning { background-color: #d18c4fff !important; color: white; }
 .bg-danger { background-color: #d14f4fff !important; color: white; }
 
-.btn-back, .btn-edit {
-    border-radius: 10px;
-    font-weight: 500;
-}
-.btn-back {
-    background:#6b7770ff;
-    color:white;
-}
-.btn-back:hover { background:#58615bff; transform: }
-
-.btn-edit {
-    background:#d18c4fff;
-    color:white;
-}
-.btn-edit:hover { background:#3e7d85; transform: }
+.btn-back, .btn-edit { border-radius: 10px; font-weight: 500; }
+.btn-back { background:#6b7770ff; color:white; }
+.btn-back:hover { background:#58615bff; }
+.btn-edit { background:#d18c4fff; color:white; }
+.btn-edit:hover { background:#3e7d85; }
 
 div.dataTables_wrapper div.dataTables_paginate ul.pagination .page-item.active .page-link {
     background-color: #4B8C96 !important; 
@@ -75,7 +58,6 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination .page-link:hover {
     background-color: #3e7d85 !important;
     color: #fff !important;
 }
-/* Previous & Next tetap abu-abu */
 div.dataTables_wrapper div.dataTables_paginate ul.pagination .previous .page-link,
 div.dataTables_wrapper div.dataTables_paginate ul.pagination .next .page-link {
     background-color: transparent !important;
@@ -110,7 +92,7 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination .next .page-link:ho
             <tbody>
                 @foreach($absensis as $item)
                 <tr>
-                    <td>{{ $loop->iteration }}</td>
+                    <td></td> 
                     <td>{{ $item->user->nama_lengkap ?? '-' }}</td>
                     <td>
                         <span class="badge
@@ -146,7 +128,7 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination .next .page-link:ho
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
 $(document).ready(function() {
-    $('.dataTable').DataTable({
+    var table = $('.dataTable').DataTable({
         pagingType: "simple_numbers",
         responsive: true,
         language: {
@@ -155,9 +137,18 @@ $(document).ready(function() {
             lengthMenu: "Tampilkan _MENU_ data",
             paginate: { previous: "Sebelumnya", next: "Berikutnya" }
         },
-        order: [[1, 'asc']],
-        pageLength: 10
+        order: [[1, 'asc']], 
+        pageLength: 10,
+        columnDefs: [
+            { targets: 0, searchable: false, orderable: false, className: 'dt-center' } 
+        ]
     });
+
+    table.on('order.dt search.dt draw.dt', function() {
+        table.column(0, { search:'applied', order:'applied' }).nodes().each(function(cell, i) {
+            cell.innerHTML = i + 1;
+        });
+    }).draw();
 
     @if(Session::has('success'))
     Swal.fire({

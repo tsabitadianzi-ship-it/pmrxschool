@@ -13,13 +13,10 @@ class SekertarisController extends Controller
 {
     public function index()
     {
-        // ambil data pembina
         $pembina = User::where('role', 'pembina')->get();
 
-        // ambil data informasi
        $informasi = Informasi::where('tanggal', '>=', now())->orderBy('tanggal', 'asc')->get();
 
-        // statistik anggota
         $jumlahAnggota = User::whereIn('role', ['siswa', 'sekertaris', 'bendahara'])->count();
         $anggotaAktif = User::whereIn('role', ['siswa', 'sekertaris', 'bendahara'])->where('status', 'active')->count();
         $anggotaPending = User::where('role', 'siswa')->where('status', 'pending')->count();

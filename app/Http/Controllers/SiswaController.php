@@ -14,20 +14,16 @@ class SiswaController extends Controller
 {
     public function index()
     {
-        // ambil data pembina
         $pembina = User::where('role', 'pembina')->get();
 
-        // Informasi terbaru ditaruh paling atas
        $informasi = Informasi::where('tanggal', '>=', now())->orderBy('tanggal', 'asc')->get();
 
-        // statistik anggota
         $jumlahAnggota = User::whereIn('role', ['siswa', 'sekertaris', 'bendahara'])->count();
         $anggotaAktif = User::whereIn('role', ['siswa', 'sekertaris', 'bendahara'])->where('status', 'active')->count();
         $anggotaPending = User::where('role', 'siswa')->where('status', 'pending')->count();
         $jumlahAnggota = User::whereIn('role', ['siswa','sekertaris','bendahara'])->where('status','active')->count();
         $pelaksanaan = Pelaksanaan::all();
 
-         // ===== Ambil notifikasi unread user =====
         $notifications = Auth::user()->unreadNotifications;
 
         return view('pages.siswa.dashboard', compact(

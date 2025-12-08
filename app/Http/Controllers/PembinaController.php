@@ -16,7 +16,6 @@ use Illuminate\Support\Facades\Auth;
 
 class PembinaController extends Controller
 {
-    // Pastikan hanya user login yang bisa akses
     public function __construct()
     {
         $this->middleware('auth');
@@ -30,7 +29,6 @@ class PembinaController extends Controller
         $pelaksanaan = Pelaksanaan::all();
         $notifications = Auth::user()->unreadNotifications;
 
-        // Ambil tutorial pertama
         $tutorial = Tutorial::first();
 
         return view('pages.pembina.dashboard', compact(
@@ -70,17 +68,14 @@ class PembinaController extends Controller
 
     public function anggota()
     {
-        // hanya siswa yang statusnya aktif
         $anggotaAktif = User::whereIn('role', ['siswa', 'sekertaris', 'bendahara'])
             ->where('status', 'active')
             ->get();
 
-        // hanya siswa yang statusnya pending
         $anggotaKonfirmasi = User::where('role', 'siswa')
             ->where('status', 'pending')
             ->get();
 
-        // ambil semua pembina
         $pembina = User::where('role', 'pembina')->get();
 
         return view('pages.pembina.anggota', compact('anggotaAktif', 'anggotaKonfirmasi', 'pembina'));
@@ -95,20 +90,16 @@ class PembinaController extends Controller
 
     public function terimaAnggota($id)
     {
-        // Ambil data siswa berdasarkan ID
         $user = User::findOrFail($id);
 
-        // Update status siswa menjadi active
         $user->status = 'active';
         $user->save();
 
-        // Pastikan nomor WA berawalan 62
         $no_telp = $user->no_telp;
         if (str_starts_with($no_telp, '0')) {
             $no_telp = '62' . substr($no_telp, 1);
         }
 
-        // Kirim pesan WhatsApp via Fonnte
         $response = Http::withHeaders([
             'Authorization' => env('FONNTE_API_KEY'),
         ])->post('https://api.fonnte.com/send', [
@@ -119,7 +110,6 @@ class PembinaController extends Controller
 
         $result = $response->json();
 
-        // Redirect kembali dengan notifikasi sukses
         return redirect()->route('pembina.anggota')->with('success', 'Siswa berhasil dikonfirmasi dan pesan WhatsApp telah dikirim!');
     }
 
@@ -128,16 +118,13 @@ class PembinaController extends Controller
     {
         $user = User::findOrFail($id);
 
-        // Simpan nomor dulu sebelum dihapus
         $no_telp = $user->no_telp;
         $nama = $user->nama_lengkap;
 
-        // Pastikan nomor WA berawalan 62
         if (str_starts_with($no_telp, '0')) {
             $no_telp = '62' . substr($no_telp, 1);
         }
 
-        // Kirim pesan penolakan via Fonnte
         $response = Http::withHeaders([
             'Authorization' => env('FONNTE_API_KEY'),
         ])->post('https://api.fonnte.com/send', [
@@ -147,8 +134,6 @@ class PembinaController extends Controller
         ]);
 
         $result = $response->json();
-
-        // Setelah kirim WA, hapus datanya dari database
         $user->delete();
 
         return redirect()->route('pembina.anggota')->with('success', 'Anggota ditolak dan pesan WhatsApp telah dikirim!');
@@ -158,12 +143,11 @@ class PembinaController extends Controller
     public function destroy($id)
     {
         $user = User::findOrFail($id);
-        $user->delete(); // hapus user
+        $user->delete(); 
 
         return redirect()->route('pembina.anggota')->with('success', 'Anggota berhasil dihapus!');
     }
 
-    // Form edit jabatan anggota
     public function editAnggota($id)
     {
         $anggota = User::findOrFail($id);
@@ -171,7 +155,6 @@ class PembinaController extends Controller
         return view('pages.pembina.anggota_edit', compact('anggota'));
     }
 
-    // Proses update jabatan anggota
     public function updateAnggota(Request $request, $id)
     {
         $request->validate([
@@ -179,7 +162,7 @@ class PembinaController extends Controller
         ]);
 
         $anggota = User::findOrFail($id);
-        $anggota->role = $request->role; // update jabatan/role
+        $anggota->role = $request->role; 
         $anggota->save();
 
         return redirect()->route('pembina.anggota')->with('success', 'Jabatan anggota berhasil diperbarui!');
@@ -207,7 +190,6 @@ class PembinaController extends Controller
 
     public function updateKelas()
     {
-        // Panggil command atau langsung logic update kelas
         $users = \App\Models\User::whereIn('role', ['siswa', 'bendahara', 'sekertaris'])->where('status', 'active')->get();
         $naik = 0;
         $lulus = 0;

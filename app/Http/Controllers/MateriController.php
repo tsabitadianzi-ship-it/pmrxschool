@@ -21,7 +21,6 @@ class MateriController extends Controller
 
     public function store(Request $request)
     {
-        // Validasi input (file nullable)
         $validated = $request->validate([
             'tanggal' => 'required|date',
             'judul' => 'required|string|max:255',
@@ -29,7 +28,6 @@ class MateriController extends Controller
             'file' => 'nullable|file|mimes:pdf,doc,docx,ppt,pptx,xls,xlsx,jpg,png|max:5120',
         ]);
 
-        // default null supaya tidak Undefined variable
         $fileName = null;
 
         if ($request->hasFile('file')) {
@@ -84,7 +82,6 @@ class MateriController extends Controller
             return redirect()->route('sekertaris.materi.index')->with('error', 'Data tidak ditemukan.');
         }
 
-        // keep old filename by default
         $fileName = $materi->file;
 
         if ($request->hasFile('file')) {
@@ -92,7 +89,6 @@ class MateriController extends Controller
             $newName = time().'_'.preg_replace('/\s+/', '_', $file->getClientOriginalName());
             $file->move(public_path('uploads/materi'), $newName);
 
-            // hapus file lama jika ada
             if ($materi->file && file_exists(public_path('uploads/materi/'.$materi->file))) {
                 @unlink(public_path('uploads/materi/'.$materi->file));
             }

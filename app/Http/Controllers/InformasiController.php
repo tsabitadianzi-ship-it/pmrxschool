@@ -41,7 +41,6 @@ class InformasiController extends Controller
         $informasi->tanggal = $request->tanggal;
         $informasi->save();
 
-        // === Kirim notifikasi ke semua pengguna ===
         $users = \App\Models\User::all();
         foreach ($users as $user) {
             $user->notify(new InformasiBaruNotification($informasi));

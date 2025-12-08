@@ -13,7 +13,6 @@ class ProfilController extends Controller
     {
         $user = Auth::user();
 
-        // Batasi hanya pembina, sekertaris, bendahara
         if (!in_array($user->role, ['pembina', 'sekertaris', 'bendahara'])) {
             abort(403, 'Anda tidak punya akses ke halaman ini.');
         }
@@ -35,16 +34,13 @@ class ProfilController extends Controller
 
         $user = Auth::user();
 
-        // Cek password lama
         if (!Hash::check($request->current_password, $user->password)) {
             return back()->withErrors(['current_password' => 'Password lama tidak sesuai']);
         }
 
-        // Update password baru
         $user->password = Hash::make($request->new_password);
         $user->save();
 
-        // Arahkan balik ke dashboard sesuai role
         switch ($user->role) {
             case 'pembina':
                 return redirect()->route('pembina.dashboard')->with('success', 'Password berhasil diperbarui');

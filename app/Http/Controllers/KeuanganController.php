@@ -12,7 +12,6 @@ class KeuanganController extends Controller
     {
         $keuangan = Keuangan::orderBy('tanggal', 'desc')->get();
 
-        // hitung saldo: pemasukan - pengeluaran
         $saldo = Keuangan::select(DB::raw("
             SUM(CASE WHEN tipe = 'Pemasukan' THEN jumlah ELSE -jumlah END) as saldo
         "))->value('saldo') ?? 0;
@@ -42,7 +41,6 @@ class KeuanganController extends Controller
         'jumlah' => 'required|numeric|min:1'
     ]);
 
-    // Ambil saldo terakhir
     $lastSaldo = Keuangan::orderBy('id', 'desc')->value('total') ?? 0;
 
     $total = $request->tipe == 'Pemasukan'
@@ -92,14 +90,12 @@ class KeuanganController extends Controller
 
     $keuangan = Keuangan::findOrFail($id);
 
-    // Update data transaksi
     $keuangan->tanggal    = $request->tanggal;
     $keuangan->tipe       = $request->tipe;
     $keuangan->keterangan = $request->keterangan;
     $keuangan->jumlah     = $request->jumlah;
     $keuangan->save();
 
-    // Ambil semua transaksi setelah atau sama dengan id ini (urut berdasarkan tanggal atau id)
     $transaksi = Keuangan::orderBy('id')->get();
 
     $saldo = 0;

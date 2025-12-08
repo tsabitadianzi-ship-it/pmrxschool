@@ -98,7 +98,6 @@
           </ul>
       </div>
       @php
-          // tandai semua notifikasi sudah dibaca
           auth()->user()->unreadNotifications->markAsRead();
       @endphp
   @endif
@@ -230,8 +229,6 @@ Swal.fire({
     confirmButtonColor: '#219EBC'
   });
 </script>
-
-{{-- Tandai notifikasi sudah dibaca agar tidak muncul lagi --}}
 @php
     auth()->user()->unreadNotifications->markAsRead();
 @endphp
